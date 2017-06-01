@@ -1,0 +1,53 @@
+SimplexLogic.CALLSIGN
+SimplexLogic.DEFAULT_LANG=fr_FR (iso truc)
+ReflectorLogic.CALLSIGN=spotnik-CALLSIGN
+
+
+// Reception detect
+Rx1.SQL_DET=GPIO/VOX/CTCSS
+
+SimplexLogic.CTCSS_FQ=71.9 (wikipedia)
+Rx1.CTCSS_FQ=71.9
+Tx1.CTCSS_FQ=71.9
+
+
+LocationInfo.CALLSIGN=EL-(CALLSIGN)
+
+#LOCATION_INFO=LocationInfo
+LON_POSITION=00.00.00W
+LAT_POSITION=00.00.00N
+
+degrees.minutes.seconds.W/E
+
+Latitude : 48.5432792 +()
+Longitude: -3.3981228999999997
+
+
+LocationInfo.FREQUENCY=434.975
+
+TX_POWER=(entier)
+
+ANTENNA_GAIN=1(entier) > 0
+ANTENNA_HEIGHT=4m > 0 (entier)
+TONE = CTSS (entier)
+
+/etc/svxlink/restart.rrf
+
+/etc/spotnik/
+/opt/spotnik/gui/
+
+
+/etc/spotnik/svxlink.echo
+/etc/spotnik/svxlink.fon
+/etc/spotnik/svxlink.frn
+/etc/spotnik/svxlink.rrf
+
+/etc/spotnik/restart.rrf
+
+
+reseau par defaut rrf
+
+echo/fon/frn/rrf
+
+/etc/spotnik/VERSION
+/etc/spotnik/
