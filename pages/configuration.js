@@ -1,5 +1,5 @@
 import Layout from '../components/Layout'
-import fetch from 'isomorphic-fetch'
+import fetch from '../lib/fetch'
 import React from 'react'
 
 class Component extends React.Component {
@@ -14,7 +14,7 @@ class Component extends React.Component {
   }
 
   static getInitialProps () {
-    return fetch(`http://localhost:3000/config`).then(res => res.json())
+    return fetch(`/config`).then(res => res.json())
   }
 
   handleChange(event) {

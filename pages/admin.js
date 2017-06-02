@@ -7,24 +7,10 @@ class Component extends React.Component {
     this.state = {}
   }
 
-  handleSubmit(event) {
-    event.preventDefault()
-    fetch('/dtmf', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/text'
-      },
-      body: event.target.elements.dtmf.value
-    })
-  }
-
   render() {
     return (
       <Layout>
-        <form onSubmit={this.handleSubmit}>
-          <input name="dtmf" type="text"/>
-          <input type="submit"/>
-        </form>
+
       </Layout>
     )
   }

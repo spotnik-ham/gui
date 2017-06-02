@@ -1,14 +1,15 @@
 import Layout from '../components/Layout'
-import fetch from 'isomorphic-fetch'
+import fetch from '../lib/fetch'
+// import api from '../lib/api'
 
 // https://github.com/zeit/next.js/issues/2069
 // import api from '../lib/api'
 // const isServer = typeof window === 'undefined'
 // const get = isServer
 //   ? (id) => api.get(id)
-//   : (id) => fetch(`http://localhost:3000/api/${id}`).then(res => res.text())
-function get (id) {
-  return fetch(`http://localhost:3000/api/${id}`).then(res => res.text())
+//   : (id) => fetch(`/api/${id}`).then(res => res.text())
+function get(id) {
+  return fetch(`/api/${encodeURIComponent(id)}`).then(res => res.text())
 }
 
 const Index = (props) => (
@@ -22,6 +23,7 @@ const Index = (props) => (
       <p>time: {props.datetime}</p>
       <p>version: {props.version}</p>
       <p>network: {props.network}</p>
+      <p>temperature: {props.temperature}</p>
     </div>
   </Layout>
 )
@@ -36,6 +38,7 @@ Index.getInitialProps = async function () {
     datetime: await get('datetime'),
     version: await get('version'),
     network: await get('network'),
+    temperature: await get('temperature'),
   }
 }
 

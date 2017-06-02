@@ -12,10 +12,16 @@ const Header = () => (
         <meta charset='utf-8' />
         <meta name='viewport' content='initial-scale=1.0, width=device-width' />
         <link rel="icon" type="image/png" href="../static/favicon.png" />
+        {/* FIXME don't know how to webpack bundle this */}
+        {/* <link href="notie/dist/notie.min.css" rel="stylesheet" type="text/css"/> */}
+        <link href="../static/notie.min.css" rel="stylesheet" type="text/css"/>
       </Head>
       <h1>spotnik</h1>
       <Link prefetch href="/">
         <a style={linkStyle}>home</a>
+      </Link>
+      <Link prefetch href="/keypad">
+        <a style={linkStyle}>keypad</a>
       </Link>
       <Link prefetch href="/configuration">
         <a style={linkStyle}>configuration</a>

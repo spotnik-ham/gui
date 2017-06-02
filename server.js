@@ -4,10 +4,13 @@ const api = require('./lib/api')
 const config = require('./lib/config')
 const bodyParser = require('body-parser')
 const dtmf = require('./lib/dtmf')
+const {port, hostname} = require('./config')
 
 const dev = process.env.NODE_ENV !== 'production'
 const app = next({ dev })
 const handle = app.getRequestHandler()
+
+process.title = 'spotnik'
 
 app.prepare()
 .then(() => {
@@ -15,9 +18,8 @@ app.prepare()
 
   server.use(bodyParser.text())
 
-  server.post('/dtmf', (req, res, next) => {
-    dtmf(req.body).then(() => {
-      res.status(202)
+  server.post('/dtmf/:key', (req, res, next) => {
+    dtmf(req.params.key).then(() => {
       res.end()
     }).catch(next)
   })
@@ -41,9 +43,9 @@ app.prepare()
     return handle(req, res)
   })
 
-  server.listen(3000, (err) => {
+  server.listen(port, (err) => {
     if (err) throw err
-    console.log('> Ready on http://localhost:3000')
+    console.log(`> Ready on http://${hostname}:${port}`)
   })
 })
 .catch((ex) => {

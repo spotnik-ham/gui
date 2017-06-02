@@ -10,12 +10,23 @@
     "humanize-duration": "^3.10.0",
     "isomorphic-unfetch": "^1.0.0",
     "next": "^2.4.0",
+    "notie": "^4.3.1",
     "pify": "^3.0.0",
+    "play-dtmf": "^0.1.1",
     "pretty-bytes": "^4.0.2",
     "react": "^15.5.4",
-    "react-dom": "^15.5.4"
+    "react-dom": "^15.5.4",
+    "system.global": "^2.0.0"
   },
   "scripts": {
-    "dev": "node server.js"
+    "sync": "rsync -r --exclude config.js --exclude spotnik --exclude node_modules --exclude .git . spotnik:/opt/spotnik/gui",
+    "push": "npm run build && npm run sync",
+    "restart-remote": "ssh spotnik '(cd /opt/spotnik/gui; npm run restart) &>/dev/null &'",
+    "deploy": "npm run build && npm run sync && npm run restart-remote",
+    "dev": "node server.js",
+    "build": "next build",
+    "start": "NODE_ENV=production node server.js",
+    "stop": "pkill --signal SIGINT spotnik || true",
+    "restart": "npm run stop && npm run start"
   }
 }
