@@ -1,6 +1,7 @@
+import React from 'react'
 import Layout from '../components/Layout'
 import fetch from '../lib/fetch'
-// import api from '../lib/api'
+// Import api from '../lib/api'
 
 // https://github.com/zeit/next.js/issues/2069
 // import api from '../lib/api'
@@ -9,37 +10,64 @@ import fetch from '../lib/fetch'
 //   ? (id) => api.get(id)
 //   : (id) => fetch(`/api/${id}`).then(res => res.text())
 function get(id) {
-  return fetch(`/api/${encodeURIComponent(id)}`).then(res => res.text())
+	return fetch(`/api/${encodeURIComponent(id)}`).then(res => res.text())
 }
 
-const Index = (props) => (
-  <Layout>
-    <div>
-      <p>uptime: {props.uptime}</p>
-      <p>hostname: {props.hostname}</p>
-      <p>memory: {props.memory}</p>
-      <p>cpu: {props.cpu}</p>
-      <p>ip: {props.ip}</p>
-      <p>time: {props.datetime}</p>
-      <p>version: {props.version}</p>
-      <p>network: {props.network}</p>
-      <p>temperature: {props.temperature}</p>
-    </div>
-  </Layout>
+const Index = props => (
+	<Layout>
+		<div className="list-group">
+			<div className="list-group-item flex-column align-items-start">
+				<h5>uptime</h5>
+				<p>{props.uptime}</p>
+			</div>
+			<div className="list-group-item flex-column align-items-start">
+				<h5>hostmane</h5>
+				<p>{props.hostname}</p>
+			</div>
+			<div className="list-group-item flex-column align-items-start">
+				<h5>memory</h5>
+				<p>{props.memory}</p>
+			</div>
+			{/* <div className="list-group-item flex-column align-items-start">
+				<h5>cpu</h5>
+				<p>{props.cpu}</p>
+			</div> */}
+			<div className="list-group-item flex-column align-items-start">
+				<h5>ip</h5>
+				<p>{props.ip}</p>
+			</div>
+			<div className="list-group-item flex-column align-items-start">
+				<h5>time</h5>
+				<p>{props.datetime}</p>
+			</div>
+			<div className="list-group-item flex-column align-items-start">
+				<h5>version</h5>
+				<p>{props.version}</p>
+			</div>
+			<div className="list-group-item flex-column align-items-start">
+				<h5>network</h5>
+				<p>{props.network}</p>
+			</div>
+			<div className="list-group-item flex-column align-items-start">
+				<h5>temperature</h5>
+				<p>{props.temperature}</p>
+			</div>
+		</div>
+	</Layout>
 )
 
 Index.getInitialProps = async function () {
-  return {
-    uptime: await get('uptime'),
-    hostname: await get('hostname'),
-    memory: await get('memory'),
-    cpu: await get('cpu'),
-    ip: await get('ip'),
-    datetime: await get('datetime'),
-    version: await get('version'),
-    network: await get('network'),
-    temperature: await get('temperature'),
-  }
+	return {
+		uptime: await get('uptime'),
+		hostname: await get('hostname'),
+		memory: await get('memory'),
+		// cpu: await get('cpu'),
+		ip: await get('ip'),
+		datetime: await get('datetime'),
+		version: await get('version'),
+		network: await get('network'),
+		temperature: await get('temperature'),
+	}
 }
 
 export default Index
