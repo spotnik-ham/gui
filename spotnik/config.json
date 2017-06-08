@@ -1,9 +1,12 @@
 {
-  "callsign": "",
+  "callsign": "sdfsdf",
   "sql_det": "GPIO",
   "ctcss_fq": "71.9",
   "default_lang": "fr_FR",
   "network": "rrf",
   "type": "EL",
-  "echolink_password": ""
+  "echolink_password": "",
+  "mail_server": "imap.free.fr",
+  "mail_username": "foobar@free.fr",
+  "mail_password": "caca"
 }

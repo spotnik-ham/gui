@@ -105,7 +105,7 @@ class Component extends React.Component {
 				<form onSubmit={this.handleSubmit}>
 					<div className="form-group">
 						<label htmlFor="callsign">Call sign</label>
-						<input required type="text" className="form-control" name="callsign" value={value('callsign')} onChange={this.handleChange}/>
+						<input required placeholder="5P07N1K" type="text" className="form-control" name="callsign" value={value('callsign')} onChange={this.handleChange}/>
 					</div>
 					<div className="form-group">
 						<label htmlFor="type">Node type</label>
@@ -130,24 +130,47 @@ class Component extends React.Component {
 							<option value="fr_FR">French</option>
 						</select>
 					</div>
-					<div className="form-group">
-						<label htmlFor="sql_det">Squelch detection method</label>
-						<select required name="sql_det" className="form-control" value={value('sql_det')} onChange={this.handleChange}>
-							<option value="GPIO">GPIO</option>
-							<option value="CTCSS">CTCSS</option>
-							<option value="VOX">VOX</option>
-						</select>
-					</div>
-					<div className="form-group">
-						<label htmlFor="ctcss_fq">CTCSS frequency</label>
-						<select required name="ctcss_fq" className="form-control" value={value('ctcss_fq')} onChange={this.handleChange}>
-							{ctcssFrequencies.map(freq => <option key={freq} value={freq}>{freq}</option>)}
-						</select>
-					</div>
-					<div className="form-group">
-						<label htmlFor="echolink_password">EchoLink password</label>
-						<input type="password" className="form-control" name="echolink_password" value={value('echolink_password')} onChange={this.handleChange}/>
-					</div>
+					<fieldset className="form-group">
+						<legend>Squelch</legend>
+						<div className="form-group">
+							<label htmlFor="sql_det">Detection method</label>
+							<select required name="sql_det" className="form-control" value={value('sql_det')} onChange={this.handleChange}>
+								<option value="GPIO">GPIO</option>
+								<option value="CTCSS">CTCSS</option>
+								<option value="VOX">VOX</option>
+							</select>
+						</div>
+						<div className="form-group">
+							<label htmlFor="ctcss_fq">CTCSS frequency</label>
+							<select required name="ctcss_fq" className="form-control" value={value('ctcss_fq')} onChange={this.handleChange}>
+								{ctcssFrequencies.map(freq => <option key={freq} value={freq}>{freq}</option>)}
+							</select>
+						</div>
+					</fieldset>
+					<fieldset className="form-group">
+						<legend>EchoLink</legend>
+						<div className="form-group">
+							<label htmlFor="echolink_password">password</label>
+							<input placeholder="password" type="password" className="form-control" name="echolink_password" value={value('echolink_password')} onChange={this.handleChange}/>
+						</div>
+						<p>See <a href="http://www.echolink.org/validation/">documentation</a></p>
+					</fieldset>
+					<fieldset className="form-group">
+						<legend>Propagation alerts</legend>
+						<div className="form-group">
+							<label htmlFor="mail_server">Mail server</label>
+							<input placeholder="imap.example.com" type="text" className="form-control" name="mail_server" value={value('mail_server')} onChange={this.handleChange}/>
+						</div>
+						<div className="form-group">
+							<label htmlFor="mail_username">Mail address</label>
+							<input placeholder="username@example.com" type="email" className="form-control" name="mail_username" value={value('mail_username')} onChange={this.handleChange}/>
+						</div>
+						<div className="form-group">
+							<label htmlFor="mail_password">Mail password</label>
+							<input placeholder="password" type="password" className="form-control" name="mail_password" value={value('mail_password')} onChange={this.handleChange}/>
+						</div>
+						<p>See <a href="https://f5nlg.wordpress.com/2017/05/29/doc-du-module-propagation-monitor/">documentation</a></p>
+					</fieldset>
 					<input type="submit" className="btn btn-primary" value="Save"/>
 				</form>
 			</Layout>
