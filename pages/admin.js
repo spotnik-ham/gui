@@ -9,7 +9,16 @@ class Component extends React.Component {
 
 	render() {
 		return (
-			<Layout/>
+			<Layout>
+				<div>
+					<p>
+						<button type="button" className="btn btn-danger">Power Off</button>
+					</p>
+					<p>
+						<button type="button" className="btn btn-danger">Reboot</button>
+					</p>
+				</div>
+			</Layout>
 		)
 	}
 }

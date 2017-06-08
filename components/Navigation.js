@@ -28,6 +28,11 @@ const Navigation = () => {
 						</Link>
 					</li>
 					<li className="nav-item">
+						<Link prefetch href="/status">
+							<a className="nav-link">status</a>
+						</Link>
+					</li>
+					<li className="nav-item">
 						<Link prefetch href="/admin">
 							<a className="nav-link">admin</a>
 						</Link>

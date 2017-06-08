@@ -50,7 +50,10 @@ class Component extends React.Component {
 	}
 
 	static getInitialProps() {
-		return fetch(`/api/configuration`).then(res => res.json())
+		return fetch(`/api/configuration`).then(res => res.json()).then(config => {
+			config.callsign = config.callsign || '5P07N1K'
+			return config
+		})
 	}
 
 	render() {
@@ -65,8 +68,8 @@ class Component extends React.Component {
 				</div>
 				<style jsx>{`
           .keypad {
-            wdith: 300px;
-            max-width: 300px;
+            width: 414px;
+            max-width: calc(414px - 28px);
             margin: auto;
           }
           .display {

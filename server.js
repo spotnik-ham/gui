@@ -37,6 +37,16 @@ app.prepare()
 		}).catch(next)
 	})
 
+	server.post('/api/reboot', (req, res, next) => {
+		res.writeHead(202)
+		api.reboot().catch(next)
+	})
+
+	server.post('/api/poweroff', (req, res, next) => {
+		res.writeHead(202)
+		api.poweroff().catch(next)
+	})
+
 	server.get('/api/:id', (req, res, next) => {
 		api.get(req.params.id).then(r => {
 			res.writeHead(200, {'Content-Type': 'text/plain; charset=utf-8'})

@@ -30,7 +30,7 @@ stop:
 	pkill --signal SIGINT spotnik || true
 
 start:
-	NODE_ENV=production node server.js
+	nohup yarn start > spotnik.log 2>&1 &
 
 restart:
 	make stop

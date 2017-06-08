@@ -22,8 +22,7 @@
     "util.promisify": "^1.0.0"
   },
   "scripts": {
-    "start": "NODE_ENV=production node server.js",
-    "test": "xo"
+    "start": "NODE_ENV=production node server.js"
   },
   "devDependencies": {
     "eslint-config-xo-react": "^0.12.0",
