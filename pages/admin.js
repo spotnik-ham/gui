@@ -1,17 +1,23 @@
 import React from 'react'
-import notie from 'notie'
 import Layout from '../components/Layout'
 import fetch from '../lib/fetch'
+import notie from '../lib/notie'
+
+function restart() {
+	fetch('/api/restart', {method: 'POST'})
+		.then(() => notie.info('Restarting SvxLink.'))
+		.catch(() => {})
+}
 
 function reboot() {
-	fetch('/api/configuration', {method: 'POST'})
-		.then(() => notie.alert({type: 'info', text: 'Rebooting.'}))
+	fetch('/api/reboot', {method: 'POST'})
+		.then(() => notie.info('Rebooting.'))
 		.catch(() => {})
 }
 
 function poweroff() {
-	fetch('/api/configuration', {method: 'POST'})
-		.then(() => notie.alert({type: 'info', text: 'Powering off.'}))
+	fetch('/api/poweroff', {method: 'POST'})
+		.then(() => notie.info('Powering off.'))
 		.catch(() => {})
 }
 
@@ -25,6 +31,9 @@ class Component extends React.Component {
 		return (
 			<Layout>
 				<div>
+					<p>
+						<button type="button" onClick={restart} className="btn btn-danger">Restart SvxLink</button>
+					</p>
 					<p>
 						<button type="button" onClick={reboot} className="btn btn-danger">Reboot</button>
 					</p>

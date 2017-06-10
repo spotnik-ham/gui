@@ -1,7 +1,7 @@
 import React from 'react'
-import notie from 'notie'
 import Layout from '../components/Layout'
 import fetch from '../lib/fetch'
+import notie from '../lib/notie'
 
 class Component extends React.Component {
 	constructor(props) {
@@ -33,7 +33,7 @@ class Component extends React.Component {
 		const config = Object.assign({}, this.props.config, this.state.config)
 		headers.append('Content-Type', 'application/json')
 		fetch('/api/configuration', {method: 'POST', headers, body: JSON.stringify(config)})
-			.then(() => notie.alert({type: 'info', text: 'Saved.'}))
+			.then(() => notie.success('Saved. Restarting SvxLink...'))
 			.catch(() => {})
 	}
 
@@ -112,15 +112,6 @@ class Component extends React.Component {
 						<select required name="type" className="form-control" value={value('type')} onChange={this.handleChange}>
 							<option value="EL">Link</option>
 							<option value="ER">Relay</option>
-						</select>
-					</div>
-					<div className="form-group">
-						<label htmlFor="network">Network</label>
-						<select required name="network" className="form-control" value={value('network')} onChange={this.handleChange}>
-							<option value="rrf">Réseau des Répéteurs Francophones (RRF)</option>
-							<option value="fon">French Open Network (FON)</option>
-							<option value="echo">EchoLink (EL)</option>
-							<option value="frn">Free Radio Network (FRN)</option>
 						</select>
 					</div>
 					<div className="form-group">
