@@ -30,16 +30,16 @@ class Component extends React.Component {
 	render() {
 		return (
 			<Layout>
-				<div>
-					<p>
+				<div className="list-group">
+					<div className="list-group-item flex-column align-items-center">
 						<button type="button" onClick={restart} className="btn btn-danger">Restart SvxLink</button>
-					</p>
-					<p>
+					</div>
+					<div className="list-group-item flex-column align-items-center">
 						<button type="button" onClick={reboot} className="btn btn-danger">Reboot</button>
-					</p>
-					<p>
+					</div>
+					<div className="list-group-item flex-column align-items-center">
 						<button type="button" onClick={poweroff} className="btn btn-danger">Power Off</button>
-					</p>
+					</div>
 				</div>
 			</Layout>
 		)

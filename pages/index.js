@@ -2,77 +2,29 @@ import React from 'react'
 import Layout from '../components/Layout'
 import fetch from '../lib/fetch'
 import notie from '../lib/notie'
+import Fsm from '../lib/svxlink/fsm'
 
 class Component extends React.Component {
 	constructor() {
 		super()
-		this.state = {
-			network: '',
-			nodes: [],
-			talker: ''
-		}
+		this.state = {}
 		this.handleNetworkChange = this.handleNetworkChange.bind(this)
 	}
 
-	getNodes() {
-		return this.state.nodes.length > 0 ? this.state.nodes : this.props.nodes
-	}
-
-	handleEvent(event, args) {
-		console.log('EventSource', event, args)
-		if (event === 'ReflectorLogic.MsgNodeList') {
-			this.setState({
-				nodes: args
-			})
-		} else if (event === 'ReflectorLogic.MsgNodeLeft') {
-			const nodes = [...this.getNodes()]
-			const idx = nodes.indexOf(args[0])
-			if (idx > -1) {
-				nodes.splice(idx, 1)
-			}
-			this.setState({
-				nodes,
-			})
-		} else if (event === 'ReflectorLogic.MsgNodeJoined') {
-			const nodes = [...this.getNodes()]
-			nodes.push(args[0])
-			this.setState({
-				nodes,
-			})
-		} else if (event === 'spotnik.network') {
-			this.setState({
-				network: args[0],
-				nodes: [],
-			})
-		} else if (event === 'ReflectorLogic.MsgTalkerStart') {
-			this.setState({talker: args[0]})
-		} else if (event === 'ReflectorLogic.MsgTalkerStop') {
-			this.setState({talker: ''})
-		}
+	componentWillMount() {
+		this.setState(this.props)
 	}
 
 	componentDidMount() {
 		const es = new EventSource('/stream')
+
+		const fsm = new Fsm(es, () => {
+			this.setState(fsm)
+		}, this.props)
+
 		es.onerror = error => {
 			console.error('EventSource error', error)
 		}
-		;[
-			'ReflectorLogic.MsgNodeList',
-			'ReflectorLogic.MsgNodeLeft',
-			'ReflectorLogic.MsgNodeJoined',
-			'ReflectorLogic.MsgTalkerStart',
-			'ReflectorLogic.MsgTalkerStop',
-			'spotnik.network',
-			'SimplexLogic.digit',
-			'Rx1.open',
-			'Rx1.closed',
-			'Tx1.on',
-			'Tx1.off',
-		].forEach(event => {
-			es.addEventListener(event, evt => {
-				this.handleEvent(evt.type, JSON.parse(evt.data)[0])
-			})
-		})
 	}
 
 	handleNetworkChange(evt) {
@@ -84,6 +36,9 @@ class Component extends React.Component {
 			method: 'POST',
 			headers,
 			body: network
+		})
+		.then(() => {
+			notie.info('Restarting SvxLink...')
 		})
 		.catch(() => {
 			this.setState({
@@ -101,33 +56,47 @@ class Component extends React.Component {
 	}
 
 	render() {
-		const talker = this.state.talker || this.props.talker
-
+		const isSupported = this.state.network === 'rrf' || this.state.network === 'fon'
 		return (
 			<Layout>
-				<form className="form-inline">
+				<div className="form-inline">
 					<label className="sr-only" htmlFor="network">Network</label>
-					<select required name="network" className="form-control" value={this.state.network || this.props.network} onChange={this.handleNetworkChange}>
+					<select required name="network" className="form-control" value={this.state.network} onChange={this.handleNetworkChange}>
 						<option value="rrf">RRF Réseau des Répéteurs Francophones</option>
 						<option value="fon">FON French Open Network</option>
 						<option value="echo">EL EchoLink</option>
 						<option value="frn">FRN Free Radio Network</option>
 					</select>
-				</form>
-				<span>{talker ? `Talker: ${talker}` : ''}</span>
-				<ul className="list-group">
-					{this.getNodes().map(name => (
-						<li key={name} className="list-group-item justify-content-between">
-							{name.toUpperCase()}
-						</li>
-					))}
-				</ul>
+					{this.state.transmitter && <span className="transmitter"><strong>{this.state.transmitter.toUpperCase()}</strong> <img height="28" src={this.state.transmitter === this.props.node ? '../static/transmit.svg' : '../static/receive.svg'}/></span>}
+				</div>
+				{isSupported ? (
+					<ul className="list-group">
+						{this.state.nodes.map(name => (
+							<li key={name} className="list-group-item justify-content-between">
+								{this.state.transmitter === name ? <strong>{name.toUpperCase()}</strong> : name.toUpperCase()}
+								{this.state.transmitter === name && <img height="28" src={this.state.transmitter === this.props.node ? '../static/transmit.svg' : '../static/receive.svg'}/>}
+							</li>
+						))}
+					</ul>) :
+					<div>Interactive display is not yet supported on this network.</div>
+				}
 				<style jsx>{`
           select {
 						max-width: 80px;
   				}
 					ul {
 						max-width: calc(100% - 14px);
+						margin-top: 15px;
+					}
+
+					ul img {
+						position: absolute;
+						right: 15px;
+					}
+
+					.transmitter {
+						position: absolute;
+						right: 50px;
 					}
         `}</style>
 			</Layout>

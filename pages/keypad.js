@@ -13,6 +13,25 @@ const keys = [
 	'*', '0', '#', 'D',
 ]
 
+const cmds = {
+	'93#': 'Announce IP address over radio',
+	'94#': 'Force connection to the "SPOTNIK" WiFi hotspot',
+	'95#': 'Restart NetworkManager',
+	'96#': 'Switch to RRF network',
+	'97#': 'Switch to FON network',
+	'98#': 'Switch to FRN network',
+	'99#': 'Switch to EL network',
+	'*51#': 'Announce aeronotic weather',
+	'0#': 'Help',
+	'*': 'Informations',
+	'#': 'Quit current module',
+	'10#': 'Enable propagation monitor module',
+	'1#': 'Enable parrot module',
+	'2#': 'Enable EchoLink module',
+	'5#': 'Enable Meta Information module',
+	'7#': 'Enable FRN module'
+}
+
 class Component extends React.Component {
 	constructor(...args) {
 		super(...args)
@@ -60,19 +79,32 @@ class Component extends React.Component {
 		const display = this.state.display || this.props.callsign
 		return (
 			<Layout>
-				<p>Send DTMF signals to SvxLink.</p>
-				<div className="keypad">
+				<div className="help">
+					<ul>
+						{Object.entries(cmds).map(([k, v]) => (
+							<li key={k}><strong>{k}</strong> {v}</li>
+						))}
+					</ul>
+				</div>
+				<div className="keypad fixed-bottom">
 					<div className="display">{display}</div>
 					{/* https://en.wikipedia.org/wiki/Dual-tone_multi-frequency_signaling#Keypad */}
 					{keys.map(key => <button key={key} className="key" onClick={() => this.key(key)}>{key}</button>)}
 				</div>
 				<style jsx>{`
           .keypad {
-            width: 414px;
-            max-width: calc(414px - 28px);
-            margin: auto;
+						z-index: -1;
           }
+					.help {
+						position: absolute;
+						height: calc(100% - (234px + 55px));
+						left: 0;
+						top: 55px;
+						width: 100%;
+						overflow: auto;
+					}
           .display {
+						background-color: white;
 						text-align: center;
             border: solid 1px black;
             @font-face {

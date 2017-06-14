@@ -6,39 +6,35 @@ import notie from '../lib/notie'
 class Component extends React.Component {
 	constructor(props) {
 		super(props)
-		this.state = {
-			config: {},
-		}
+		this.state = {}
 
 		this.handleChange = this.handleChange.bind(this)
 		this.handleSubmit = this.handleSubmit.bind(this)
 	}
 
+	componentWillMount() {
+		this.state = this.props
+	}
+
 	static getInitialProps() {
-		return fetch('/api/configuration').then(res => res.json()).then(config => {
-			return {config}
-		})
+		return fetch('/api/configuration').then(res => res.json())
 	}
 
 	handleChange({target}) {
-		const {state} = this
-		const config = {}
-		Object.assign(config, state.config, {[target.name]: target.value})
-		this.setState({config})
+		this.setState(Object.assign({}, this.state, {[target.name]: target.value}))
 	}
 
 	handleSubmit(event) {
 		event.preventDefault()
 		const headers = new Headers()
-		const config = Object.assign({}, this.props.config, this.state.config)
 		headers.append('Content-Type', 'application/json')
-		fetch('/api/configuration', {method: 'POST', headers, body: JSON.stringify(config)})
+		fetch('/api/configuration', {method: 'POST', headers, body: JSON.stringify(this.state)})
 			.then(() => notie.success('Saved. Restarting SvxLink...'))
 			.catch(() => {})
 	}
 
 	render() {
-		const value = prop => this.state.config[prop] || this.props.config[prop]
+		const value = prop => this.state[prop]
 
 		const ctcssFrequencies = [
 			'67.0',
@@ -141,10 +137,23 @@ class Component extends React.Component {
 					<fieldset className="form-group">
 						<legend>EchoLink</legend>
 						<div className="form-group">
+							<label htmlFor="echolink_password">proxy server</label>
+							<input placeholder="example.com" type="text" className="form-control" name="echolink_proxy_server" value={value('echolink_proxy_server')} onChange={this.handleChange}/>
+						</div>
+						<div className="form-group">
+							<label htmlFor="echolink_proxy_port">proxy port</label>
+							<input placeholder="8100" type="number" className="form-control" name="echolink_proxy_port" value={value('echolink_proxy_port')} onChange={this.handleChange}/>
+						</div>
+						<div className="form-group">
+							<label htmlFor="echolink_proxy_password">proxy password</label>
+							<input placeholder="password" type="password" className="form-control" name="echolink_proxy_password" value={value('echolink_proxy_password')} onChange={this.handleChange}/>
+						</div>
+						<p>See <a href="http://www.echolink.org/proxylist.jsp">proxy list</a></p>
+						<div className="form-group">
 							<label htmlFor="echolink_password">password</label>
 							<input placeholder="password" type="password" className="form-control" name="echolink_password" value={value('echolink_password')} onChange={this.handleChange}/>
 						</div>
-						<p>See <a href="http://www.echolink.org/validation/">documentation</a></p>
+						<p>See <a href="http://www.echolink.org/validation/">validation</a></p>
 					</fieldset>
 					<fieldset className="form-group">
 						<legend>Propagation alerts</legend>

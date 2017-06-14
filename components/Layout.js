@@ -10,6 +10,7 @@ const Layout = props => (
 		<style jsx>{`
 			.content {
 				padding: 15px;
+				padding-top: 70px;
 			}
 		`}</style>
 	</div>

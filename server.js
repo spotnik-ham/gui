@@ -52,7 +52,9 @@ app.prepare()
 	})
 
 	server.get('/api/svxlink', (req, res) => {
-		res.json(api.svxlink())
+		config.get().then(({callsign}) => {
+			res.json(Object.assign(api.svxlink(), {node: `spotnik-${callsign}`}))
+		}).catch(next)
 	})
 
 	server.post('/api/dtmf/:key', (req, res, next) => {

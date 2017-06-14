@@ -1,7 +1,6 @@
 import React from 'react'
 import Layout from '../components/Layout'
 import fetch from '../lib/fetch'
-// Import api from '../lib/api'
 
 // https://github.com/zeit/next.js/issues/2069
 // import api from '../lib/api'
@@ -17,16 +16,8 @@ const Index = props => (
 	<Layout>
 		<div className="list-group">
 			<div className="list-group-item flex-column align-items-start">
-				<h5>network</h5>
-				<p>{props.network}</p>
-			</div>
-			<div className="list-group-item flex-column align-items-start">
 				<h5>uptime</h5>
 				<p>{props.uptime}</p>
-			</div>
-			<div className="list-group-item flex-column align-items-start">
-				<h5>hostmane</h5>
-				<p>{props.hostname}</p>
 			</div>
 			<div className="list-group-item flex-column align-items-start">
 				<h5>memory</h5>
@@ -42,7 +33,11 @@ const Index = props => (
 			</div>
 			<div className="list-group-item flex-column align-items-start">
 				<h5>time</h5>
-				<p>{props.datetime}</p>
+				{/* <p>{props.datetime}</p> */}
+				<p>{
+					new Date(props.datetime).toLocaleTimeString() + ' - ' +
+					new Date(props.datetime).toLocaleDateString()}
+				</p>
 			</div>
 			<div className="list-group-item flex-column align-items-start">
 				<h5>version</h5>
@@ -59,9 +54,7 @@ const Index = props => (
 Index.getInitialProps = async function () {
 	return {
 		uptime: await get('uptime'),
-		hostname: await get('hostname'),
 		memory: await get('memory'),
-		// cpu: await get('cpu'),
 		ip: await get('ip'),
 		datetime: await get('datetime'),
 		version: await get('version'),

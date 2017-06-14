@@ -36,24 +36,3 @@ TX_POWER=(entier)
 ANTENNA_GAIN=1(entier) > 0
 ANTENNA_HEIGHT=4m > 0 (entier)
 TONE = CTSS (entier)
-
-/etc/svxlink/restart.rrf
-
-/etc/spotnik/
-/opt/spotnik/gui/
-
-
-/etc/spotnik/svxlink.echo
-/etc/spotnik/svxlink.fon
-/etc/spotnik/svxlink.frn
-/etc/spotnik/svxlink.rrf
-
-/etc/spotnik/restart.rrf
-
-
-reseau par defaut rrf
-
-echo/fon/frn/rrf
-
-/etc/spotnik/VERSION
-/etc/spotnik/

@@ -43,10 +43,7 @@
       "func-names": 0,
       "unicorn/filename-case": 0,
       "react/jsx-no-bind": 0,
-      "comma-dangle": [
-        2,
-        "only-multiline"
-      ]
+      "comma-dangle": [2, "only-multiline"]
     },
     "semicolon": false
   }
