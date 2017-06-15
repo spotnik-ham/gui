@@ -158,12 +158,10 @@ class Component extends React.Component {
 					</fieldset>
 					<fieldset className="form-group">
 						<legend>Location</legend>
-						<label className="form-check-label">
-							<input className="form-check-input" type="checkbox" onChange={this.handleLocationChange} checked={value('location_enabled') ? 'checked' : ''}/>
-								Enable
-							</label>
 						<div className="form-group">
-							<button type="button" onClick={this.handleGetLocation}>Get location</button>
+							<label className="form-check-label">
+								<input className="form-check-input" type="checkbox" onChange={this.handleLocationChange} checked={value('location_enabled') ? 'checked' : ''}/> Enable
+							</label>
 						</div>
 						<div className="form-group">
 							<label htmlFor="location_latitude">latitude</label>
@@ -173,6 +171,10 @@ class Component extends React.Component {
 							<label htmlFor="location_longitude">longitude</label>
 							<input placeholder="11.15.00E" type="text" className="form-control" name="location_longitude" value={value('location_longitude')} onChange={this.handleChange}/>
 						</div>
+						<p>
+							<button type="button" onClick={this.handleGetLocation}>Get automatic location</button> from
+							browser or use <a href="https://aprs.fi">aprs.fi</a> for manual coordinates.
+						</p>
 					</fieldset>
 					<fieldset className="form-group">
 						<legend>EchoLink</legend>
