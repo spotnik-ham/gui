@@ -3,12 +3,15 @@
   "sql_det": "GPIO",
   "ctcss_fq": "71.9",
   "default_lang": "fr_FR",
-  "type": "rrf",
+  "type": "EL",
   "echolink_proxy_server": "",
   "echolink_proxy_port": "",
   "echolink_proxy_password": "",
   "echolink_password": "",
   "mail_server": "",
   "mail_username": "",
-  "mail_password": ""
+  "mail_password": "",
+  "location_enabled": false,
+  "location_latitude": "",
+  "location_longitude": ""
 }

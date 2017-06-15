@@ -11,7 +11,8 @@ dev:
 	node server.js
 
 sync:
-	rsync -r --exclude config.js --exclude spotnik --exclude node_modules --exclude .git . spotnik:/opt/spotnik/gui
+	rsync -r --exclude spotnik --exclude node_modules --exclude .git . spotnik:/opt/spotnik/gui
+	ssh spotnik '(cd /opt/spotnik/gui; cp config.example.js config.js)'
 	ssh spotnik '(cd /opt/spotnik/gui; cp config.js .next/dist)'
 
 push:

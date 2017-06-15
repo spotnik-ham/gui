@@ -1,4 +1,5 @@
 import React from 'react'
+import formatcoords from 'formatcoords'
 import Layout from '../components/Layout'
 import fetch from '../lib/fetch'
 import notie from '../lib/notie'
@@ -10,6 +11,8 @@ class Component extends React.Component {
 
 		this.handleChange = this.handleChange.bind(this)
 		this.handleSubmit = this.handleSubmit.bind(this)
+		this.handleLocationChange = this.handleLocationChange.bind(this)
+		this.handleGetLocation = this.handleGetLocation.bind(this)
 	}
 
 	componentWillMount() {
@@ -20,8 +23,27 @@ class Component extends React.Component {
 		return fetch('/api/configuration').then(res => res.json())
 	}
 
+	handleGetLocation() {
+		notie.info('Looking for location')
+		navigator.geolocation.getCurrentPosition(
+			({coords}) => {
+				notie.info('Location acquired')
+				const [latitude, longitude] = formatcoords(coords.latitude, coords.longitude)
+					.format('D.M.sX', {decimalPlaces: 0})
+					.split(' ')
+				this.setState({location_latitude: latitude, location_longitude: longitude}) // eslint-disable-line camelcase
+			},
+			err => notie.error(err),
+			{enableHighAccuracy: true}
+		)
+	}
+
+	handleLocationChange({target}) {
+		this.setState({location_enabled: target.checked}) // eslint-disable-line camelcase
+	}
+
 	handleChange({target}) {
-		this.setState(Object.assign({}, this.state, {[target.name]: target.value}))
+		this.setState({[target.name]: target.value})
 	}
 
 	handleSubmit(event) {
@@ -135,7 +157,30 @@ class Component extends React.Component {
 						</div>
 					</fieldset>
 					<fieldset className="form-group">
+						<legend>Location</legend>
+						<label className="form-check-label">
+							<input className="form-check-input" type="checkbox" onChange={this.handleLocationChange} checked={value('location_enabled') ? 'checked' : ''}/>
+								Enable
+							</label>
+						<div className="form-group">
+							<button type="button" onClick={this.handleGetLocation}>Get location</button>
+						</div>
+						<div className="form-group">
+							<label htmlFor="location_latitude">latitude</label>
+							<input placeholder="55.48.58S" type="text" className="form-control" name="location_latitude" value={value('location_latitude')} onChange={this.handleChange}/>
+						</div>
+						<div className="form-group">
+							<label htmlFor="location_longitude">longitude</label>
+							<input placeholder="11.15.00E" type="text" className="form-control" name="location_longitude" value={value('location_longitude')} onChange={this.handleChange}/>
+						</div>
+					</fieldset>
+					<fieldset className="form-group">
 						<legend>EchoLink</legend>
+						<div className="form-group">
+							<label htmlFor="echolink_password">password</label>
+							<input placeholder="password" type="password" className="form-control" name="echolink_password" value={value('echolink_password')} onChange={this.handleChange}/>
+						</div>
+						<p>See <a href="http://www.echolink.org/validation/">validation</a></p>
 						<div className="form-group">
 							<label htmlFor="echolink_password">proxy server</label>
 							<input placeholder="example.com" type="text" className="form-control" name="echolink_proxy_server" value={value('echolink_proxy_server')} onChange={this.handleChange}/>
@@ -149,11 +194,6 @@ class Component extends React.Component {
 							<input placeholder="password" type="password" className="form-control" name="echolink_proxy_password" value={value('echolink_proxy_password')} onChange={this.handleChange}/>
 						</div>
 						<p>See <a href="http://www.echolink.org/proxylist.jsp">proxy list</a></p>
-						<div className="form-group">
-							<label htmlFor="echolink_password">password</label>
-							<input placeholder="password" type="password" className="form-control" name="echolink_password" value={value('echolink_password')} onChange={this.handleChange}/>
-						</div>
-						<p>See <a href="http://www.echolink.org/validation/">validation</a></p>
 					</fieldset>
 					<fieldset className="form-group">
 						<legend>Propagation alerts</legend>

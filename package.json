@@ -10,6 +10,7 @@
     "execa": "^0.6.3",
     "express": "^4.15.3",
     "express-sse": "^0.4.1",
+    "formatcoords": "^1.1.2",
     "humanize-duration": "^3.10.0",
     "ini": "^1.3.4",
     "isomorphic-fetch": "^2.2.1",
@@ -43,7 +44,10 @@
       "func-names": 0,
       "unicorn/filename-case": 0,
       "react/jsx-no-bind": 0,
-      "comma-dangle": [2, "only-multiline"]
+      "comma-dangle": [
+        2,
+        "only-multiline"
+      ]
     },
     "semicolon": false
   }
