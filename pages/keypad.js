@@ -23,7 +23,7 @@ const cmds = {
 	'99#': 'Switch to EL network',
 	'*51#': 'Announce aeronotic weather',
 	'0#': 'Help',
-	'*': 'Informations',
+	'*#': 'Informations',
 	'#': 'Quit current module',
 	'10#': 'Enable propagation monitor module',
 	'1#': 'Enable parrot module',

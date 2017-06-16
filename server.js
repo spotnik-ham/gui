@@ -1,3 +1,5 @@
+const fs = require('fs')
+const https = require('https')
 const express = require('express')
 const next = require('next')
 const bodyParser = require('body-parser')
@@ -101,11 +103,14 @@ app.prepare()
 		return handle(req, res)
 	})
 
-	server.listen(port, err => {
+	https.createServer({
+		key: fs.readFileSync('key.pem'),
+		cert: fs.readFileSync('cert.pem')
+	}, server).listen(port, err => {
 		if (err) {
 			throw err
 		}
-		console.log(`> Ready on http://${hostname}:${port}`)
+		console.log(`> Ready on https://${hostname}:${port}`)
 	})
 })
 .catch(err => {

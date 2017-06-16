@@ -16,11 +16,13 @@ class Component extends React.Component {
 	}
 
 	componentWillMount() {
-		this.state = this.props
+		this.setState(this.props.config)
 	}
 
 	static getInitialProps() {
-		return fetch('/api/configuration').then(res => res.json())
+		return fetch('/api/configuration').then(res => res.json()).then(config => {
+			return {config}
+		})
 	}
 
 	handleGetLocation() {
@@ -212,6 +214,14 @@ class Component extends React.Component {
 							<input placeholder="password" type="password" className="form-control" name="mail_password" value={value('mail_password')} onChange={this.handleChange}/>
 						</div>
 						<p>See <a href="https://f5nlg.wordpress.com/2017/05/29/doc-du-module-propagation-monitor/">documentation</a></p>
+					</fieldset>
+					<fieldset className="form-group">
+						<legend>Meteo information</legend>
+						<div className="form-group">
+							<label htmlFor="airport_code">Airport ICAO code</label>
+							<input placeholder="LFRO" type="text" className="form-control" name="airport_code" value={value('airport_code')} onChange={this.handleChange}/>
+						</div>
+						<p>See <a href="http://fr.allmetsat.com/metar-taf/france.php">airport codes</a></p>
 					</fieldset>
 					<input type="submit" className="btn btn-primary" value="Save"/>
 				</form>

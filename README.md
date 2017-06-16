@@ -2,10 +2,10 @@
 
 Graphical user interface for the spotnik HAM radio/internet relay.
 
-This is the development documentation, for user documentation please refer to the spotnik documentation.
+This is the development documentation, for user documentation please refer to the [spotnik documentation]('http://www.spotnik.org').
 
 It consist of Web server providing the necessary APIs and a Web application.
-It is written in JavaScript using [https://github.com/zeit/next.js](next.js).
+It is written in JavaScript using [Next.js](https://github.com/zeit/next.js).
 
 ## Production
 
@@ -37,7 +37,7 @@ cd /opt/spotnik/gui
 npm start
 ```
 
-[http://spotnik](http://spotnik)
+[https://spotnik](https://spotnik)
 
 ## Development
 
