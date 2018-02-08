@@ -9,6 +9,7 @@ class Component extends React.Component {
 		super()
 		this.state = {}
 		this.handleNetworkChange = this.handleNetworkChange.bind(this)
+
 	}
 
 	componentWillMount() {
@@ -29,24 +30,25 @@ class Component extends React.Component {
 
 	handleNetworkChange(evt) {
 		const previousNetwork = this.state.network
-		const network = evt.target.value
+		const network1 = evt.target.value
 		const headers = new Headers()
+
 		headers.append('Content-Type', 'text/plain; charset=utf-8')
 		fetch('/api/network', {
 			method: 'POST',
 			headers,
-			body: network
+			body: network1
 		})
 		.then(() => {
 			notie.info('Restarting SvxLink...')
 		})
 		.catch(() => {
 			this.setState({
-				network: previousNetwork,
+				network1: '',
 			})
 		})
 		this.setState({
-			network,
+			network1,
 			nodes: [],
 		})
 	}
@@ -56,20 +58,22 @@ class Component extends React.Component {
 	}
 
 	render() {
-		const isSupported = this.state.network === 'rrf' || this.state.network === 'fon'
 		return (
 			<Layout>
 				<div className="form-inline">
-					<label className="sr-only" htmlFor="network">Network</label>
-					<select required name="network" className="form-control" value={this.state.network} onChange={this.handleNetworkChange}>
+					<label className="sr-only" htmlFor="network1">network1</label>
+					<select required name="network1" className="form-control" value={this.state.network1} onChange={this.handleNetworkChange}>
 						<option value="rrf">RRF Réseau des Répéteurs Francophones</option>
 						<option value="fon">FON French Open Network</option>
-						<option value="echo">EL EchoLink</option>
-						<option value="frn">FRN Free Radio Network</option>
+						<option value="tec">TEC Salon Technique</option>
+						<option value="urg">URG Salon Urgence</option>
+						<option value="stv">STV Salon SSTV</option>
+						<option value="cd2">CD2 Salon Codec2</option>
+						<option value="el">EL Réseau EchoLink</option>
 					</select>
 					{this.state.transmitter && <span className="transmitter"><strong>{this.state.transmitter.toUpperCase()}</strong> <img height="28" src={this.state.transmitter === this.props.node ? '../static/transmit.svg' : '../static/receive.svg'}/></span>}
 				</div>
-				{isSupported ? (
+				{(
 					<ul className="list-group">
 						{this.state.nodes.map(name => (
 							<li key={name} className="list-group-item justify-content-between">
@@ -77,12 +81,11 @@ class Component extends React.Component {
 								{this.state.transmitter === name && <img height="28" src={this.state.transmitter === this.props.node ? '../static/transmit.svg' : '../static/receive.svg'}/>}
 							</li>
 						))}
-					</ul>) :
-					<div>Interactive display is not yet supported on this network.</div>
+					</ul>)
 				}
 				<style jsx>{`
           select {
-						max-width: 80px;
+						max-width: 360px;
   				}
 					ul {
 						max-width: calc(100% - 14px);

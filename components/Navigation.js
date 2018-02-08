@@ -22,11 +22,13 @@ const Navigation = () => {
 							<a className="nav-link"><img src="../static/keypad.svg" height="14"/> keypad</a>
 						</Link>
 					</li>
+					
 					<li className="nav-item">
 						<Link prefetch href="/configuration">
 							<a className="nav-link"><img src="../static/configuration.svg" height="14"/> configuration</a>
 						</Link>
 					</li>
+
 					<li className="nav-item">
 						<Link prefetch href="/status">
 							<a className="nav-link"><img src="../static/status.svg" height="14"/> status</a>
