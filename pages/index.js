@@ -9,7 +9,6 @@ class Component extends React.Component {
 		super()
 		this.state = {}
 		this.handleNetworkChange = this.handleNetworkChange.bind(this)
-
 	}
 
 	componentWillMount() {
@@ -32,7 +31,6 @@ class Component extends React.Component {
 		const previousNetwork = this.state.network
 		const network1 = evt.target.value
 		const headers = new Headers()
-
 		headers.append('Content-Type', 'text/plain; charset=utf-8')
 		fetch('/api/network', {
 			method: 'POST',
