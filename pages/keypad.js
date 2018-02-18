@@ -16,12 +16,15 @@ const keys = [
 const cmds = {
 	'93#': 'Announce IP address over radio',
 	'94#': 'Force connection to the "SPOTNIK" WiFi hotspot',
-	'95#': 'Restart NetworkManager',
+	'95#': 'Switch to NO network',
 	'96#': 'Switch to RRF network',
 	'97#': 'Switch to FON network',
-	'98#': 'Switch to FRN network',
-	'99#': 'Switch to EL network',
-	'*51#': 'Announce aeronotic weather',
+	'98#': 'Switch to TEC room',
+	'99#': 'Switch to URG room',
+	'100#': 'Switch to STV room',
+	'101#': 'Switch to CD2 room',
+	'102#': 'Switch to EL network',
+	'*51#': 'Announce aeronautic weather',
 	'0#': 'Help',
 	'*#': 'Informations',
 	'#': 'Quit current module',
@@ -30,6 +33,7 @@ const cmds = {
 	'2#': 'Enable EchoLink module',
 	'5#': 'Enable Meta Information module',
 	'7#': 'Enable FRN module'
+
 }
 
 class Component extends React.Component {
