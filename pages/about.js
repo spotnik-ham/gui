@@ -14,7 +14,7 @@ export default () => (
 			<li>Hardware F1EVM Jean-Francois , F5NLG Jean-Philippe</li>
 			<li>Low Level Script F1EVM Jean-Francois , F5NLG Jean-Philippe</li>
 			<li>Distrib and packaging F5NLG Jean-Philippe</li>     
-			<li><a href="www.svxlink.org">svxlink from Tobias</a></li>
+			<li>svxlink from Tobias :<a href="http://www.svxlink.org">{`www.svxlink.org`}</a></li>
 		</ul>
 	
 	
