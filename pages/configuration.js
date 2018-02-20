@@ -149,6 +149,7 @@ class Component extends React.Component {
 								<option value="GPIO">GPIO</option>
 								<option value="CTCSS">CTCSS</option>
 								<option value="VOX">VOX</option>
+								<option value="SIGLEV">SIGLEV</option>
 							</select>
 						</div>
 						<div className="form-group">
