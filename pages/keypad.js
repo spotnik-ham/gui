@@ -106,6 +106,10 @@ class Component extends React.Component {
 					))}
 				</div>
 				<style jsx>{`
+					@font-face {
+						font-family: 'D14CR';
+						src: url('../static/DSEG14Classic-Regular.woff');
+					}
 					.keypad {
 						z-index: -1;
 					}
@@ -121,10 +125,7 @@ class Component extends React.Component {
 						background-color: white;
 						text-align: center;
 						border: solid 1px black;
-						@font-face {
-							font-family: 'D14CR';
-							src: url('../static/DSEG14Classic-Regular.woff');
-						}
+						font-family: 'D14CR', serif;
 					}
 					.key {
 						width: calc((100% / 4) - 2px);
