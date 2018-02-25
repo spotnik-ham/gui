@@ -6,6 +6,7 @@ import fetch from '../lib/fetch'
 // FIXME polyfill
 const g = global || window
 
+// prettier-ignore
 const keys = [
 	'1', '2', '3', 'A',
 	'4', '5', '6', 'B',
@@ -32,8 +33,7 @@ const cmds = {
 	'1#': 'Enable parrot module',
 	'2#': 'Enable EchoLink module',
 	'5#': 'Enable Meta Information module',
-	'7#': 'Enable FRN module'
-
+	'7#': 'Enable FRN module',
 }
 
 class Component extends React.Component {
@@ -66,17 +66,21 @@ class Component extends React.Component {
 	key(key) {
 		this.vibrate()
 		this.play(key)
-		fetch(`/api/dtmf/${encodeURIComponent(key)}`, {method: 'POST'}).then(() => {
-			const display = this.state.display + key
-			this.setState({display})
-		}).catch(() => {})
+		fetch(`/api/dtmf/${encodeURIComponent(key)}`, {method: 'POST'})
+			.then(() => {
+				const display = this.state.display + key
+				this.setState({display})
+			})
+			.catch(() => {})
 	}
 
 	static getInitialProps() {
-		return fetch(`/api/configuration`).then(res => res.json()).then(config => {
-			config.callsign = config.callsign || '5P07N1K'
-			return config
-		})
+		return fetch(`/api/configuration`)
+			.then(res => res.json())
+			.then(config => {
+				config.callsign = config.callsign || '5P07N1K'
+				return config
+			})
 	}
 
 	render() {
@@ -86,19 +90,25 @@ class Component extends React.Component {
 				<div className="help">
 					<ul>
 						{Object.entries(cmds).map(([k, v]) => (
-							<li key={k}><strong>{k}</strong> {v}</li>
+							<li key={k}>
+								<strong>{k}</strong> {v}
+							</li>
 						))}
 					</ul>
 				</div>
 				<div className="keypad fixed-bottom">
 					<div className="display">{display}</div>
 					{/* https://en.wikipedia.org/wiki/Dual-tone_multi-frequency_signaling#Keypad */}
-					{keys.map(key => <button key={key} className="key" onClick={() => this.key(key)}>{key}</button>)}
+					{keys.map(key => (
+						<button key={key} className="key" onClick={() => this.key(key)}>
+							{key}
+						</button>
+					))}
 				</div>
 				<style jsx>{`
-          .keypad {
+					.keypad {
 						z-index: -1;
-          }
+					}
 					.help {
 						position: absolute;
 						height: calc(100% - (234px + 55px));
@@ -107,25 +117,25 @@ class Component extends React.Component {
 						width: 100%;
 						overflow: auto;
 					}
-          .display {
+					.display {
 						background-color: white;
 						text-align: center;
-            border: solid 1px black;
-            @font-face {
-              font-family: "D14CR";
-              src: url("../static/DSEG14Classic-Regular.woff");
-            }
-          }
-          .key {
-            width: calc((100% / 4) - 2px);
-            margin: 1px;
-            height: 50px;
-            background-color: #DDDDDD;
-            border: solid 1px lightgrey;
-            outline: none;
-            cursor: pointer;
-          }
-        `}</style>
+						border: solid 1px black;
+						@font-face {
+							font-family: 'D14CR';
+							src: url('../static/DSEG14Classic-Regular.woff');
+						}
+					}
+					.key {
+						width: calc((100% / 4) - 2px);
+						margin: 1px;
+						height: 50px;
+						background-color: #dddddd;
+						border: solid 1px lightgrey;
+						outline: none;
+						cursor: pointer;
+					}
+				`}</style>
 			</Layout>
 		)
 	}
