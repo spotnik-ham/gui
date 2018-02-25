@@ -34,21 +34,17 @@
   },
   "xo": {
     "extends": "xo-react",
-    "envs": [
-      "node",
-      "browser",
-      "shared-node-browser"
-    ],
+    "envs": ["node", "browser", "shared-node-browser"],
     "rules": {
       "react/prop-types": 0,
       "func-names": 0,
       "unicorn/filename-case": 0,
       "react/jsx-no-bind": 0,
-      "comma-dangle": [
-        2,
-        "only-multiline"
-      ]
+      "comma-dangle": [2, "only-multiline"]
     },
     "semicolon": false
+  },
+  "engines": {
+    "node": ">= 7.6.0"
   }
 }

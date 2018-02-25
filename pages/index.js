@@ -18,9 +18,13 @@ class Component extends React.Component {
 	componentDidMount() {
 		const es = new EventSource('/stream')
 
-		const fsm = new Fsm(es, () => {
-			this.setState(fsm)
-		}, this.props)
+		const fsm = new Fsm(
+			es,
+			() => {
+				this.setState(fsm)
+			},
+			this.props
+		)
 
 		es.onerror = error => {
 			console.error('EventSource error', error)
@@ -29,24 +33,24 @@ class Component extends React.Component {
 
 	handleNetworkChange(evt) {
 		const previousNetwork = this.state.network
-		const network1 = evt.target.value
+		const network = evt.target.value
 		const headers = new Headers()
 		headers.append('Content-Type', 'text/plain; charset=utf-8')
 		fetch('/api/network', {
 			method: 'POST',
 			headers,
-			body: network1
+			body: network,
 		})
-		.then(() => {
-			notie.info('Restarting SvxLink...')
-		})
-		.catch(() => {
-			this.setState({
-				network1: '',
+			.then(() => {
+				notie.info('Restarting SvxLink...')
 			})
-		})
+			.catch(() => {
+				this.setState({
+					network: previousNetwork,
+				})
+			})
 		this.setState({
-			network1,
+			network,
 			nodes: [],
 		})
 	}
@@ -59,8 +63,16 @@ class Component extends React.Component {
 		return (
 			<Layout>
 				<div className="form-inline">
-					<label className="sr-only" htmlFor="network1">network1</label>
-					<select required name="network1" className="form-control" value={this.state.network1} onChange={this.handleNetworkChange}>
+					<label className="sr-only" htmlFor="network">
+						Network
+					</label>
+					<select
+						required
+						name="network"
+						className="form-control"
+						value={this.state.network}
+						onChange={this.handleNetworkChange}
+					>
 						<option value="rrf">RRF Réseau des Répéteurs Francophones</option>
 						<option value="fon">FON French Open Network</option>
 						<option value="tec">TEC Salon Technique</option>
@@ -69,22 +81,50 @@ class Component extends React.Component {
 						<option value="cd2">CD2 Salon Codec2</option>
 						<option value="el">EL Réseau EchoLink</option>
 					</select>
-					{this.state.transmitter && <span className="transmitter"><strong>{this.state.transmitter.toUpperCase()}</strong> <img height="28" src={this.state.transmitter === this.props.node ? '../static/transmit.svg' : '../static/receive.svg'}/></span>}
+					{this.state.transmitter && (
+						<span className="transmitter">
+							<strong>{this.state.transmitter.toUpperCase()}</strong>{' '}
+							<img
+								height="28"
+								src={
+									this.state.transmitter === this.props.node
+										? '../static/transmit.svg'
+										: '../static/receive.svg'
+								}
+							/>
+						</span>
+					)}
 				</div>
-				{(
+				{
 					<ul className="list-group">
 						{this.state.nodes.map(name => (
-							<li key={name} className="list-group-item justify-content-between">
-								{this.state.transmitter === name ? <strong>{name.toUpperCase()}</strong> : name.toUpperCase()}
-								{this.state.transmitter === name && <img height="28" src={this.state.transmitter === this.props.node ? '../static/transmit.svg' : '../static/receive.svg'}/>}
+							<li
+								key={name}
+								className="list-group-item justify-content-between"
+							>
+								{this.state.transmitter === name ? (
+									<strong>{name.toUpperCase()}</strong>
+								) : (
+									name.toUpperCase()
+								)}
+								{this.state.transmitter === name && (
+									<img
+										height="28"
+										src={
+											this.state.transmitter === this.props.node
+												? '../static/transmit.svg'
+												: '../static/receive.svg'
+										}
+									/>
+								)}
 							</li>
 						))}
-					</ul>)
+					</ul>
 				}
 				<style jsx>{`
-          select {
+					select {
 						max-width: 360px;
-  				}
+					}
 					ul {
 						max-width: calc(100% - 14px);
 						margin-top: 15px;
@@ -99,7 +139,7 @@ class Component extends React.Component {
 						position: absolute;
 						right: 50px;
 					}
-        `}</style>
+				`}</style>
 			</Layout>
 		)
 	}

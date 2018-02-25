@@ -21,98 +21,121 @@ function restart() {
 	})
 }
 
-app.prepare()
-.then(() => {
-	const server = express()
+app
+	.prepare()
+	.then(() => {
+		const server = express()
 
-	server.use(bodyParser.text())
-	server.use(bodyParser.json())
+		server.use(bodyParser.text())
+		server.use(bodyParser.json())
 
-	server.get('/stream', sse.init)
+		server.get('/stream', sse.init)
 
-	server.post('/api/restart', (req, res, next) => {
-		res.writeHead(202)
-		res.end()
-		restart().catch(next)
-	})
-
-	server.get('/api/network', (req, res, next) => {
-		api.getNetwork().then(r => {
-			res.writeHead(202, {'Content-Type': 'text/plain; charset=utf-8'})
-			res.end(r.toString())
-		})
-    .catch(next)
-	})
-
-	server.post('/api/network', (req, res, next) => {
-		api.setNetwork(req.body).then(() => {
-			res.status(202)
+		server.post('/api/restart', (req, res, next) => {
+			res.writeHead(202)
 			res.end()
-			return api.restart(req.body)
+			restart().catch(next)
 		})
-    .catch(next)
-	})
 
-	server.get('/api/svxlink', (req, res) => {
-		config.get().then(({callsign}) => {
-			res.json(Object.assign(api.svxlink(), {node: `spotnik-${callsign}`}))
-		}).catch(next)
-	})
-
-	server.post('/api/dtmf/:key', (req, res, next) => {
-		dtmf(req.params.key).then(() => {
-			res.end()
-		}).catch(next)
-	})
-
-	server.post('/api/configuration', (req, res, next) => {
-		config.set(req.body).then(() => {
-			res.status(202)
-			res.end()
-			return restart()
-		}).catch(next)
-	})
-
-	server.get('/api/configuration', (req, res, next) => {
-		config.get().then(conf => {
-			res.json(conf)
-		}).catch(next)
-	})
-
-	server.post('/api/reboot', (req, res, next) => {
-		res.writeHead(202)
-		res.end()
-		api.reboot().catch(next)
-	})
-
-	server.post('/api/poweroff', (req, res, next) => {
-		res.writeHead(202)
-		res.end()
-		api.poweroff().catch(next)
-	})
-
-	server.get('/api/:id', (req, res, next) => {
-		api.get(req.params.id).then(r => {
-			res.writeHead(200, {'Content-Type': 'text/plain; charset=utf-8'})
-			res.end(r.toString())
+		server.get('/api/network', (req, res, next) => {
+			api
+				.getNetwork()
+				.then(r => {
+					res.writeHead(202, {'Content-Type': 'text/plain; charset=utf-8'})
+					res.end(r.toString())
+				})
+				.catch(next)
 		})
-    .catch(next)
-	})
 
-	server.get('*', (req, res) => {
-		return handle(req, res)
-	})
+		server.post('/api/network', (req, res, next) => {
+			api
+				.setNetwork(req.body)
+				.then(() => {
+					res.status(202)
+					res.end()
+					return api.restart(req.body)
+				})
+				.catch(next)
+		})
 
-	https.createServer({
-		key: fs.readFileSync('key.pem'),
-		cert: fs.readFileSync('cert.pem')
-	}, server).listen(port, err => {
-		if (err) {
-			throw err
-		}
-		console.log(`> Ready on https://${hostname}:${port}`)
+		server.get('/api/svxlink', (req, res, next) => {
+			config
+				.get()
+				.then(({callsign}) => {
+					res.json(Object.assign(api.svxlink(), {node: `spotnik-${callsign}`}))
+				})
+				.catch(next)
+		})
+
+		server.post('/api/dtmf/:key', (req, res, next) => {
+			dtmf(req.params.key)
+				.then(() => {
+					res.end()
+				})
+				.catch(next)
+		})
+
+		server.post('/api/configuration', (req, res, next) => {
+			config
+				.set(req.body)
+				.then(() => {
+					res.status(202)
+					res.end()
+					return restart()
+				})
+				.catch(next)
+		})
+
+		server.get('/api/configuration', (req, res, next) => {
+			config
+				.get()
+				.then(conf => {
+					res.json(conf)
+				})
+				.catch(next)
+		})
+
+		server.post('/api/reboot', (req, res, next) => {
+			res.writeHead(202)
+			res.end()
+			api.reboot().catch(next)
+		})
+
+		server.post('/api/poweroff', (req, res, next) => {
+			res.writeHead(202)
+			res.end()
+			api.poweroff().catch(next)
+		})
+
+		server.get('/api/:id', (req, res, next) => {
+			api
+				.get(req.params.id)
+				.then(r => {
+					res.writeHead(200, {'Content-Type': 'text/plain; charset=utf-8'})
+					res.end(r.toString())
+				})
+				.catch(next)
+		})
+
+		server.get('*', (req, res) => {
+			return handle(req, res)
+		})
+
+		https
+			.createServer(
+				{
+					key: fs.readFileSync('key.pem'),
+					cert: fs.readFileSync('cert.pem'),
+				},
+				server
+			)
+			.listen(port, err => {
+				if (err) {
+					throw err
+				}
+				console.log(`> Ready on https://${hostname}:${port}`)
+			})
 	})
-})
-.catch(err => {
-	throw err
-})
+	.catch(err => {
+		throw err
+	})
