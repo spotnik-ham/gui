@@ -16,7 +16,7 @@ ssh spotnik
 cd /opt/spotnik
 git clone https://github.com/spotnik-ham/gui.git
 make
-npm start
+make start
 ```
 
 ### Update
@@ -24,7 +24,7 @@ npm start
 ```
 ssh spotnik
 cd /opt/spotnik/gui
-git pull
+git pull https://github.com/spotnik-ham/gui.git
 make
 ```
 
@@ -33,7 +33,7 @@ make
 ```
 ssh spotnik
 cd /opt/spotnik/gui
-npm start
+make start
 ```
 
 [https://spotnik](https://spotnik)
@@ -45,7 +45,6 @@ npm start
 ```
 git clone https://github.com/spotnik-ham/gui.git
 cd gui
-cp config.test.js config.js
 make dev
 ```
 
