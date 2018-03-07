@@ -2,6 +2,7 @@ import React from 'react'
 import Layout from '../components/Layout'
 import fetch from '../lib/fetch'
 
+
 // https://github.com/zeit/next.js/issues/2069
 // import api from '../lib/api'
 // const isServer = typeof window === 'undefined'
@@ -47,6 +48,10 @@ const Index = props => (
 				<h5>temperature</h5>
 				<p>{props.temperature}</p>
 			</div>
+			<div className="list-group-item flex column align-items-start">
+				<h5>wifi</h5>
+				<p>{props.wifi}</p>
+			</div>
 		</div>
 	</Layout>
 )
@@ -56,6 +61,14 @@ Index.getInitialProps = async function () {
 		uptime: await get('uptime'),
 		memory: await get('memory'),
 		ip: await get('ip'),
+
+
+//f4gbv wifi tests 070318 :
+//wwwwwwwwwwwwwwwwwwwwwwwww
+		wifi: await get('wifi'),
+//wwwwwwwwwwwwwwwwwwwwwwwww
+
+
 		datetime: await get('datetime'),
 		version: await get('version'),
 		network: await get('network'),
