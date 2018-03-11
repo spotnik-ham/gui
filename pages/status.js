@@ -50,7 +50,7 @@ const Index = props => (
 			</div>
 			<div className="list-group-item flex column align-items-start">
 				<h5>wifi</h5>
-				<p>{props.wifi}</p>
+				<p></p>
 			</div>
 		</div>
 	</Layout>
@@ -65,7 +65,16 @@ Index.getInitialProps = async function () {
 
 //f4gbv wifi tests 070318 :
 //wwwwwwwwwwwwwwwwwwwwwwwww
-		wifi: await get('wifi'),
+
+//gbv 080318pm:
+//		wifi: await get('wifi'),
+
+// gbv 110318:
+//		wifi: await JSON.stringify(
+//				fetch(`/api/${encodeURIComponent('wifi')}`)
+//					.then(res => res.text())
+//			),
+
 //wwwwwwwwwwwwwwwwwwwwwwwww
 
 

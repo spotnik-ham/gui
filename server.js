@@ -5,6 +5,9 @@ const next = require('next')
 const bodyParser = require('body-parser')
 const api = require('./lib/api')
 const config = require('./lib/config')
+//f4gbv 100318:
+const wifi = require('./lib/wifi')
+
 const dtmf = require('./lib/dtmf')
 const {port, hostname} = require('./config')
 const sse = require('./lib/sse')
@@ -14,6 +17,7 @@ const app = next({dev})
 const handle = app.getRequestHandler()
 
 process.title = 'spotnik'
+
 
 function restart() {
 	return api.getNetwork().then(network => {
@@ -36,6 +40,7 @@ app
 			res.end()
 			restart().catch(next)
 		})
+
 
 		server.get('/api/network', (req, res, next) => {
 			api
@@ -94,6 +99,23 @@ app
 				})
 				.catch(next)
 		})
+
+//f4gbv 100318:
+//wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww
+		
+		server.get('/api/wifi', (req, res, next) => {
+			config
+				.get()
+				.then(({callsign}) => {
+					res.json(Object.assign(api.wifi(),{node: `spotnik-${callsign}`} ))
+				})
+				.catch(next)
+		})
+
+//wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww
+
+
+
 
 		server.post('/api/reboot', (req, res, next) => {
 			res.writeHead(202)
