@@ -104,12 +104,16 @@ app
 //wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww
 		
 		server.get('/api/wifi', (req, res, next) => {
-			config
-				.get()
-				.then(({callsign}) => {
-					res.json(Object.assign(api.wifi(),{node: `spotnik-${callsign}`} ))
-				})
-				.catch(next)
+
+			var out1= api.wifi()
+
+			res.writeHead(200, {"Content-Type": "text/plain"});
+
+			res.write("VOTRE CONFIGURATION RESEAU :  --  ");
+
+			res.end("network :     "+JSON.stringify(out1));
+
+
 		})
 
 //wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww
