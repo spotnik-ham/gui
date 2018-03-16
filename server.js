@@ -105,7 +105,14 @@ app
 		
 		server.get('/api/wifi', (req, res, next) => {
 
-			var out1= api.wifi()
+//			var out1= api.wifi();
+			var out1= Object.assign({},api.wifi()); 
+console.log(Object.entries(out1));
+console.log(Object.keys(out1));
+
+
+			console.log('out1  : '+JSON.stringify(out1.props));
+
 
 			res.writeHead(200, {"Content-Type": "text/plain"});
 
