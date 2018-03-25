@@ -62,11 +62,21 @@ app
 			config
 				.get()
 				.then(({callsign}) => {
-					res.json(Object.assign(api.svxlink(), {node: `spotnik-${callsign}`}))
-				})
-				.catch(next)
-		})
+					res.json(Object.assign(api.svxlink(),
+					 {node: `spotnik-${callsign}`})) 
+				})	
+				.then ( () => {
+				if (res.transmit='true') {
+						return api.reinittimer()
+					}
+				})	
 
+				
+				.catch(next)
+
+
+		})
+				
 		server.post('/api/dtmf/:key', (req, res, next) => {
 			dtmf(req.params.key)
 				.then(() => {
