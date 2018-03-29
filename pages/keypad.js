@@ -116,10 +116,11 @@ class Component extends React.Component {
 					.help {
 						position: absolute;
 						height: calc(100% - (234px + 55px));
+						max-height : calc(100% - 289px);
 						left: 0;
 						top: 55px;
 						width: 100%;
-						overflow: auto;
+						overflow: scroll;
 					}
 					.display {
 						background-color: white;
