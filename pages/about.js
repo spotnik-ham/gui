@@ -5,7 +5,7 @@ export default () => (
 	<Layout>
 		<img src="../static/spotnik.svg" height="80"/>
 		<div>
-			<a href="http://spotnik.org">httt://spotnik.org</a>
+			<a href="http://spotnik.org">http://spotnik.org</a>
 			<p>spotnik released under <a href="https://github.com/spotnik-ham/gui/blob/master/LICENSE">license GPL-3.0</a></p>
 			<p>For issues, questions, concerns please use <a href="https://github.com/spotnik-ham/gui/issues">our Github repository</a>.</p>
 		<ul>
