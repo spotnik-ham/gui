@@ -224,6 +224,20 @@ class Component extends React.Component {
 						</div>
 						<p>See <a href="http://fr.allmetsat.com/metar-taf/france.php">airport codes</a></p>
 					</fieldset>
+					<fieldset className="form-group">
+                        <legend>SSID WIFI</legend>
+                        <div className="form-group">
+                            <label htmlFor="wifi_ssid">ssid</label>
+                            <input placeholder="ssid" type="text" className="form-control" name="wifi_ssid" value={value('wifi_ssid')} onChange={this.handleChange}/>
+                        </div>
+					</fieldset>
+					<fieldset className="form-group">
+                        <legend>CLE WIFI</legend>
+                        <div className="form-group">
+                            <label htmlFor="wpa_key">wpa_key</label>
+                            <input placeholder="clef wpa" type="password" className="form-control" name="wpa_key" value={value('wpa_key')} onChange={this.handleChange}/>
+                        </div>
+					</fieldset>
 					<input type="submit" className="btn btn-primary" value="Save"/>
 				</form>
 			</Layout>
