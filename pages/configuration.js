@@ -59,6 +59,14 @@ class Component extends React.Component {
 
 	render() {
 		const value = prop => this.state[prop]
+		const band_typ = [
+		'D',
+		'V',
+		'U',
+		'T',
+		'E',
+		'G'
+		]
 
 		const ctcssFrequencies = [
 			'67.0',
@@ -128,11 +136,21 @@ class Component extends React.Component {
 						<input required placeholder="5P07N1K" type="text" className="form-control" name="callsign" value={value('callsign')} onChange={this.handleChange}/>
 					</div>
 					<div className="form-group">
+							<label htmlFor="Departement">Departement</label>
+							<input placeholder="22" type="text" className="form-control" name="Departement" value={value('Departement')} onChange={this.handleChange}/>
+					</div>
+					<div className="form-group">
 						<label htmlFor="type">Node type</label>
 						<select required name="type" className="form-control" value={value('type')} onChange={this.handleChange}>
 							<option value="EL">Link</option>
 							<option value="ER">Relay</option>
 						</select>
+					</div>
+					<div className="form-group">
+							<label htmlFor="band_type">Frequency Band</label>
+							<select required name="band_type" className="form-control" value={value('band_type')} onChange={this.handleChange}>
+								{band_typ.map(band => <option key={band} value={band}>{band}</option>)}
+							</select>
 					</div>
 					<div className="form-group">
 						<label htmlFor="default_lang">Language</label>
@@ -232,7 +250,7 @@ class Component extends React.Component {
                         </div>
 					</fieldset>
 					<fieldset className="form-group">
-                        <legend>Clef Wifi</legend>
+                        <legend>Clef wifi</legend>
                         <div className="form-group">
                             <label htmlFor="wpa_key">wpa_key</label>
                             <input placeholder="clef wpa" type="text" className="form-control" name="wpa_key" value={value('wpa_key')} onChange={this.handleChange}/>
