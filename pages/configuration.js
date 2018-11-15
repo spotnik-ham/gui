@@ -243,17 +243,29 @@ class Component extends React.Component {
 						<p>See <a href="http://fr.allmetsat.com/metar-taf/france.php">airport codes</a></p>
 					</fieldset>
 					<fieldset className="form-group">
-                        <legend>SSID Wifi</legend>
+                        <legend>Wifi</legend>
                         <div className="form-group">
                             <label htmlFor="wifi_ssid">ssid</label>
                             <input placeholder="ssid" type="text" className="form-control" name="wifi_ssid" value={value('wifi_ssid')} onChange={this.handleChange}/>
                         </div>
-					</fieldset>
-					<fieldset className="form-group">
-                        <legend>Clef wifi</legend>
-                        <div className="form-group">
+				        <div className="form-group">
                             <label htmlFor="wpa_key">wpa_key</label>
                             <input placeholder="clef wpa" type="text" className="form-control" name="wpa_key" value={value('wpa_key')} onChange={this.handleChange}/>
+                        </div>
+					</fieldset>
+					<fieldset className="form-group">
+						<legend>SA818 (for spotnik delta with integrated radio only) </legend>
+						<div className="form-group">
+                            <label htmlFor="Tx_qrg">tx_qrg</label>
+                            <input placeholder="145.3250" type="text" className="form-control" name="tx_qrg" value={value('tx_qrg')} onChange={this.handleChange}/>
+                        </div>
+						<div className="form-group">
+                            <label htmlFor="Rx_qrg">rx_qrg</label>
+                            <input placeholder="432.9000" type="text" className="form-control" name="rx_qrg" value={value('rx_qrg')} onChange={this.handleChange}/>
+                        </div>
+						<div className="form-group">
+                            <label htmlFor="Sql_lvl">sql_lvl</label>
+                            <input placeholder="2" type="text" className="form-control" name="sql_lvl" value={value('sql_lvl')} onChange={this.handleChange}/>
                         </div>
 					</fieldset>
 					<input type="submit" className="btn btn-primary" value="Save"/>
