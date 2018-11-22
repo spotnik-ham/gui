@@ -68,65 +68,28 @@ class Component extends React.Component {
 		'G'
 		]
 
+		// modification du tableau des ctcss possibles à cause de SA818 qui n'en gère que 38 :
+		//const ctcssFrequencies = [
+		//	'67.0',	'69.3',	'71.9',	'74.4',	'77.0',	'79.7',	'82.5',	'85.4',	'88.5',
+		//	'91.5',	'94.8',	'97.4',	'100.0','103.5','107.2','110.9','114.8','118.8',
+		//	'123.0','127.3','131.8','136.5','141.3','146.2','150.0','151.4','156.7',
+		//	'162.2','167.9','173.8','179.9','186.2','192.8','199.5','206.5','213.8',
+		//	'221.3','229.1','237.1','245.5','254.1','159.8','165.5','171.3','177.3',
+		//	'183.5','189.9','196.6','203.5','210.7','218.1','225.7','233.6','241.8',
+		//	'250.3'
+		//]
+	
+		// nouveau tableau des ctcss compatible avec SA818 :
+		// la correspondance dans SA818 est la suivante : numéro d'élément sur 4 chiffres
+		// exemple : le dernier élément du tableau est 0038
 		const ctcssFrequencies = [
-			'67.0',
-			'69.3',
-			'71.9',
-			'74.4',
-			'77.0',
-			'79.7',
-			'82.5',
-			'85.4',
-			'88.5',
-			'91.5',
-			'94.8',
-			'97.4',
-			'100.0',
-			'103.5',
-			'107.2',
-			'110.9',
-			'114.8',
-			'118.8',
-
-			'123.0',
-			'127.3',
-			'131.8',
-			'136.5',
-			'141.3',
-			'146.2',
-			'150.0',
-			'151.4',
-			'156.7',
-			'162.2',
-			'167.9',
-			'173.8',
-			'179.9',
-			'186.2',
-			'192.8',
-			'199.5',
-			'206.5',
-			'213.8',
-			'221.3',
-
-			'229.1',
-			'237.1',
-			'245.5',
-			'254.1',
-			'159.8',
-			'165.5',
-			'171.3',
-			'177.3',
-			'183.5',
-			'189.9',
-			'196.6',
-			'203.5',
-			'210.7',
-			'218.1',
-			'225.7',
-			'233.6',
-			'241.8',
-			'250.3'
+			'67', '71.9', '74.4', '77', '79.7', '82.5', '85.4', '88.5', '91.5',
+			'94.8', '97.4', '100', '103.5', '107.2', '110.9', '114.8', '118.8', '123',
+			'127.3', '131.8', '136.5', '141.3', '146.2', '151.4', '156.7', '162.2', '167.9',
+			'173.8', '179.9', '186.2', '192.8', '203.5', '210.7', '218.1', '225.7', '233.6',
+			'241.8', '250.3'
 		]
+		const sql_lvl = ['0', '1', '2', '3', '4', '5', '6', '7', '8']
 
 		return (
 			<Layout>
@@ -264,9 +227,11 @@ class Component extends React.Component {
                             <input placeholder="432.9000" type="text" className="form-control" name="rx_qrg" value={value('rx_qrg')} onChange={this.handleChange}/>
                         </div>
 						<div className="form-group">
-                            <label htmlFor="Sql_lvl">sql_lvl</label>
-                            <input placeholder="2" type="text" className="form-control" name="sql_lvl" value={value('sql_lvl')} onChange={this.handleChange}/>
-                        </div>
+							<label htmlFor="sql_lvl">sql_lvl</label>
+							<select required name="sql_lvl" className="form-control" value={value('sql_lvl')} onChange={this.handleChange}>
+								{sql_lvl.map(sql => <option key={sql} value={sql}>{sql}</option>)}
+							</select>
+						</div>
 					</fieldset>
 					<input type="submit" className="btn btn-primary" value="Save"/>
 				</form>
