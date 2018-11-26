@@ -15,6 +15,7 @@ It is written in JavaScript using [Next.js](https://github.com/zeit/next.js).
 ssh spotnik
 cd /opt/spotnik
 git clone https://github.com/spotnik-ham/gui.git
+cd gui
 make
 make start
 ```
