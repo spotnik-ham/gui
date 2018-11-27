@@ -11,7 +11,6 @@ It is written in JavaScript using [Next.js](https://github.com/zeit/next.js).
 
 ### Install
 
-touch /usr/local/sbin/SA818
 ```
 ssh spotnik
 cd /opt/spotnik
