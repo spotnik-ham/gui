@@ -4,6 +4,7 @@ import Layout from '../components/Layout'
 import fetch from '../lib/fetch'
 import notie from '../lib/notie'
 
+
 class Component extends React.Component {
 	constructor(props) {
 		super(props)
@@ -67,6 +68,7 @@ class Component extends React.Component {
 		'E',
 		'G'
 		]
+		this.lSA818 = 'No'
 
 		// modification du tableau des ctcss possibles à cause de SA818 qui n'en gère que 38 :
 		//const ctcssFrequencies = [
@@ -90,6 +92,7 @@ class Component extends React.Component {
 			'241.8', '250.3'
 		]
 		const sql_lvl = ['0', '1', '2', '3', '4', '5', '6', '7', '8']
+		const lSA818 = ['No','Yes']
 
 		return (
 			<Layout>
@@ -232,6 +235,13 @@ class Component extends React.Component {
 								{sql_lvl.map(sql => <option key={sql} value={sql}>{sql}</option>)}
 							</select>
 						</div>
+						<div className="form-group">
+							<label htmlFor="lSA818">Are you sure you wish to program SA818 now by clicking on SAVE ?</label>
+							<select required name="lSA818" className="form-control" Value={value('l_818')}  onChange={this.handleChange}>
+								{lSA818.map(lSA818 => <option key={lSA818} value={lSA818}>{lSA818}</option>)}
+							</select>
+							
+					</div>
 					</fieldset>
 					<input type="submit" className="btn btn-primary" value="Save"/>
 				</form>
