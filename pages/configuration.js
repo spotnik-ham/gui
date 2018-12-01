@@ -66,6 +66,7 @@ class Component extends React.Component {
 		'U',
 		'T',
 		'S',
+		'R',
 		'6'
 		]
 		this.lSA818 = 'No'
@@ -113,7 +114,7 @@ class Component extends React.Component {
 						</select>
 					</div>
 					<div className="form-group">
-							<label htmlFor="band_type">Frequency Band  ( V=VHF, D=10m, T=Tspdr, ...)</label>
+							<label htmlFor="band_type">Frequency Band  ( V=VHF, D=10m, T=Tspdr, R=Relais ...)</label>
 							<select required name="band_type" className="form-control" value={value('band_type')} onChange={this.handleChange}>
 								{band_typ.map(band => <option key={band} value={band}>{band}</option>)}
 							</select>
