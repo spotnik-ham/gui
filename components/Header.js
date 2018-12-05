@@ -6,10 +6,10 @@ import Navigation from './Navigation'
 const Header = () => (
 	<div>
 		<Head>
-			<title>spotnik</title>
+			<title>RRF - Réseau des Répéteurs Francophone</title>
 			<meta charSet="utf-8"/>
 			<meta name="viewport" content="initial-scale=1.0, width=device-width"/>
-			<link rel="icon" type="image/png" href="../static/favicon.png"/>
+			<link rel="icon" type="image/png" href="../static/logo.png"/>
 			{/* FIXME don't know how to webpack bundle this */}
 			{/* <link href="notie/dist/notie.min.css" rel="stylesheet" type="text/css"/> */}
 			<link href="../static/notie.min.css" rel="stylesheet" type="text/css"/>
@@ -17,7 +17,6 @@ const Header = () => (
 			<script src="../static/jquery.slim.min.js"/>
 			<script src="../static/bootstrap.min.js"/>
 		</Head>
-		<Navigation/>
 	</div>
 )
 
