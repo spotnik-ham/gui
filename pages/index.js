@@ -4,31 +4,32 @@ import fetch from '../lib/fetch'
 import notie from '../lib/notie'
 import Fsm from '../lib/svxlink/fsm'
 
+
 class Component extends React.Component {
 	constructor() {
 		super()
 		this.state = {}
-		this.handleNetworkChange = this.handleNetworkChange.bind(this)
+		this.handleNetworkChange = this.handleNetworkChange.bind(this)		
 	}
 
 	componentWillMount() {
 		this.setState(this.props)
+		 
+
 	}
 
 	componentDidMount() {
-		const es = new EventSource('/stream')
+		const es = new EventSource('/realtime')
 
-		const fsm = new Fsm(
-			es,
-			() => {
-				this.setState(fsm)
-			},
-			this.props
-		)
+		const fsm = new Fsm(es, () => {
+			this.setState(fsm)
+		}, this.props)
 
 		es.onerror = error => {
 			console.error('EventSource error', error)
 		}
+		
+
 	}
 
 	handleNetworkChange(evt) {
@@ -39,16 +40,16 @@ class Component extends React.Component {
 		fetch('/api/network', {
 			method: 'POST',
 			headers,
-			body: network,
+			body: network
 		})
-			.then(() => {
-				notie.info('Restarting SvxLink...')
+		.then(() => {
+			notie.info('Restarting SvxLink...')
+		})
+		.catch(() => {
+			this.setState({
+				network: previousNetwork,
 			})
-			.catch(() => {
-				this.setState({
-					network: previousNetwork,
-				})
-			})
+		})
 		this.setState({
 			network,
 			nodes: [],
@@ -56,60 +57,36 @@ class Component extends React.Component {
 	}
 
 	static getInitialProps() {
-		return fetch('/api/svxlink').then(res => res.json())
+		return fetch('/api/svxlink').then(res => res.json()).then(conf => {conf.network = 'rrf'; return conf})
 	}
 
 	render() {
+		const isSupported = this.state.network === 'rrf' || this.state.network === 'fon'
 		return (
 			<Layout>
 				<div className="form-inline">
-					<label className="sr-only" htmlFor="network">
-						Network
-					</label>
-					<select
-						required
-						name="network"
-						className="form-control"
-						value={this.state.network}
-						onChange={this.handleNetworkChange}
-					>
-						<option value="rrf">RRF Réseau des Répéteurs Francophones</option>
-						<option value="fon">FON French Open Network</option>
-						<option value="tec">TEC Salon Technique</option>
-						<option value="urg">URG Salon Urgence</option>
-						<option value="stv">STV Salon SSTV</option>
-						<option value="cd2">CD2 Salon Codec2</option>
-						<option value="el">EL Réseau EchoLink</option>
-					</select>
-					{this.state.transmitter && (
-						<span className="transmitter">
-							<strong>{this.state.transmitter.toUpperCase()}</strong>{' '}
-							<img
-								height="28"
-								src={
-									this.state.transmitter === this.props.node
-										? '../static/transmit.svg'
-										: '../static/receive.svg'
-								}
-							/>
-						</span>
-					)}
+					{this.state.transmitter && <span className="transmitter"><strong>{this.state.transmitter.toUpperCase()}</strong> <img height="28" src={this.state.transmitter === this.props.node ? '../static/transmit.svg' : '../static/receive.svg'}/></span>}
 				</div>
 				{
-					<ul className="list-group">
+					<ol>
+										
 						{this.state.nodes.map(name => (
-							<li
+							//<li	
+							<button 
 								key={name}
-								className="list-group-item justify-content-between"
+								//className="list-group-item justify-content-between"
+								
 							>
+							
 								{this.state.transmitter === name ? (
-									<strong>{name.toUpperCase()}</strong>
+									//<strong>{name.toUpperCase()}</strong>
+									<small>{name.toUpperCase()}</small>
 								) : (
 									name.toUpperCase()
 								)}
 								{this.state.transmitter === name && (
 									<img
-										height="28"
+										height="18"
 										src={
 											this.state.transmitter === this.props.node
 												? '../static/transmit.svg'
@@ -117,21 +94,37 @@ class Component extends React.Component {
 										}
 									/>
 								)}
-							</li>
+							
+							</button>
 						))}
-					</ul>
+					</ol>
 				}
+						
 				<style jsx>{`
 					select {
-						max-width: 360px;
+						max-width: 80%;
+					}				
+					button{
+						
+						//display: block;
+						width: 130px;
+						border: 1px solid grey;
+						background-color: white;
+						color: black;
+						padding: 8px 8px;
+						font-size: 14px;
+						cursor: default;
+						text-align: center;
+						
 					}
-					ul {
-						max-width: calc(100% - 14px);
+					ol {
+						padding: 1% 0%;
+						max-width: calc(100% - 150px);
 						margin-top: 15px;
 					}
 
-					ul img {
-						position: absolute;
+					ol img {
+						position: relative;
 						right: 15px;
 					}
 
@@ -139,7 +132,9 @@ class Component extends React.Component {
 						position: absolute;
 						right: 50px;
 					}
-				`}</style>
+        `}</style>
+		
+		
 			</Layout>
 		)
 	}
