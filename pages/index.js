@@ -4,32 +4,31 @@ import fetch from '../lib/fetch'
 import notie from '../lib/notie'
 import Fsm from '../lib/svxlink/fsm'
 
-
 class Component extends React.Component {
 	constructor() {
 		super()
 		this.state = {}
-		this.handleNetworkChange = this.handleNetworkChange.bind(this)		
+		this.handleNetworkChange = this.handleNetworkChange.bind(this)
 	}
 
 	componentWillMount() {
 		this.setState(this.props)
-		 
-
 	}
 
 	componentDidMount() {
-		const es = new EventSource('/realtime')
+		const es = new EventSource('/stream')
 
-		const fsm = new Fsm(es, () => {
-			this.setState(fsm)
-		}, this.props)
+		const fsm = new Fsm(
+			es,
+			() => {
+				this.setState(fsm)
+			},
+			this.props
+		)
 
 		es.onerror = error => {
 			console.error('EventSource error', error)
 		}
-		
-
 	}
 
 	handleNetworkChange(evt) {
@@ -40,16 +39,16 @@ class Component extends React.Component {
 		fetch('/api/network', {
 			method: 'POST',
 			headers,
-			body: network
+			body: network,
 		})
-		.then(() => {
-			notie.info('Restarting SvxLink...')
-		})
-		.catch(() => {
-			this.setState({
-				network: previousNetwork,
+			.then(() => {
+				notie.info('Restarting SvxLink...')
 			})
-		})
+			.catch(() => {
+				this.setState({
+					network: previousNetwork,
+				})
+			})
 		this.setState({
 			network,
 			nodes: [],
@@ -57,15 +56,44 @@ class Component extends React.Component {
 	}
 
 	static getInitialProps() {
-		return fetch('/api/svxlink').then(res => res.json()).then(conf => {conf.network = 'rrf'; return conf})
+		return fetch('/api/svxlink').then(res => res.json())
 	}
 
 	render() {
-		const isSupported = this.state.network === 'rrf' || this.state.network === 'fon'
 		return (
 			<Layout>
 				<div className="form-inline">
-					{this.state.transmitter && <span className="transmitter"><strong>{this.state.transmitter.toUpperCase()}</strong> <img height="28" src={this.state.transmitter === this.props.node ? '../static/transmit.svg' : '../static/receive.svg'}/></span>}
+					<label className="sr-only" htmlFor="network">
+						Network
+					</label>
+					<select
+						required
+						name="network"
+						className="form-control"
+						value={this.state.network}
+						onChange={this.handleNetworkChange}
+					>
+						<option value="rrf">RRF Réseau des Répéteurs Francophones</option>
+						<option value="fon">FON French Open Network</option>
+						<option value="tec">TEC Salon Technique</option>
+						<option value="urg">URG Salon Urgence</option>
+						<option value="stv">STV Salon SSTV</option>
+						<option value="cd2">CD2 Salon Codec2</option>
+						<option value="el">EL Réseau EchoLink</option>
+					</select>
+					{this.state.transmitter && (
+						<span className="transmitter">
+							<strong>{this.state.transmitter.toUpperCase()}</strong>{' '}
+							<img
+								height="28"
+								src={
+									this.state.transmitter === this.props.node
+										? '../static/transmit.svg'
+										: '../static/receive.svg'
+								}
+							/>
+						</span>
+					)}
 				</div>
 				{
 					<ol>
@@ -86,7 +114,7 @@ class Component extends React.Component {
 								)}
 								{this.state.transmitter === name && (
 									<img
-										height="18"
+										height="28"
 										src={
 											this.state.transmitter === this.props.node
 												? '../static/transmit.svg'
@@ -99,11 +127,11 @@ class Component extends React.Component {
 						))}
 					</ol>
 				}
-						
+				
 				<style jsx>{`
 					select {
-						max-width: 80%;
-					}				
+						max-width: 360px;					
+					}
 					button{
 						
 						//display: block;
@@ -117,7 +145,7 @@ class Component extends React.Component {
 						text-align: center;
 						
 					}
-					ol {
+						ol {
 						padding: 1% 0%;
 						max-width: calc(100% - 150px);
 						margin-top: 15px;
@@ -132,9 +160,7 @@ class Component extends React.Component {
 						position: absolute;
 						right: 50px;
 					}
-        `}</style>
-		
-		
+				`}</style>
 			</Layout>
 		)
 	}
