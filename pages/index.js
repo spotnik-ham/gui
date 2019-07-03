@@ -76,9 +76,10 @@ class Component extends React.Component {
 						<option value="rrf">RRF Réseau des Répéteurs Francophones</option>
 						<option value="fon">FON French Open Network</option>
 						<option value="tec">TEC Salon Technique</option>
-						<option value="urg">URG Salon Urgence</option>
-						<option value="stv">STV Salon SSTV</option>
-						<option value="cd2">CD2 Salon Codec2</option>
+						<option value="int">INT Salon International</option>
+						<option value="bav">BAV Salon Bavardage</option>
+						<option value="loc">LOC Salon Local</option>
+						<option value="sat">SAT Salon Satellites</option>
 						<option value="el">EL Réseau EchoLink</option>
 					</select>
 					{this.state.transmitter && (
