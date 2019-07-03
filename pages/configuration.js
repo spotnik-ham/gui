@@ -61,13 +61,13 @@ class Component extends React.Component {
 	render() {
 		const value = prop => this.state[prop]
 		const band_typ = [
-		'D',
+		'10M',
 		'V',
 		'U',
 		'T',
 		'S',
 		'R',
-		'6'
+		'6M'
 		]
 		this.lSA818 = 'No'
 
