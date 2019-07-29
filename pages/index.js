@@ -3,12 +3,15 @@ import Layout from '../components/Layout'
 import fetch from '../lib/fetch'
 import notie from '../lib/notie'
 import Fsm from '../lib/svxlink/fsm'
+import { callbackify } from 'util';
 
 class Component extends React.Component {
 	constructor() {
 		super()
-		this.state = {}
+		this.state = {tri:"1"}
+	
 		this.handleNetworkChange = this.handleNetworkChange.bind(this)
+		this.handleTriChange = this.handleTriChange.bind(this)
 	}
 
 	componentWillMount() {
@@ -29,6 +32,7 @@ class Component extends React.Component {
 		es.onerror = error => {
 			console.error('EventSource error', error)
 		}
+
 	}
 
 	handleNetworkChange(evt) {
@@ -55,11 +59,37 @@ class Component extends React.Component {
 		})
 	}
 
+	handleTriChange(evt) {
+		
+		const Tri = evt.target.value;
+		this.setState({tri: Tri});
+
+	}
+
 	static getInitialProps() {
 		return fetch('/api/svxlink').then(res => res.json())
 	}
 
 	render() {
+		if (this.state.nodes){
+			var nds = this.state.nodes.filter(() => {return true});
+			if (this.state.tri === "1"){
+			  nds.sort();
+			} else if (this.state.tri === "2"){
+			  nds.sort((a,b) => {
+				var at = a.split(' ');
+				if (at.length === 1) at[1] = 'a' + at[0];
+				var bt = b.split(' ');
+				if (bt.length === 1) bt[1] = 'a' + bt[0];
+				
+				if (at[1] < bt[1]) return -1;
+				if (at[1] === bt[1]) return 0;
+				if (at[1] > bt[1]) return 1;
+			 
+			  })
+			}
+		  }
+	
 		return (
 			<Layout>
 				<div className="form-inline">
@@ -73,6 +103,7 @@ class Component extends React.Component {
 						value={this.state.network}
 						onChange={this.handleNetworkChange}
 					>
+						<option value="default">Répéteur Perroquet</option>
 						<option value="rrf">RRF Réseau des Répéteurs Francophones</option>
 						<option value="fon">FON French Open Network</option>
 						<option value="tec">TEC Salon Technique</option>
@@ -82,6 +113,15 @@ class Component extends React.Component {
 						<option value="sat">SAT Salon Satellites</option>
 						<option value="el">EL Réseau EchoLink</option>
 					</select>
+
+					<select name="tri" className="form-control tri" value={this.state.tri}
+						onChange={this.handleTriChange}
+					>
+						<option value="0">Aucun tri</option>
+						<option value="1">Tri sur le nom complet</option>
+						<option value="2">Tri sur l&apos;indicatif seul</option>
+					</select>
+
 					{this.state.transmitter && (
 						<span className="transmitter">
 							<strong>{this.state.transmitter.toUpperCase()}</strong>{' '}
@@ -99,23 +139,17 @@ class Component extends React.Component {
 				{
 					<ol>
 										
-						{this.state.nodes.map(name => (
-							//<li	
+						{nds.map(name => (
+							
 							<button 
 								key={name}
-								//className="list-group-item justify-content-between"
 								
-							>
-							
-								{this.state.transmitter === name ? (
-									//<strong>{name.toUpperCase()}</strong>
-									<small>{name.toUpperCase()}</small>
-								) : (
-									name.toUpperCase()
-								)}
-								{this.state.transmitter === name && (
+								className={this.state.transmitter === name ? 'transmitting':null}
+								>
+
+								{ this.state.transmitter === name && (
 									<img
-										height="28"
+										height="22"
 										src={
 											this.state.transmitter === this.props.node
 												? '../static/transmit.svg'
@@ -123,6 +157,8 @@ class Component extends React.Component {
 										}
 									/>
 								)}
+								{name.toUpperCase()}
+						
 							
 							</button>
 						))}
@@ -133,18 +169,25 @@ class Component extends React.Component {
 					select {
 						max-width: 360px;					
 					}
+
+					.tri {
+						margin-left: 50px;
+					}
+
 					button{
 						
-						//display: block;
-						width: 130px;
-						border: 1px solid grey;
+						display: inline-block;
+						width: 150px;
+						
+						padding: 5px;
+						border: solid grey 1px;
+						border-radius: 5px;
+						margin: 3px 5px;
+						text-align: left;
 						background-color: white;
 						color: black;
-						padding: 8px 8px;
-						font-size: 14px;
-						cursor: default;
-						text-align: center;
-						
+						font-size: 0.95em;
+					
 					}
 						ol {
 						padding: 1% 0%;
@@ -153,8 +196,12 @@ class Component extends React.Component {
 					}
 
 					ol img {
-						position: relative;
-						right: 15px;
+						float: right;
+						
+					}
+
+					.transmitting {
+						font-weight: bold;
 					}
 
 					.transmitter {

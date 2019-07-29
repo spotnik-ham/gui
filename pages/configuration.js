@@ -238,7 +238,7 @@ class Component extends React.Component {
 						</div>
 						<div className="form-group">
 							<label htmlFor="lSA818">Are you sure you wish to program SA818 now by clicking on SAVE ?</label>
-							<select required name="lSA818" className="form-control" Value={value('l_818')}  onChange={this.handleChange}>
+							<select required name="lSA818" className="form-control" value={value('l_818')}  onChange={this.handleChange}>
 								{lSA818.map(lSA818 => <option key={lSA818} value={lSA818}>{lSA818}</option>)}
 							</select>
 							
