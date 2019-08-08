@@ -172,7 +172,7 @@ class Component extends React.Component {
 						</div>
 						<p>See <a href="http://www.echolink.org/validation/">validation</a></p>
 						<div className="form-group">
-							<label htmlFor="echolink_password">proxy server</label>
+							<label htmlFor="echolink_proxy_server">proxy server</label>
 							<input placeholder="example.com" type="text" className="form-control" name="echolink_proxy_server" value={value('echolink_proxy_server')} onChange={this.handleChange}/>
 						</div>
 						<div className="form-group">
