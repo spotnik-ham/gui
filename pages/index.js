@@ -112,6 +112,7 @@ class Component extends React.Component {
 						<option value="loc">LOC Salon Local</option>
 						<option value="sat">SAT Salon Satellites</option>
 						<option value="el">EL Réseau EchoLink</option>
+						<option value="reg">REG Salon Régional a créer</option>
 					</select>
 
 					<select name="tri" className="form-control tri" value={this.state.tri}
