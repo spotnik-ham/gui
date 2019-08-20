@@ -75,6 +75,21 @@ class Component extends React.Component {
 			.catch(() => {})
 	}
 
+	sendKey(code,i) {
+		if ( i < code.length){
+			this.key(code[i]);
+			i = i + 1;
+			setTimeout(() => {
+				this.sendKey(code,i);
+			},250)
+		}
+	}
+	
+	sendCode(code) {
+		var i = 0;
+		this.sendKey(code,i);
+	}
+
 	static getInitialProps() {
 		return fetch(`/api/configuration`)
 			.then(res => res.json())
@@ -89,9 +104,10 @@ class Component extends React.Component {
 		return (
 			<Layout>
 				<div className="help">
+					<strong>Cliquez sur une ligne pour lancer la commande :</strong>
 					<ul>
 						{Object.entries(cmds).map(([k, v]) => (
-							<li key={k}>
+							<li key={k} onClick={() => this.sendCode(k)} className="commande">
 								<strong>{k}</strong> {v}
 							</li>
 						))}
@@ -106,11 +122,14 @@ class Component extends React.Component {
 						</button>
 					))}
 				</div>
-				<style jsx>{`
-					@font-face {
+					
+					{/*	@font-face {
 						font-family: 'D14CR';
-						src: url('../static/DSEG14Classic-Regular.woff');
-					}
+						src: url('../static/DSEG14Modern-Regular.woff2');
+					} */}
+					
+					<style jsx>{`
+				
 					.keypad {
 						z-index: -1;
 					}
@@ -122,6 +141,9 @@ class Component extends React.Component {
 						top: 55px;
 						width: 100%;
 						overflow: scroll;
+					}
+					.commande{
+						cursor: pointer;
 					}
 					.display {
 						background-color: white;

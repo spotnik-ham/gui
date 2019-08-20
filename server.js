@@ -1,4 +1,5 @@
 const fs = require('fs')
+const http = require('http')
 const https = require('https')
 const express = require('express')
 const next = require('next')
@@ -121,19 +122,28 @@ app
 			return handle(req, res)
 		})
 
-		https
-			.createServer(
+		https.createServer(
 				{
 					key: fs.readFileSync('key.pem'),
 					cert: fs.readFileSync('cert.pem'),
 				},
 				server
 			)
+			.listen(443, err => {
+				if (err) {
+					throw err
+				}
+				console.log(`> Ready on https://${hostname}:443`)
+			})
+
+		http.createServer(
+				server
+			)
 			.listen(port, err => {
 				if (err) {
 					throw err
 				}
-				console.log(`> Ready on https://${hostname}:${port}`)
+				console.log(`> Ready on http://${hostname}:${port}`)
 			})
 	})
 	.catch(err => {
