@@ -30,6 +30,7 @@
   "devDependencies": {
     "eslint-config-xo-react": "^0.20.0",
     "eslint-plugin-react": "^7.14.3",
+    "eslint-plugin-react-hooks": "^1.7.0",
     "xo": "^0.24.0"
   },
   "xo": {
