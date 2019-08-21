@@ -2,24 +2,18 @@
 
 Graphical user interface for the spotnik HAM radio/internet relay.
 
-This is the development documentation, for user documentation please refer to the [spotnik documentation]('http://www.spotnik.org').
+This is the development documentation, for user documentation please refer to the [spotnik documentation](http://spotnik.org/index.php?id=spotnik).
 
 It consist of Web server providing the necessary APIs and a Web application.
 It is written in JavaScript using [Next.js](https://github.com/zeit/next.js).
 
-it needs nodejs and yarn  : on debian 
+`npm` and `Node.js` >= 10 are required.
 
+For debian:
+
+```sh
+apt update && apt install nodejs npm
 ```
-curl -sS https://deb.nodesource.com/gpgkey/nodesource.gpg.key | apt-key add -
-echo "deb http://deb.nodesource.com/node_8.x buster main" | tee /etc/apt/sources.list.d/nodesource.list
-
-curl -sS http://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - 
-echo "deb http://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list
-
-apt update && apt install yarn nodejs
-
-```
-
 
 ## Production
 

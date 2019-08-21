@@ -4,11 +4,11 @@
   "version": "1.0.0",
   "main": "index.js",
   "dependencies": {
-    "body-parser": "^1.17.2",
+    "body-parser": "^1.19.0",
     "bootstrap": "4.0.0-alpha.6",
     "dedent-js": "^1.0.1",
     "execa": "^0.6.3",
-    "express": "^4.15.3",
+    "express": "^4.17.1",
     "express-sse": "^0.4.1",
     "formatcoords": "^1.1.2",
     "humanize-duration": "^3.10.0",
@@ -34,13 +34,20 @@
   },
   "xo": {
     "extends": "xo-react",
-    "envs": ["node", "browser", "shared-node-browser"],
+    "envs": [
+      "node",
+      "browser",
+      "shared-node-browser"
+    ],
     "rules": {
       "react/prop-types": 0,
       "func-names": 0,
       "unicorn/filename-case": 0,
       "react/jsx-no-bind": 0,
-      "comma-dangle": [2, "only-multiline"]
+      "comma-dangle": [
+        2,
+        "only-multiline"
+      ]
     },
     "semicolon": false
   },

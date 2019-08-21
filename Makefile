@@ -3,11 +3,11 @@ PATH := node_modules/.bin:$(PATH)
 .PHONY: setup test clean
 
 setup:
-	yarn
+	npm install
 	next build
 
 dev:
-	yarn
+	npm install
 	node server.js
 
 sync:
@@ -18,7 +18,7 @@ sync:
 push:
 	next build
 	make sync
-	ssh spotnik '(cd /opt/spotnik/gui; yarn)'
+	ssh spotnik '(cd /opt/spotnik/gui; npm install)'
 
 deploy:
 	make push
@@ -31,7 +31,7 @@ stop:
 	pkill --signal SIGINT spotnik || true
 
 start:
-	nohup yarn start > /tmp/spotnik.log 2>&1 &
+	nohup npm start > /tmp/spotnik.log 2>&1 &
 
 restart:
 	make stop
