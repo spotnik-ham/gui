@@ -7,16 +7,18 @@ This is the development documentation, for user documentation please refer to th
 It consist of Web server providing the necessary APIs and a Web application.
 It is written in JavaScript using [Next.js](https://github.com/zeit/next.js).
 
-in needed nodejs and yarn  : on debian 
+it needs nodejs and yarn  : on debian 
+
+```
 curl -sS https://deb.nodesource.com/gpgkey/nodesource.gpg.key | apt-key add -
-echo "deb http://deb.nodesource.com/node_8.x jessie main" | tee /etc/apt/sources.list.d/nodesource.list
+echo "deb http://deb.nodesource.com/node_8.x buster main" | tee /etc/apt/sources.list.d/nodesource.list
 
 curl -sS http://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - 
 echo "deb http://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list
 
-then 
-apt-get update && apt-get install yarn nodejs
+apt update && apt install yarn nodejs
 
+```
 
 
 ## Production
@@ -68,5 +70,3 @@ Build locally and send files over SSH to the spotnik.
 ```
 make deploy
 ```
-# test modif #
-# avec Sonny #
