@@ -17,7 +17,7 @@ const keys = [
 const cmds = {
 	'93#': 'Announce IP address over radio',
 	'94#': 'Force connection to the "SPOTNIK" WiFi hotspot',
-	'95#': 'Switch to NO network',
+	'95#': 'Switch to NO network with Parrot',
 	'96#': 'Switch to RRF network',
 	'97#': 'Switch to FON network',
 	'98#': 'Switch to TEC room',
