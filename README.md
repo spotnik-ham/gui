@@ -49,18 +49,37 @@ make start
 
 ## Development
 
-### Install
-
 ```
-git clone https://github.com/spotnik-ham/gui.git
+# a faire sur le spotnik
+ssh-keygen -t rsa -b 4096 -C "your_email@example.com"
+
+cat /root/.ssh/id_rsa.pub 
+rajouté a clef sur le site github
+https://github.com/settings/ssh/new
+
+git config --global user.email "you@example.com"
+git config --global user.name "Your Name"
+
+git clone git@github.com:spotnik-ham/gui.git
 cd gui
-make dev
-```
 
+faire les modifs
+tester !
+make
+make start
+
+si c'est ok
+
+git add .
+git commit -m "description"
+git push
+
+```
 ### Deploy
 
 Build locally and send files over SSH to the spotnik.
 
 ```
 make deploy
+
 ```
