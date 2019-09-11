@@ -41,8 +41,8 @@ const Index = props => (
 			</div>
 			<div className="list-group-item flex-column align-items-start">
 				<h5>versions</h5>
-				<p><strong>spotnik : </strong>{props.version}</p>
-				<p><strong>gui : </strong>{props.version_gui}</p>
+				<p><strong>&nbsp;&nbsp;&nbsp;&nbsp;spotnik : </strong>{props.version}</p>
+				<p><strong>&nbsp;&nbsp;&nbsp;&nbsp;gui : </strong>{props.version_gui}</p>
 			</div>
 			<div className="list-group-item flex-column align-items-start">
 				<h5>temperature</h5>
