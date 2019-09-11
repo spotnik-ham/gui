@@ -40,8 +40,9 @@ const Index = props => (
 				</p>
 			</div>
 			<div className="list-group-item flex-column align-items-start">
-				<h5>version</h5>
-				<p>{props.version}</p>
+				<h5>versions</h5>
+				<p><strong>spotnik : </strong>{props.version}</p>
+				<p><strong>gui : </strong>{props.version_gui}</p>
 			</div>
 			<div className="list-group-item flex-column align-items-start">
 				<h5>temperature</h5>
@@ -58,6 +59,7 @@ Index.getInitialProps = async function () {
 		ip: await get('ip'),
 		datetime: await get('datetime'),
 		version: await get('version'),
+		version_gui: await get('version_gui'),
 		network: await get('network'),
 		temperature: await get('temperature'),
 	}
