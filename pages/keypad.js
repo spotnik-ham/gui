@@ -133,15 +133,17 @@ class Component extends React.Component {
 				
 					.keypad {
 						z-index: -1;
+						padding: 0 10px;
 					}
 					.help {
 						position: absolute;
 						height: calc(100% - (234px + 55px));
 						max-height : calc(100% - 289px);
-						left: 0;
+						left: 10px;
 						top: 55px;
 						width: 100%;
 						overflow: scroll;
+						padding: 0 10px;
 					}
 					.commande{
 						cursor: pointer;

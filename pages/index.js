@@ -168,7 +168,7 @@ class Component extends React.Component {
 				
 				<style jsx>{`
 					select {
-						max-width: 360px;					
+						max-width: 360px;
 					}
 
 					.tri {
@@ -190,7 +190,8 @@ class Component extends React.Component {
 						font-size: 0.95em;
 					
 					}
-						ol {
+					
+					ol {
 						padding: 1% 0%;
 						max-width: calc(100% - 150px);
 						margin-top: 15px;

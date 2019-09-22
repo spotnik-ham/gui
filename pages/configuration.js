@@ -247,6 +247,7 @@ class Component extends React.Component {
 					</fieldset>
 					<input type="submit" className="btn btn-primary" value="Save" />
 				</form>
+
 			</Layout>
 		)
 	}

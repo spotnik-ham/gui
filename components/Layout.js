@@ -9,13 +9,9 @@ const Layout = props => (
 		</div>
 		<style jsx>{`
 			.content {
-				//padding: 15px;
-				//padding: 5%;
-				//padding-top: 70px;
+				padding-left: 10px;
+				padding-right: 10px;
 				padding-top: 7%;
-				//width  : 10%;
-				//height : 2%;
-						
 			}
 		`}</style>
 	</div>
