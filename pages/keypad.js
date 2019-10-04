@@ -105,7 +105,7 @@ class Component extends React.Component {
 		return (
 			<Layout>
 				<div className="help">
-					<strong>Cliquez sur une ligne pour lancer la commande :</strong>
+					<strong>Click on a row to send the command :</strong>
 					<ul>
 						{Object.entries(cmds).map(([k, v]) => (
 							<li key={k} onClick={() => this.sendCode(k)} className="commande">

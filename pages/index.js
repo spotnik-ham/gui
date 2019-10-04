@@ -118,9 +118,9 @@ class Component extends React.Component {
 					<select name="tri" className="form-control tri" value={this.state.tri}
 						onChange={this.handleTriChange}
 					>
-						<option value="0">Aucun tri</option>
-						<option value="1">Tri sur le nom complet</option>
-						<option value="2">Tri sur l&apos;indicatif seul</option>
+						<option value="0">No sorting</option>
+						<option value="1">Sort on the full name</option>
+						<option value="2">Sort on the callsign only</option>
 					</select>
 
 					{this.state.transmitter && (
