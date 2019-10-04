@@ -139,7 +139,7 @@ class Component extends React.Component {
 							</select>
 						</div>
 						<div className="form-group">
-							<label htmlFor="ctcss_fq">CTCSS frequency (for Spotnik Delta with SA818 <bold>don't use</bold> CTCSS greater than 100Hz)</label>
+							<label htmlFor="ctcss_fq">CTCSS frequency (for Spotnik Delta with SA818 <strong>don't use</strong> CTCSS greater than 100Hz)</label>
 							<select required name="ctcss_fq" className="form-control" value={value('ctcss_fq')} onChange={this.handleChange}>
 								{ctcssFrequencies.map(freq => <option key={freq} value={freq}>{freq}</option>)}
 							</select>
