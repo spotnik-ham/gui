@@ -153,12 +153,20 @@ class Component extends React.Component {
 							</label>
 						</div>
 						<div className="form-group">
+<<<<<<< HEAD
 							<label htmlFor="location_latitude">latitude (latitude in degrees minutes secondes no value > 59 and no decimals ! 
+=======
+							<label htmlFor="location_latitude">latitude (latitude in degrees minutes secondes no value > 59 and no decimals !
+>>>>>>> 29fd053b8db0ce35333e3d40de52d4d0c6c43bc3
 							<i>format : <strong>dd.mm.ssN</strong></i>)</label>
 							<input placeholder="55.48.58S" type="text" className="form-control" name="location_latitude" value={value('location_latitude')} onChange={this.handleChange} />
 						</div>
 						<div className="form-group">
+<<<<<<< HEAD
 							<label htmlFor="location_longitude">longitude (longitude in degrees minutes secondes no value > 59 and no decimals ! 
+=======
+							<label htmlFor="location_longitude">longitude (longitude in degrees minutes secondes no value > 59 and no decimals !
+>>>>>>> 29fd053b8db0ce35333e3d40de52d4d0c6c43bc3
 								<i>format : <strong>dd.mm.ssW</strong></i>)</label>
 							<input placeholder="11.15.00E" type="text" className="form-control" name="location_longitude" value={value('location_longitude')} onChange={this.handleChange} />
 						</div>
