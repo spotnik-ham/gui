@@ -16,7 +16,6 @@ const keys = [
 
 const cmds = {
 	'93#': 'Announce IP address over radio',
-	'94#': 'Force connection to the "SPOTNIK" WiFi hotspot',
 	'95#': 'Switch to NO network with Parrot',
 	'96#': 'Switch to RRF network',
 	'97#': 'Switch to FON network',
@@ -28,15 +27,13 @@ const cmds = {
 	'103#': 'Switch to EL network',
 	'104#': 'Switch to REG room',
 	'105#': 'Switch to FDV room',
+	'200#': 'Activate / deactivate RRFRaptor',
+	'201#': 'RRFRaptor Quick Scan',
 	'*51#': 'Announce aeronautic weather',
 	'0#': 'Help',
 	'*#': 'Informations',
 	'#': 'Quit current module',
-	'10#': 'Enable propagation monitor module',
-	'1#': 'Enable parrot module',
-	'2#': 'Enable EchoLink module',
-	'5#': 'Enable Metar Information module',
-	'7#': 'Enable FRN module',
+	
 }
 
 class Component extends React.Component {
