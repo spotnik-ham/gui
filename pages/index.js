@@ -110,10 +110,12 @@ class Component extends React.Component {
 						<option value="int">INT Salon International</option>
 						<option value="bav">BAV Salon Bavardage</option>
 						<option value="loc">LOC Salon Local</option>
-						<option value="sat">EXP Salon Expérimental</option>
-						<option value="fdv"> FDV Salon Numérique FreeDV</option>
+						<option value="exp">EXP Salon Expérimental</option>
+						<option value="fdv">FDV Salon Digital Xwindow</option>
 						<option value="el">EL Réseau EchoLink</option>
 						<option value="reg">REG Salon Régional a créer</option>
+						<option value="num">NUM Salon Numérique</option>
+						
 					</select>
 
 					<select name="tri" className="form-control tri" value={this.state.tri}

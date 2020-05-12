@@ -3,22 +3,29 @@ import Layout from '../components/Layout'
 
 export default () => (
 	<Layout>
-		<img src="../static/spotnik.svg" height="80"/>
+		<img src="../static/spotnik.svg" height="80" />
 		<div>
 			<a href="http://spotnik.org">http://spotnik.org</a>
 			<p>spotnik released under <a href="https://github.com/spotnik-ham/gui/blob/master/LICENSE">license GPL-3.0</a></p>
 			<p>For issues, questions, concerns please use <a href="https://github.com/spotnik-ham/gui/issues">our Github repository</a>.</p>
-		<ul>
-			<li>Initial dev. of spotnik GUI Sonny Piers & F4GBV Isabelle</li>
-			<li>Now spotnik GUI dev. F1EVM Jean-François</li>
-			<li>Hardware F1EVM Jean-Francois , F5NLG Jean-Philippe</li>
-			<li>Low Level Script F1EVM Jean-Francois , F5NLG Jean-Philippe</li>
-			<li>Distrib and packaging F5NLG Jean-Philippe</li>     
-			<li>svxlink from Tobias :<a href="http://www.svxlink.org">{`www.svxlink.org`}</a></li>
-		</ul>
-	
-	
-	</div>
+			<ul>
+				<li>Initial dev. of spotnik GUI Sonny Piers & F4GBV Isabelle</li>
+				<li>Now spotnik GUI dev. F1EVM Jean-Francois</li>
+				<li>Hardware F1EVM Jean-Francois , F5NLG Jean-Philippe</li>
+				<li>Low Level Script F1EVM Jean-Francois , F5NLG Jean-Philippe</li>
+				<li>Distrib and packaging F5NLG Jean-Philippe</li>
+				<li>Svxlink from Tobias :<a href="http://www.svxlink.org">{`www.svxlink.org`}</a></li>
+				<li>MMDVM G4KLX and contributors</li>
+				<li>Raptor Armel F4HWN</li>
+				<li>Dvswitch scripts F1PTL Bruno and contributors</li>
+				<li>Svxbridge SP2ONG Waldek and contributors</li>
+				<li>Sounds F5VMR Chris, F8ASB Juan</li>
+				<li>Alpha and Beta Testers</li>
+				<li>Thanks to All, sorry if I missed someone</li>
+			</ul>
+
+
+		</div>
 
 		<h6>Credits</h6>
 		<ul>
