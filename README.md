@@ -1,4 +1,4 @@
-# gui
+# gui Version 4
 
 Graphical user interface for the spotnik HAM radio/internet relay.
 
