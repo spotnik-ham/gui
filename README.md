@@ -1,4 +1,4 @@
-# gui
+# gui Version 3
 
 Graphical user interface for the spotnik HAM radio/internet relay.
 
@@ -34,7 +34,10 @@ make start
 ssh spotnik
 cd /opt/spotnik/gui
 git pull https://github.com/spotnik-ham/gui.git
+make stop
+rm package-lock.json
 make
+make start
 ```
 
 ### Run
@@ -65,6 +68,8 @@ cd gui
 
 faire les modifs
 tester !
+make stop
+rm package-lock.json
 make
 make start
 
