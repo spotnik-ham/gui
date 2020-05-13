@@ -12,11 +12,11 @@ export default () => (
 				<li>Initial dev. of spotnik GUI Sonny Piers & F4GBV Isabelle</li>
 				<li>Now spotnik GUI dev. F1EVM Jean-Francois</li>
 				<li>Hardware F1EVM Jean-Francois , F5NLG Jean-Philippe</li>
-				<li>Low Level Script F1EVM Jean-Francois , F5NLG Jean-Philippe</li>
-				<li>Distrib and packaging F5NLG Jean-Philippe</li>
+				<li>Low Level Script F1EVM Jean-Francois, F4HWN Armel, F5NLG Jean-Philippe</li>
+				<li>Distrib and packaging F5NLG </li>
 				<li>Svxlink from Tobias :<a href="http://www.svxlink.org">{`www.svxlink.org`}</a></li>
 				<li>MMDVM G4KLX and contributors</li>
-				<li>Raptor Armel F4HWN</li>
+				<li>Raptor, Timersalon F4HWN</li>
 				<li>Dvswitch scripts F1PTL Bruno and contributors</li>
 				<li>Svxbridge SP2ONG Waldek and contributors</li>
 				<li>Sounds F5VMR Chris, F8ASB Juan</li>

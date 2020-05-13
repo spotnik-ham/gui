@@ -213,7 +213,7 @@ class Component extends React.Component {
 
 							<p></p>
 
-							<li><a href="http://ysf-france.fr/nxdn/" target="_blank">60208 NXDN France</a></li>
+							<li><a href="http://ysf-france.fr/nxdn/" target="_blank">65208 NXDN France</a></li>
 
 							<p></p>
 
@@ -280,9 +280,13 @@ class Component extends React.Component {
 					.grid-container {
 						display: grid;
 						grid-template-columns: auto auto auto auto;
+						background-color: #ffffff50;
 					}
 					.grid-item {
 						padding: 10px;
+					}
+					.grid-item a {
+						color: blue;
 					}
 					.row1 {
 						padding-bottom: 0;

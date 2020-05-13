@@ -8,8 +8,8 @@ import { callbackify } from 'util';
 class Component extends React.Component {
 	constructor() {
 		super()
-		this.state = {tri:"1"}
-	
+		this.state = { tri: "1" }
+
 		this.handleNetworkChange = this.handleNetworkChange.bind(this)
 		this.handleTriChange = this.handleTriChange.bind(this)
 	}
@@ -60,9 +60,9 @@ class Component extends React.Component {
 	}
 
 	handleTriChange(evt) {
-		
+
 		const Tri = evt.target.value;
-		this.setState({tri: Tri});
+		this.setState({ tri: Tri });
 
 	}
 
@@ -71,25 +71,25 @@ class Component extends React.Component {
 	}
 
 	render() {
-		if (this.state.nodes){
-			var nds = this.state.nodes.filter(() => {return true});
-			if (this.state.tri === "1"){
-			  nds.sort();
-			} else if (this.state.tri === "2"){
-			  nds.sort((a,b) => {
-				var at = a.split(' ');
-				if (at.length === 1) at[1] = 'a' + at[0];
-				var bt = b.split(' ');
-				if (bt.length === 1) bt[1] = 'a' + bt[0];
-				
-				if (at[1] < bt[1]) return -1;
-				if (at[1] === bt[1]) return 0;
-				if (at[1] > bt[1]) return 1;
-			 
-			  })
+		if (this.state.nodes) {
+			var nds = this.state.nodes.filter(() => { return true });
+			if (this.state.tri === "1") {
+				nds.sort();
+			} else if (this.state.tri === "2") {
+				nds.sort((a, b) => {
+					var at = a.split(' ');
+					if (at.length === 1) at[1] = 'a' + at[0];
+					var bt = b.split(' ');
+					if (bt.length === 1) bt[1] = 'a' + bt[0];
+
+					if (at[1] < bt[1]) return -1;
+					if (at[1] === bt[1]) return 0;
+					if (at[1] > bt[1]) return 1;
+
+				})
 			}
-		  }
-	
+		}
+
 		return (
 			<Layout>
 				<div className="form-inline">
@@ -113,17 +113,17 @@ class Component extends React.Component {
 						<option value="exp">EXP Salon Expérimental</option>
 						<option value="fdv">FDV Salon Digital Xwindow</option>
 						<option value="el">EL Réseau EchoLink</option>
-						<option value="reg">REG Salon Régional a créer</option>
+						<option value="reg">REG Salon Régional à créer</option>
 						<option value="num">NUM Salon Numérique</option>
-						
+
 					</select>
 
 					<select name="tri" className="form-control tri" value={this.state.tri}
 						onChange={this.handleTriChange}
 					>
-						<option value="0">No sorting</option>
-						<option value="1">Sort on the full name</option>
-						<option value="2">Sort on the callsign only</option>
+						<option value="0">Pas de tri</option>
+						<option value="1">Tri sur le nom complet</option>
+						<option value="2">Tri sur l'indicatif uniquement</option>
 					</select>
 
 					{this.state.transmitter && (
@@ -142,16 +142,16 @@ class Component extends React.Component {
 				</div>
 				{
 					<ol>
-										
-						{nds.map(name => (
-							
-							<button 
-								key={name}
-								
-								className={this.state.transmitter === name ? 'transmitting':null}
-								>
 
-								{ this.state.transmitter === name && (
+						{nds.map(name => (
+
+							<button
+								key={name}
+
+								className={this.state.transmitter === name ? 'transmitting' : null}
+							>
+
+								{this.state.transmitter === name && (
 									<img
 										height="22"
 										src={
@@ -162,13 +162,13 @@ class Component extends React.Component {
 									/>
 								)}
 								{name.toUpperCase()}
-						
-							
+
+
 							</button>
 						))}
 					</ol>
 				}
-				
+
 				<style jsx>{`
 					select {
 						max-width: 360px;

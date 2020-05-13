@@ -16,6 +16,7 @@ const Layout = props => (
 		`}</style>
 		<style global jsx>{`
 			html, body {
+				background-color: red;
 				background-image: url("../static/spotnik.jpg");
 				min-height: 100%;
 				background-size: cover;
