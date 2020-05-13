@@ -234,13 +234,13 @@ class Component extends React.Component {
 							</div>
 						</div>
 					</div>
-
-					{/*	@font-face {
+				</div>
+				{/*	@font-face {
 						font-family: 'D14CR';
 						src: url('../static/DSEG14Modern-Regular.woff2');
 					} */}
 
-					<style jsx>{`
+				<style jsx>{`
 				
 					.keypad {
 						z-index: -1;
