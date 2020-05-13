@@ -3,7 +3,7 @@ PATH := node_modules/.bin:$(PATH)
 .PHONY: setup test clean
 
 setup:
-	rm package-lock.json
+	rm -f package-lock.json
 	npm install
 	next build
 
