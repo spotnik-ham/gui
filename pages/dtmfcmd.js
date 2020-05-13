@@ -17,7 +17,7 @@ const keys = [
 const cmds = {
 	'Announce IP address over radio': '93',
 	'Switch to NO network with Parrot': '95',
-	'Switch to RRF network': '96',
+	'Switch to RRF network':'96',
 	'Switch to FON network': '97',
 	'Switch to TEC room': '98',
 	'Switch to INT room': '99',
@@ -114,9 +114,9 @@ class Component extends React.Component {
 		fetch(`/api/dtmf/${encodeURIComponent(key)}`, { method: 'POST' })
 			.then(() => {
 				var display = this.state.display + key
-				if (display.length > 12) {
-					display = display.substring(1);
-				}
+                if (display.length > 12) {
+          		  display = display.substring(1);
+        		}
 				this.setState({ display })
 			})
 			.catch(() => { })
@@ -148,20 +148,19 @@ class Component extends React.Component {
 
 	render() {
 		const display = this.state.display || this.props.callsign
-		return (
+        return (
 			<Layout>
-
 				<div className="help">
-
+					
 					<div className="grid-container">
 						<div className="grid-item row1"><strong>Click on a row to send the command:</strong></div>
-						<div className="grid-item row1"></div>
-						<div className="grid-item row1"></div>
-						<div className="grid-item row1"><strong>List of Digital Dashboards: </strong></div>
+          				<div className="grid-item row1"></div>
+          				<div className="grid-item row1"></div>
+          				<div className="grid-item row1"><strong>List of Digital Dashboards: </strong></div>
 						<div className="grid-item">
-							<ul>
+          					<ul>
 								{Object.entries(cmds).map(([v, k]) => (
-									<li key={k} onClick={() => this.sendCode(k === '#' ? '#' : k + '#')} className="commande">
+									<li key={k} onClick={() => this.sendCode(k==='#'?'#':k+'#')} className="commande">
 										<strong>{k} : </strong> {v}
 									</li>
 								))}
@@ -170,7 +169,7 @@ class Component extends React.Component {
 						<div className="grid-item">
 							<ul>
 								{Object.entries(cmds_2).map(([v, k]) => (
-									<li key={k} onClick={() => this.sendCode(k + '#')} className="commande">
+									<li key={k} onClick={() => this.sendCode(k+'#')} className="commande">
 										<strong>{k} : </strong> {v}
 									</li>
 								))}
@@ -179,27 +178,27 @@ class Component extends React.Component {
 						<div className="grid-item">
 							<ul>
 								{Object.entries(cmds_3).map(([v, k]) => (
-									<li key={k} onClick={() => this.sendCode(k + '#')} className="commande">
+									<li key={k} onClick={() => this.sendCode(k+'#')} className="commande">
 										<strong>{k} : </strong> {v}
 									</li>
 								))}
 							</ul>
 						</div>
-						<div className="grid-item">
+					<div className="grid-item">
 							<ul>
-								<li><a href="http://rrf.f5nlg.ovh/" target="_blank">99 International Site du RRF</a></li>
-								<li><a href="http://ysf-france.fr" target="_blank">3000 YSF France</a></li>
-								<li><a href="http://78.206.208.208:8081/YSFReflector-Dashboard/index.php" target="_blank">3002 YSF Nord Ouest</a></li>
-								<li><a href="http://151.80.143.185/zit/YSFReflector-Dashboard/" target="_blank">3003 YSF Room ZIT </a></li>
-								<li><a href="http://ysf-centre-france.f1tzo.com:81/" target="_blank">3004 YSF Centre France  </a></li>
-								<li><a href="http://www.ysfwallonie.net/ " target="_blank">3006 YSF Wallonie </a></li>
-								<li><a href="http://ns3294400.ovh.net/YSFDashboard/" target="_blank">3010 YSF Fra Wide </a></li>
-								<li><a href="http://38.110.97.161/" target="_blank">3030 YSF Canada Fr </a></li>
-								<li><a href="http://www.f5ore.dyndns.org/" target="_blank">3044 YSF Nantes </a></li>
-								<li><a href="http://reflector.hb9vd.ch/ysf/" target="_blank">3066 YSF HB9VD </a></li>
-								<li><a href="http://151.80.143.185/WXF/YSFReflector-Dashboard/index.php/" target="_blank">3090 YSF FRa Wirex </a></li>
-								<li><a href="http://ysf-fon-gateway.f1tzo.com:81/" target="_blank">3097 YSF FON </a></li>
-								<li><a href="http://ysf-international-rrf.f1tzo.com:81/" target="_blank">3099 YSF International-RRF</a></li>
+  								<li><a href="http://rrf.f5nlg.ovh/" target="_blank">99 International Site du RRF</a></li>
+  								<li><a href="http://ysf-france.fr" target="_blank">3000 YSF France</a></li>
+  								<li><a href="http://78.206.208.208:8081/YSFReflector-Dashboard/index.php" target="_blank">3002 YSF Nord Ouest</a></li>
+  								<li><a href="http://151.80.143.185/zit/YSFReflector-Dashboard/" target="_blank">3003 YSF Room ZIT </a></li>
+  								<li><a href="http://ysf-centre-france.f1tzo.com:81/" target="_blank">3004 YSF Centre France  </a></li>
+  								<li><a href="http://www.ysfwallonie.net/ " target="_blank">3006 YSF Wallonie </a></li>
+  								<li><a href="http://ns3294400.ovh.net/YSFDashboard/" target="_blank">3010 YSF Fra Wide </a></li>
+  								<li><a href="http://38.110.97.161/" target="_blank">3030 YSF Canada Fr </a></li>
+  								<li><a href="http://www.f5ore.dyndns.org/" target="_blank">3044 YSF Nantes </a></li>
+  								<li><a href="http://reflector.hb9vd.ch/ysf/" target="_blank">3066 YSF HB9VD </a></li>
+  								<li><a href="http://151.80.143.185/WXF/YSFReflector-Dashboard/index.php/" target="_blank">3090 YSF FRa Wirex </a></li>
+  								<li><a href="http://ysf-fon-gateway.f1tzo.com:81/" target="_blank">3097 YSF FON </a></li>
+  								<li><a href="http://ysf-international-rrf.f1tzo.com:81/" target="_blank">3099 YSF International-RRF</a></li>
 
 								<p></p>
 
@@ -207,40 +206,40 @@ class Component extends React.Component {
 
 								<p></p>
 
-								<li><a href="http://ysf-france.fr/nxdn/" target="_blank">65208 NXDN France</a></li>
+  								<li><a href="http://ysf-france.fr/nxdn/" target="_blank">65208 NXDN France</a></li>
 
 								<p></p>
 
-								<li><a href="http://164.132.195.103/ipsc/index.html#" target="_blank">DMR IPSC2 France</a></li>
-								<li><a href="https://brandmeister.network/" target="_blank">DMR BM</a></li>
+  								<li><a href="http://164.132.195.103/ipsc/index.html#" target="_blank">DMR IPSC2 France</a></li>
+  								<li><a href="https://brandmeister.network/" target="_blank">DMR BM</a></li>
 
 								<p></p>
 
-								<li><a href="http://dcs033.xreflector.net/index.php" target="_blank">933 D-Star DCS033 </a></li>
-
+  								<li><a href="http://dcs033.xreflector.net/index.php" target="_blank">933 D-Star DCS033 </a></li>
+								
 							</ul>
 						</div>
-
-						<div className="grid-item">
-							<div className="center"><strong>Enter the code, ending with a &apos;#&apos; :</strong></div>
-							<div className="keypad">
-								<div className="display item1">{display}</div>
-								{/* https://en.wikipedia.org/wiki/Dual-tone_multi-frequency_signaling#Keypad */}
-								{keys.map(key => (
-									<button key={key} className="key" onClick={() => this.key(key)}>
-										{key}
-									</button>
-								))}
-							</div>
-						</div>
 					</div>
+				</div>
+				<div className="fixed-bottom">
+                  <div className="center"><strong>Enter the code, ending with a &apos;#&apos; :</strong></div>
+                  <div className="keypad">
+					<div className="display item1">{display}</div>
+					{/* https://en.wikipedia.org/wiki/Dual-tone_multi-frequency_signaling#Keypad */}
+					{keys.map(key => (
+						<button key={key} className="key" onClick={() => this.key(key)}>
+							{key}
+						</button>
+					))}
+				  </div>
+				</div>
 
-					{/*	@font-face {
+				{/*	@font-face {
 						font-family: 'D14CR';
 						src: url('../static/DSEG14Modern-Regular.woff2');
 					} */}
 
-					<style jsx>{`
+				<style jsx>{`
 				
 					.keypad {
 						z-index: -1;
