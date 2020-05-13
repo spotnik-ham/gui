@@ -39,14 +39,22 @@ const cmds = {
 const cmds_2 = {
 	'YSF FRANCE': '3000',
 	'YSF IDF': '3001',
-	'YSF Nord Ouest': '3002',
+	'YSF XLX 208': '3002',
 	'YSF Room-ZIT': '3003',
 	'YSF Centre France': '3004',
+	'YSF Alpes': '3005',
 	'YSF Wallonie': '3006',
+	'YSF Haut de France': '3007',
+	'YSF Linux': '3008',
+	'YSF Test': '3009',
 	'YSF FRA Wide': '3010',
+	'YSF Emcom FR': '3012',
+	'YSF NordOuest': '3029',
 	'YSF Canada Fr': '3030',
+	'YSF Cq Canada': '3031',
+	'YSF DMRQ Ca': '3032',
 	'YSF Nantes': '3044',
-	'YSF HB9VD': '3060',
+	'YSF HB9VD': '3066',
 	'YSF Wirex': '3090',
 	'YSF FON': '3097',
 	'YSF INTERNATIONAL-RRF': '3099',
@@ -56,29 +64,22 @@ const cmds_2 = {
 }
 
 const cmds_3 = {
-	'DMR Belgique': '206',
 	'DMR France': '208',
-	'DMR Canada Fr': '3022',
-	'DMR Suisse Fr': '2281',
-	'DMR Belgique Fr': '2062',
+	'DMR Urgence': '2080',
 	'DMR IDF': '2081',
 	'DMR Nord Ouest': '2082',
 	'DMR Nord Est': '2083',
 	'DMR Sud Est': '2084',
 	'DMR Sud Ouest': '2085',
-	'DMR 2087': '2087',
 	'DMR DOM-TOM': '2089',
-	'DMR 20812': '20812',
-	'DMR 20825': '20825',
-	'DMR 20830': '20830',
-	'DMR 20840': '20840',
-	'DMR 20843': '29843',
-	'DMR 20844': '20844',
-	'DMR 20867': '20867',
-	'DMR 20876': '20876',
-	'DMR 20877': '20877',
-	'DMR 20894': '20894',
-	'DMR 208357': '208357',
+	'DMR 208 00': '20800',
+	'DMR 208 25': '20825',
+	'DMR 208 44': '20844',
+	'DMR 208 54': '20854',
+	'DMR 208 60': '20860',
+	'DMR 208 67': '20867',
+	'DMR 208 79': '20879',
+	'D-Star 933C': '933',
 }
 
 class Component extends React.Component {
@@ -150,6 +151,7 @@ class Component extends React.Component {
 		const display = this.state.display || this.props.callsign
 		return (
 			<Layout>
+
 				<div className="grid-container">
 					<div className="grid-item row1"><strong>Click on a row to send the command:</strong></div>
 					<div className="grid-item row1"></div>
@@ -186,12 +188,19 @@ class Component extends React.Component {
 						<ul>
 							<li><a href="http://rrf.f5nlg.ovh/" target="_blank">99 International Site du RRF</a></li>
 							<li><a href="http://ysf-france.fr" target="_blank">3000 YSF France</a></li>
-							<li><a href="http://78.206.208.208:8081/YSFReflector-Dashboard/index.php" target="_blank">3002 YSF Nord Ouest</a></li>
-							<li><a href="http://151.80.143.185/zit/YSFReflector-Dashboard/" target="_blank">3003 YSF Room ZIT </a></li>
-							<li><a href="http://ysf-centre-france.f1tzo.com:81/" target="_blank">3004 YSF Centre France  </a></li>
-							<li><a href="http://www.ysfwallonie.net/ " target="_blank">3006 YSF Wallonie </a></li>
-							<li><a href="http://ns3294400.ovh.net/YSFDashboard/" target="_blank">3010 YSF Fra Wide </a></li>
+							<li><a href="http://ysf-idf.f1tzo.com:81" target="_blank">3001 YSF Ile de France</a></li>
+							<li><a href="https://xlx208.f5kav.fr/index.php" target="_blank">3002 YSF XLX208</a></li>
+							<li><a href="http://151.80.143.185/zit/YSFReflector-Dashboard/" target="_blank">3003 YSF Room ZIT</a></li>
+							<li><a href="http://ysf-centre-france.f1tzo.com:81/" target="_blank">3004 YSF Centre France</a></li>
+							<li><a href="http://ysf-alpes.f4gve.net/" target="_blank">3005 YSF Alpes</a></li>
+							<li><a href="http://www.ysfwallonie.net/ " target="_blank">3006 YSF Wallonie</a></li>
+							<li><a href="https://srv.hambox.fr/hdf-dashboard/" target="_blank">3007 YSF Haut de France</a></li>
+							<li><a href="http://vps.hambox.fr/ysf-linux-fr/" target="_blank">3008 YSF Linux</a></li>
+							<li><a href="http://vps731279.ovh.net/" target="_blank">3009 YSF Test</a></li>
+							<li><a href="http://ns3294400.ovh.net/YSFDashboard/" target="_blank">3010 YSF Fra Wide</a></li>
 							<li><a href="http://38.110.97.161/" target="_blank">3030 YSF Canada Fr </a></li>
+							<li><a href="https://cqcanada.420hamradio.network/" target="_blank">3031 YSF Cq Canada</a></li>
+							<li><a href="http://dmrq.ca/" target="_blank">3032 YSF Dmrq Canada</a></li>
 							<li><a href="http://www.f5ore.dyndns.org/" target="_blank">3044 YSF Nantes </a></li>
 							<li><a href="http://reflector.hb9vd.ch/ysf/" target="_blank">3066 YSF HB9VD </a></li>
 							<li><a href="http://151.80.143.185/WXF/YSFReflector-Dashboard/index.php/" target="_blank">3090 YSF FRa Wirex </a></li>
@@ -204,12 +213,12 @@ class Component extends React.Component {
 
 							<p></p>
 
-							<li><a href="http://ysf-france.fr/nxdn/" target="_blank">65208 NXDN France</a></li>
+							<li><a href="http://ysf-france.fr/nxdn/" target="_blank">60208 NXDN France</a></li>
 
 							<p></p>
 
 							<li><a href="http://164.132.195.103/ipsc/index.html#" target="_blank">DMR IPSC2 France</a></li>
-							<li><a href="https://brandmeister.network/" target="_blank">DMR BM</a></li>
+							<li><a href="https://brandmeister.network/?page=lh" target="_blank">DMR BM</a></li>
 
 							<p></p>
 
