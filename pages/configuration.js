@@ -80,7 +80,6 @@ class Component extends React.Component {
 			'10M': '10M - 10M Simplex Link',
 			'T10M': 'T10M - Transponder with 10M access',
 			'H': 'H - Personnal Hotspot',
-			'N': 'N - Personnal Numeric Hotspot',
 			'V': 'V - VHF Simplex Link',
 			'U': 'U - UHF Simplex Link',
 			'T': 'T - Transponder',
@@ -120,7 +119,7 @@ class Component extends React.Component {
 					<div className="grid-container">
 
 						<fieldset className="form-group  grid-item">
-							<legend>Generalities</legend>
+							<legend>General</legend>
 							<div className="subtitle">Required</div>
 							<div className="form-group">
 								<label htmlFor="callsign">Call sign</label>
@@ -149,15 +148,15 @@ class Component extends React.Component {
 							<legend>Digital</legend>
 							<div className="subtitle">If wanted</div>
 							<div className="form-group">
-								<label htmlFor="iddmr7">ID DMR7</label>
+								<label htmlFor="iddmr7">Id DMR7</label>
 								<input placeholder="90100XX" type="text" className="form-control" name="iddmr7" value={value('iddmr7')} onChange={this.handleChange} />
 							</div>
 							<div className="form-group">
-								<label htmlFor="iddmr9">ID DMR9</label>
+								<label htmlFor="iddmr9">Id DMR9</label>
 								<input placeholder="90100xxyy" type="text" className="form-control" name="iddmr9" value={value('iddmr9')} onChange={this.handleChange} />
 							</div>
 							<div className="form-group">
-								<label htmlFor="idnxdn">ID NXDN</label>
+								<label htmlFor="idnxdn">Id NXDN</label>
 								<input placeholder="9999" type="text" className="form-control" name="idnxdn" value={value('idnxdn')} onChange={this.handleChange} />
 							</div>
 							<div className="form-group">

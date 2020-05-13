@@ -4,21 +4,21 @@ import fetch from '../lib/fetch'
 import notie from '../lib/notie'
 
 function restart() {
-	fetch('/api/restart', {method: 'POST'})
+	fetch('/api/restart', { method: 'POST' })
 		.then(() => notie.info('Restarting SvxLink.'))
-		.catch(() => {})
+		.catch(() => { })
 }
 
 function reboot() {
-	fetch('/api/reboot', {method: 'POST'})
+	fetch('/api/reboot', { method: 'POST' })
 		.then(() => notie.info('Rebooting.'))
-		.catch(() => {})
+		.catch(() => { })
 }
 
 function poweroff() {
-	fetch('/api/poweroff', {method: 'POST'})
+	fetch('/api/poweroff', { method: 'POST' })
 		.then(() => notie.info('Powering off.'))
-		.catch(() => {})
+		.catch(() => { })
 }
 
 class Component extends React.Component {
@@ -41,6 +41,16 @@ class Component extends React.Component {
 						<button type="button" onClick={poweroff} className="btn btn-danger">Power Off</button>
 					</div>
 				</div>
+				<style jsx>{`
+				.list-group-item {
+					background-color: #fff6;
+				}
+				.list-group {
+					display: inline-flex;
+					margin-left : 10rem;
+				}
+			`}
+				</style>
 			</Layout>
 		)
 	}

@@ -49,6 +49,15 @@ const Index = props => (
 				<p>{props.temperature}</p>
 			</div>
 		</div>
+		<style jsx>{`
+			.list-group-item {
+				background-color: #fff6;
+			}
+			.list-group {
+				display: inline-flex;
+			}
+		`}
+		</style>
 	</Layout>
 )
 
