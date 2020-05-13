@@ -30,9 +30,9 @@ const Navigation = () => {
 						</Link>
 					</li>
 					<li className="nav-item">
-						<Link href="/keypad">
+						<Link href="/dtmfcmd">
 							<a className="nav-link">
-								<img src="../static/keypad.svg" height="14" /> keypad
+								<img src="../static/keypad.svg" height="14" /> DTMF Commands
 							</a>
 						</Link>
 					</li>
