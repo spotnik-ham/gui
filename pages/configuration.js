@@ -46,20 +46,6 @@ class Component extends React.Component {
 		this.setState({ location_enabled: target.checked }) // eslint-disable-line camelcase
 	}
 
-	/*  	handleMasterIpBMChange({ target }) {
-				var mib = target.value
-			var phb = document.getElementById("port_hb")
-			this.setState({ master_ip_bm: mib })
-			if ((["109.15.57.11", "51.178.51.244", "151.80.37.99", "saint-appo.fr", "213.32.19.95"].indexOf(mib)) !== -1) {
-			 phb.disabled = false
-			  console.log(mib)
-			} else {
-			  this.setState({ port_hb: "" })
-			  phb.disabled = true
-			}
-		}
-	*/
-
 	handleChange({ target }) {
 		this.setState({ [target.name]: target.value })
 	}
@@ -339,7 +325,7 @@ class Component extends React.Component {
 				
 					.grid-container {
 						display: grid;
-						grid-template-columns: 1fr 1fr 1fr;
+						grid-template-columns: repeat(auto-fit,minmax(320px,1fr));
 						grid-gap: 10px;
 					}
 					.grid-item {
