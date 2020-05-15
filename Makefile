@@ -7,6 +7,9 @@ setup:
 	npm install
 	next build
 
+build:
+	next build
+	
 dev:
 	npm install
 	node server.js
