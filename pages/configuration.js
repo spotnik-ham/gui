@@ -65,7 +65,7 @@ class Component extends React.Component {
 			'6M': '6M - 6M Simplex Link',
 			'10M': '10M - 10M Simplex Link',
 			'T10M': 'T10M - Transponder with 10M access',
-			'H': 'H - Personnal Hotspot',
+			'H': 'H - Personal Hotspot',
 			'V': 'V - VHF Simplex Link',
 			'U': 'U - UHF Simplex Link',
 			'T': 'T - Transponder',
