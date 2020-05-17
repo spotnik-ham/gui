@@ -148,7 +148,8 @@ class Component extends React.Component {
 							<div className="form-group">
 								<label htmlFor="master_ip_bm">Master IP BM</label>
 								<select name="master_ip_bm" className="form-control" value={value('master_ip_bm')} onChange={this.handleChange}>
-									<option value="164.132.195.103" selected>IPCS2_FR</option>
+									<option value="127.0.0.1" selected>No DMR Master</option>
+									<option value="164.132.195.103">IPCS2_FR</option>
 									<option value="213.222.29.197">BM_Netherlands_2042</option>
 									<option value="217.182.129.131">BM_France_2082</option>
 									<option value="158.69.203.89">BM_Canada_3021</option>
@@ -162,7 +163,7 @@ class Component extends React.Component {
 							<div className="form-group">
 								<label id="phb_label" htmlFor="port_hb" >Port HBlink</label>
 								<select id="port_hb" name="port_hb" className="form-control" value={value('port_hb')} onChange={this.handleChange}>
-									<option value="">Choose...</option>
+									<option value="">Choose HBlink port...</option>
 									<option value="55570" selected>DMO70</option>
 									<option value="55571" selected>DMO71</option>
 									<option value="55572" selected>DMO72</option>
