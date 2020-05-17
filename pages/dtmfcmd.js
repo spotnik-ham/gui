@@ -279,7 +279,7 @@ class Component extends React.Component {
 					}
 					.grid-container {
 						display: grid;
-						grid-template-columns: auto auto auto auto;
+						grid-template-columns: 1fr 1fr 1fr 1fr;
 						background-color: #ffffff50;
 					}
 					.grid-item {

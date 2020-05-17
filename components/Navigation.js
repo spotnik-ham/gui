@@ -32,14 +32,14 @@ const Navigation = () => {
 					<li className="nav-item">
 						<Link href="/dtmfcmd">
 							<a className="nav-link">
-								<img src="../static/keypad.svg" height="14" /> DTMF Commands
+								<img src="../static/keypad.svg" height="14" /> DTMF commands
 							</a>
 						</Link>
 					</li>
 					<li className="nav-item">
 						<Link href="/keypad">
 							<a className="nav-link">
-								<img src="../static/keypad.svg" height="14" /> Keypad
+								<img src="../static/keypad.svg" height="14" /> keypad
 							</a>
 						</Link>
 					</li>
@@ -47,8 +47,7 @@ const Navigation = () => {
 					<li className="nav-item">
 						<Link href="/configuration">
 							<a className="nav-link">
-								<img src="../static/configuration.svg" height="14" />
-								configuration
+								<img src="../static/configuration.svg" height="14" /> configuration
 							</a>
 						</Link>
 					</li>

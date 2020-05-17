@@ -142,9 +142,12 @@ class Component extends React.Component {
 						margin: 1px;
 						/*height: 50px;*/
 						background-color: #fff;
-						border: solid 1px lightgrey;
+						border: solid 1px firebrick;
 						outline: none;
 						cursor: pointer;
+					}
+					.key :active {
+						background-color: #b2222240;
 					}
 					.grid-container {
 						display: grid;
