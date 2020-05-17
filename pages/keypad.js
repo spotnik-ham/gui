@@ -227,6 +227,13 @@ class Component extends React.Component {
 						text-align: center;
 					}
 				`}</style>
+				<style global jsx>{`
+					.content {
+						padding-top: 75px;
+					}
+				`}
+
+				</style>
 			</Layout>
 		)
 	}
