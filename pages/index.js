@@ -99,7 +99,7 @@ class Component extends React.Component {
 					<select
 						required
 						name="network"
-						className="form-control"
+						className="form-control brdr"
 						value={this.state.network}
 						onChange={this.handleNetworkChange}
 					>
@@ -118,7 +118,7 @@ class Component extends React.Component {
 
 					</select>
 
-					<select name="tri" className="form-control tri" value={this.state.tri}
+					<select name="tri" className="form-control brdr tri" value={this.state.tri}
 						onChange={this.handleTriChange}
 					>
 						<option value="0">Pas de tri</option>
@@ -127,7 +127,7 @@ class Component extends React.Component {
 					</select>
 
 					{this.state.transmitter && (
-						<span className="transmitter">
+						<span className="transmitter brdr">
 							<strong>{this.state.transmitter.toUpperCase()}</strong>{' '}
 							<img
 								height="28"
@@ -148,7 +148,7 @@ class Component extends React.Component {
 							<button
 								key={name}
 
-								className={this.state.transmitter === name ? 'transmitting' : null}
+								className={this.state.transmitter === name ? 'brdr transmitting' : 'brdr'}
 							>
 
 								{this.state.transmitter === name && (
@@ -177,7 +177,9 @@ class Component extends React.Component {
 					.tri {
 						margin-left: 50px;
 					}
-
+					.brdr {
+						border: 1px solid #b22222;
+					}
 					button{
 						
 						display: inline-block;
