@@ -52,7 +52,7 @@ const Index = props => (
 		<style jsx>{`
 			.list-group-item {
 				background-color: #fff6;
-				border-color: 1px solid firebrick;
+				border: 1px solid firebrick;
 			}
 			.list-group-item :first-child {
 				border-top-right-radius: 0.8rem;
