@@ -36,11 +36,18 @@ const Navigation = () => {
 							</a>
 						</Link>
 					</li>
+					<li className="nav-item">
+						<Link href="/keypad">
+							<a className="nav-link">
+								<img src="../static/keypad.svg" height="14" /> Keypad
+							</a>
+						</Link>
+					</li>
 
 					<li className="nav-item">
 						<Link href="/configuration">
 							<a className="nav-link">
-								<img src="../static/configuration.svg" height="14" />{' '}
+								<img src="../static/configuration.svg" height="14" />
 								configuration
 							</a>
 						</Link>
