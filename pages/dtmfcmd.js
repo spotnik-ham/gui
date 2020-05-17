@@ -288,6 +288,9 @@ class Component extends React.Component {
 					.grid-item a {
 						color: blue;
 					}
+					.grid-item ul li :hover {
+						font-weight: bold;
+					}
 					.row1 {
 						padding-bottom: 0;
 					}				
