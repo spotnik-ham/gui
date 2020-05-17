@@ -127,7 +127,11 @@ class Component extends React.Component {
 					</select>
 
 					{this.state.transmitter && (
+<<<<<<< HEAD
 						<button className="transmitter brdr bgrd">
+=======
+						<span className="transmitter brdr bgrd">
+>>>>>>> 03fb13c89ec3084e4072b88a9eb11c3d61c5cec1
 							<strong>{this.state.transmitter.toUpperCase()}</strong>{' '}
 							<img
 								height="28"
