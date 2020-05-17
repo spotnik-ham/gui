@@ -134,7 +134,7 @@ class Component extends React.Component {
 					.display {
 						background-color: white;
 						text-align: center;
-						border: solid 1px black;
+						border: solid 1px #b22222;
 						font-family: 'D14CR', serif;
 					}
 					.key {
@@ -142,9 +142,12 @@ class Component extends React.Component {
 						margin: 1px;
 						/*height: 50px;*/
 						background-color: #fff;
-						border: solid 1px lightgrey;
+						border: solid 1px firebrick;
 						outline: none;
 						cursor: pointer;
+					}
+					.key :active {
+						background-color: #b2222240;
 					}
 					.grid-container {
 						display: grid;
@@ -159,6 +162,7 @@ class Component extends React.Component {
 					.center {
 						text-align: center;
 						padding-top: 75px;
+						color: firebrick;
 					}
 				`}
 
