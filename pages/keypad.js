@@ -14,73 +14,6 @@ const keys = [
 	'*', '0', '#', 'D',
 ]
 
-const cmds = {
-	'Announce IP address over radio': '93',
-	'Switch to NO network with Parrot': '95',
-	'Switch to RRF network': '96',
-	'Switch to FON network': '97',
-	'Switch to TEC room': '98',
-	'Switch to INT room': '99',
-	'Switch to BAV room': '100',
-	'Switch to LOC room': '101',
-	'Switch to EXP room': '102',
-	'Switch to EL network': '103',
-	'Switch to REG room': '104',
-	'Switch to FDV room': '105',
-	'Switch to NUM room': '106',
-	'Announce aeronautic weather': '*51',
-	'Help': '0',
-	'Informations': '*',
-	'Quit current module': '#',
-	'Enable propagation monitor module': '10',
-	'Enable / Disable RRF Raptor': '200',
-}
-
-const cmds_2 = {
-	'YSF FRANCE': '3000',
-	'YSF IDF': '3001',
-	'YSF XLX 208': '3002',
-	'YSF Room-ZIT': '3003',
-	'YSF Centre France': '3004',
-	'YSF Alpes': '3005',
-	'YSF Wallonie': '3006',
-	'YSF Haut de France': '3007',
-	'YSF Linux': '3008',
-	'YSF Test': '3009',
-	'YSF FRA Wide': '3010',
-	'YSF Emcom FR': '3012',
-	'YSF NordOuest': '3029',
-	'YSF Canada Fr': '3030',
-	'YSF Cq Canada': '3031',
-	'YSF DMRQ Ca': '3032',
-	'YSF Nantes': '3044',
-	'YSF HB9VD': '3066',
-	'YSF Wirex': '3090',
-	'YSF FON': '3097',
-	'YSF INTERNATIONAL-RRF': '3099',
-	'P25 France': '10208',
-	'P25 Canada Fr': '40721',
-	'NXDN France': '65208',
-}
-
-const cmds_3 = {
-	'DMR France': '208',
-	'DMR Urgence': '2080',
-	'DMR IDF': '2081',
-	'DMR Nord Ouest': '2082',
-	'DMR Nord Est': '2083',
-	'DMR Sud Est': '2084',
-	'DMR Sud Ouest': '2085',
-	'DMR DOM-TOM': '2089',
-	'DMR 208 00': '20800',
-	'DMR 208 25': '20825',
-	'DMR 208 44': '20844',
-	'DMR 208 54': '20854',
-	'DMR 208 60': '20860',
-	'DMR 208 67': '20867',
-	'DMR 208 79': '20879',
-	'D-Star 933C': '933',
-}
 
 class Component extends React.Component {
 	constructor(...args) {
@@ -208,7 +141,7 @@ class Component extends React.Component {
 						/*width: calc((100% / 4) - 2px);*/
 						margin: 1px;
 						/*height: 50px;*/
-						background-color: #dddddd;
+						background-color: #fff;
 						border: solid 1px lightgrey;
 						outline: none;
 						cursor: pointer;
