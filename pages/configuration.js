@@ -163,7 +163,7 @@ class Component extends React.Component {
 							<div className="form-group">
 								<label id="phb_label" htmlFor="port_hb" >Port HBlink</label>
 								<select id="port_hb" name="port_hb" className="form-control" value={value('port_hb')} onChange={this.handleChange}>
-									<option value="">Choose HBlink port...</option>
+									<option value="" selected>Choose HBlink port...</option>
 									<option value="55570" selected>DMO70</option>
 									<option value="55571" selected>DMO71</option>
 									<option value="55572" selected>DMO72</option>
