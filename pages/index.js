@@ -127,11 +127,7 @@ class Component extends React.Component {
 					</select>
 
 					{this.state.transmitter && (
-<<<<<<< HEAD
-						<span className="transmitter brdr bgrd">
-=======
-						<span className="transmitter brdr">
->>>>>>> 77040b9d416f0c0f0efe9ed9763bb2cd05c6d0f4
+						<button className="transmitter brdr bgrd">
 							<strong>{this.state.transmitter.toUpperCase()}</strong>{' '}
 							<img
 								height="28"
@@ -141,7 +137,7 @@ class Component extends React.Component {
 										: '../static/receive.svg'
 								}
 							/>
-						</span>
+						</button>
 					)}
 				</div>
 				{
