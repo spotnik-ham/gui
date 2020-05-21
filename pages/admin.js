@@ -21,28 +21,30 @@ function poweroff() {
 		.catch(() => { })
 }
 
-async function getVersions() {
-	console.log('getVersions')
-	var gV = await fetch('/update').then(res => res.json())
-	console.log("getVersions : ", gV)
-	//	this.setState({ Versions: gV })
-}
-
 
 class Component extends React.Component {
 	constructor(...args) {
 		super(...args)
 		this.state = {}
-		//		this.getVersions = this.getVersions.bind(this)
+		this.getVersions = this.getVersions.bind(this)
 	}
 
 	componentWillMount() {
-		var gV = getVersions()
+		var gV = this.getVersions()
 		this.setState({
 			versions: gV
 		})
 		console.log("componentWillMount : ", gV)
 	}
+
+	async getVersions() {
+		console.log('getVersions')
+		var gV = await fetch('/update').then(res => res.json())
+		console.log("getVersions : ", gV)
+		//	this.setState({ Versions: gV })
+		return gV
+	}
+
 
 	render() {
 		return (
