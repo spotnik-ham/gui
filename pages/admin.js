@@ -38,7 +38,7 @@ class Component extends React.Component {
 
 	componentWillMount() {
 		this.setState({
-			versions: await getVersions()
+			versions: getVersions()
 		})
 	}
 
