@@ -37,9 +37,11 @@ class Component extends React.Component {
 	}
 
 	componentWillMount() {
+		var gV = getVersions()
 		this.setState({
-			versions: getVersions()
+			versions: gV
 		})
+		console.log("componentWillMount : ", gV)
 	}
 
 	render() {
