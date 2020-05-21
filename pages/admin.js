@@ -30,13 +30,14 @@ class Component extends React.Component {
 	}
 
 	componentWillMount() {
-		//var gV = this.getVersions()
+		var gV = this.getVersions()
 		console.log("componentWillMount : ")
 	}
 
 	async getVersions() {
 		console.log('getVersions')
-		var gV = await fetch('/update').then(res => res.json())
+		/*		var gV = await fetch('/update').then(res => res.json())*/
+		var gV = "gV"
 		console.log("getVersions : ", gV)
 		this.setState({ Versions: gV })
 		return gV
