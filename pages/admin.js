@@ -38,7 +38,7 @@ class Component extends React.Component {
 		try {
 			var gV = {}
 			console.log('getVersions')
-			fetch('/update').then(res => res.json()).then(jsn => gV = jsn)
+			fetch('/update').then(jsn => gV = jsn)
 			//var gV = "gV"
 			console.log("getVersions : ", gV)
 			this.setState({ versions: gV })
