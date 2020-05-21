@@ -21,10 +21,16 @@ function poweroff() {
 		.catch(() => { })
 }
 
+
 class Component extends React.Component {
 	constructor(...args) {
 		super(...args)
 		this.state = {}
+	}
+
+	async getVersions() {
+		var gV = await fetch('/update')
+		this.setState({ Versions: gV })
 	}
 
 	render() {
@@ -39,6 +45,9 @@ class Component extends React.Component {
 					</div>
 					<div className="list-group-item flex-column align-items-center">
 						<button type="button" onClick={poweroff} className="btn btn-danger">Power Off</button>
+					</div>
+					<div className="list-group-item flex-column align-items-center">
+						<button type="button" onClick={this.getVersions} className="btn btn-success">UpDate<br />this.state.Versions</button>
 					</div>
 				</div>
 				<style jsx>{`
