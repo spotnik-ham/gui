@@ -32,7 +32,8 @@ class Component extends React.Component {
 	async getVersions() {
 		console.log('getVersions')
 		var gV = await fetch('/update')
-		console.log("getVersions : ", gV)
+		var res = gV.json()
+		console.log("getVersions : ", res)
 		this.setState({ Versions: gV })
 	}
 
