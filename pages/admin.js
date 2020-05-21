@@ -26,6 +26,7 @@ class Component extends React.Component {
 	constructor(...args) {
 		super(...args)
 		this.state = {}
+		this.getVersions = this.getVersions.bind(this)
 	}
 
 	async getVersions() {
