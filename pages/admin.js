@@ -35,12 +35,16 @@ class Component extends React.Component {
 	}
 
 	async getVersions() {
-		console.log('getVersions')
-		var gV = await fetch('/update').then(res => res.text())
-		//var gV = "gV"
-		console.log("getVersions : ", gV)
-		this.setState({ versions: gV })
-		return gV
+		try {
+			console.log('getVersions')
+			var gV = await fetch('/update').then(res => res.text())
+			//var gV = "gV"
+			console.log("getVersions : ", gV)
+			this.setState({ versions: gV })
+			return gV
+		} catch (err) {
+			console.error('erreur getVersions : ', err)
+		}
 	}
 
 
