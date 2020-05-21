@@ -29,11 +29,11 @@ class Component extends React.Component {
 		this.getVersions = this.getVersions.bind(this)
 	}
 
-	/*	componentWillMount() {
-			var gV = this.getVersions()
-			console.log("componentWillMount : ", gV)
-		}
-	*/
+	componentWillMount() {
+		//var gV = this.getVersions()
+		console.log("componentWillMount : ")
+	}
+
 	async getVersions() {
 		console.log('getVersions')
 		var gV = await fetch('/update').then(res => res.json())
