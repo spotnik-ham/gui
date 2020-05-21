@@ -21,20 +21,19 @@ function poweroff() {
 		.catch(() => { })
 }
 
+async function getVersions() {
+	console.log('getVersions')
+	var gV = await fetch('/update').then(res => res.json())
+	console.log("getVersions : ", gV)
+	//	this.setState({ Versions: gV })
+}
+
 
 class Component extends React.Component {
 	constructor(...args) {
 		super(...args)
 		this.state = {}
-		this.getVersions = this.getVersions.bind(this)
-	}
-
-	async getVersions() {
-		console.log('getVersions')
-		var gV = await fetch('/update')
-		var res = gV.json()
-		console.log("getVersions : ", res)
-		this.setState({ Versions: gV })
+		//		this.getVersions = this.getVersions.bind(this)
 	}
 
 	render() {
@@ -51,7 +50,7 @@ class Component extends React.Component {
 						<button type="button" onClick={poweroff} className="btn btn-danger">Power Off</button>
 					</div>
 					<div className="list-group-item flex-column align-items-center">
-						<button type="button" onClick={this.getVersions} className="btn btn-success">UpDate<br />{this.state.Versions}</button>
+						<button type="button" onClick={getVersions} className="btn btn-success">UpDate<br />{getVersions}</button>
 					</div>
 				</div>
 				<style jsx>{`
