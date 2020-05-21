@@ -29,19 +29,16 @@ class Component extends React.Component {
 		this.getVersions = this.getVersions.bind(this)
 	}
 
-	componentWillMount() {
-		var gV = this.getVersions()
-		this.setState({
-			versions: gV
-		})
-		console.log("componentWillMount : ", gV)
-	}
-
+	/*	componentWillMount() {
+			var gV = this.getVersions()
+			console.log("componentWillMount : ", gV)
+		}
+	*/
 	async getVersions() {
 		console.log('getVersions')
 		var gV = await fetch('/update').then(res => res.json())
 		console.log("getVersions : ", gV)
-		//	this.setState({ Versions: gV })
+		this.setState({ Versions: gV })
 		return gV
 	}
 
@@ -60,7 +57,7 @@ class Component extends React.Component {
 						<button type="button" onClick={poweroff} className="btn btn-danger">Power Off</button>
 					</div>
 					<div className="list-group-item flex-column align-items-center">
-						<button type="button" onClick={this.getVersions} className="btn btn-success">UpDate<br />{this.state.versions}</button>
+						<button type="button" onClick={restart} className="btn btn-success">UpDate<br />{this.state.versions}</button>
 					</div>
 				</div>
 				<style jsx>{`
