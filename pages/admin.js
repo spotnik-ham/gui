@@ -36,6 +36,12 @@ class Component extends React.Component {
 		//		this.getVersions = this.getVersions.bind(this)
 	}
 
+	componentWillMount() {
+		this.setState({
+			versions: await getVersions()
+		})
+	}
+
 	render() {
 		return (
 			<Layout>
@@ -50,7 +56,7 @@ class Component extends React.Component {
 						<button type="button" onClick={poweroff} className="btn btn-danger">Power Off</button>
 					</div>
 					<div className="list-group-item flex-column align-items-center">
-						<button type="button" onClick={getVersions} className="btn btn-success">UpDate<br />{getVersions}</button>
+						<button type="button" onClick={getVersions} className="btn btn-success">UpDate<br />{this.state.versions}</button>
 					</div>
 				</div>
 				<style jsx>{`
