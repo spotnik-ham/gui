@@ -60,7 +60,7 @@ class Component extends React.Component {
 						<button type="button" onClick={poweroff} className="btn btn-danger">Power Off</button>
 					</div>
 					<div className="list-group-item flex-column align-items-center">
-						<button type="button" onClick={getVersions} className="btn btn-success">UpDate<br />{this.state.versions}</button>
+						<button type="button" onClick={this.getVersions} className="btn btn-success">UpDate<br />{this.state.versions}</button>
 					</div>
 				</div>
 				<style jsx>{`
