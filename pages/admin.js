@@ -30,7 +30,7 @@ class Component extends React.Component {
 	}
 
 	async getVersions() {
-		var gV = await fetch('/update')
+		var gV = await fetch('/update').catch(err => console.error('getVersions error : ', err))
 		this.setState({ Versions: gV })
 	}
 
