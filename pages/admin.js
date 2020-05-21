@@ -23,8 +23,8 @@ function poweroff() {
 
 
 class Component extends React.Component {
-	constructor(...args) {
-		super(...args)
+	constructor() {
+		super()
 		this.state = {}
 		this.getVersions = this.getVersions.bind(this)
 	}
