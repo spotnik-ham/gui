@@ -75,12 +75,6 @@ class Component extends React.Component {
 							Spotnik : {V.version} - GUI : {V.version_gui}
 							</button>}
 						{!allup2d &&
-							<button type="button" onClick={this.getVersions} className="btn btn-danger">
-								UpDate available<br />
-							Spotnik : {V.version} - GUI : {V.version_gui}<br />
-							Spotnik_MAJ : {V.spotnikmaj} - GUI_MAJ : {V.guimaj}
-							</button>
-
 							<button type="button" onClick={this.upDate} className="btn btn-danger btn-version-new">
 								<div className="bloc">
 									<div>New version(s) available</div>
