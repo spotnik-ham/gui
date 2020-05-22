@@ -112,7 +112,7 @@ app
 		server.post('/update', (req, res, next) => {
 			res.writeHead(202)
 			res.end()
-			update.exec().catch(next)
+			update.execute().catch(next)
 		})
 
 		server.get('/update', (req, res, next) => {
