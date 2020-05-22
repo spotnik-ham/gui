@@ -33,8 +33,10 @@ class Component extends React.Component {
 				guimaj: ''
 			}
 		}
+
 		this.getVersions = this.getVersions.bind(this)
 	}
+
 
 	componentWillMount() {
 		var gV = this.getVersions()
@@ -58,7 +60,7 @@ class Component extends React.Component {
 
 	render() {
 		var V = this.state.versions
-		console.log(V)
+		console.log("render V --> : ", V)
 		return (
 			<Layout>
 				<div className="list-group">
