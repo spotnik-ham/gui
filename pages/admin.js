@@ -45,7 +45,7 @@ class Component extends React.Component {
 		try {
 			var gV = {}
 			console.log('getVersions')
-			gV = await fetch('/update').catch(err => console.error(err))
+			//gV = await fetch('/update').catch(err => console.error(err))
 			//var gV = "gV"
 			console.log("getVersions : ", gV)
 			this.setState({ versions: gV })
