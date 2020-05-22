@@ -36,16 +36,12 @@ class Component extends React.Component {
 
 	async componentWillMount() {
 		var gV = await this.getVersions()
-		console.log("componentWillMount : ", gV)
+		//console.log("componentWillMount : ", gV)
 	}
 
 	async getVersions() {
 		try {
-			var gV = {}
-			console.log('getVersions')
-			gV = await fetch('/update').then(res => res.json()).catch(err => { console.error(err) })
-			//var gV = "gV"
-			console.log("getVersions : ", gV)
+			var gV = await fetch('/update').then(res => res.json()).catch(err => { console.error(err) })
 			this.setState({ versions: gV })
 			return gV
 		} catch (err) {
@@ -56,7 +52,10 @@ class Component extends React.Component {
 
 	render() {
 		var V = this.state.versions
-		console.log("render V --> : ", V)
+		var guiup2d = (V.guimaj === V.version_gui)
+		var spotup2d = (V.spotnikmaj === V.version)
+		var allup2d = (guiup2d && spotup2d)
+
 		return (
 			<Layout>
 				<div className="list-group">
@@ -70,11 +69,18 @@ class Component extends React.Component {
 						<button type="button" onClick={poweroff} className="btn btn-danger">Power Off</button>
 					</div>
 					<div className="list-group-item flex-column align-items-center">
-						<button type="button" onClick={this.getVersions} className="btn btn-success">
-							UpDate<br />
+						{allup2d &&
+							<button type="button" onClick={this.getVersions} className="btn btn-success">
+								Your Spotnik is up to date.<br />
+							Spotnik : {V.version} - GUI : {V.version_gui}
+							</button>}
+						{!allup2d &&
+							<button type="button" onClick={this.getVersions} className="btn btn-danger">
+								UpDate available<br />
 							Spotnik : {V.version} - GUI : {V.version_gui}<br />
 							Spotnik_MAJ : {V.spotnikmaj} - GUI_MAJ : {V.guimaj}
-						</button>
+							</button>}
+
 					</div>
 				</div>
 				<style jsx>{`
