@@ -38,7 +38,7 @@ class Component extends React.Component {
 		try {
 			var gV = {}
 			console.log('getVersions')
-			fetch('/update').then(jsn => gV = jsn)
+			await fetch('/update').then(jsn => gV = jsn).catch(err => console.error(err))
 			//var gV = "gV"
 			console.log("getVersions : ", gV)
 			this.setState({ versions: gV })
@@ -51,7 +51,7 @@ class Component extends React.Component {
 
 	render() {
 		var V = this.state.versions
-
+		console.log(V)
 		return (
 			<Layout>
 				<div className="list-group">
