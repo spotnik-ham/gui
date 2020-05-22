@@ -79,6 +79,22 @@ class Component extends React.Component {
 								UpDate available<br />
 							Spotnik : {V.version} - GUI : {V.version_gui}<br />
 							Spotnik_MAJ : {V.spotnikmaj} - GUI_MAJ : {V.guimaj}
+							</button>
+
+							<button type="button" onClick={this.upDate} className="btn btn-danger btn-version-new">
+								<div className="bloc">
+									<div>New version(s) available</div>
+									<div>gui : {V.guimaj}</div>
+									<div>spotnik : {V.spotnikmaj}</div>
+								</div>
+								<div className="bloc">
+									<div>Your versions</div>
+									<div>gui : {V.version_gui}</div>
+									<div>spotnik : {V.version}</div>
+								</div>
+								<div className="bloc">
+									<div>Click to update</div>
+								</div>
 							</button>}
 
 					</div>
@@ -91,7 +107,22 @@ class Component extends React.Component {
 					display: inline-flex;
 					margin-left : 10rem;
 				}
-			`}
+				.btn-version-new {
+					display: grid;
+					background-color: #fff6;
+					padding: 0;
+					margin: 1rem;
+					border-radius: 0.25rem;
+					border-color: #fff6;
+				}
+				.bloc {
+					display: grid;
+					background-color: #d9534f;
+					margin: 0 0 2px 0;
+					border-radius: 0.25rem;
+					padding: .25rem .5rem;
+				}
+		`}
 				</style>
 			</Layout>
 		)
