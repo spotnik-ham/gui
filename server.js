@@ -109,6 +109,12 @@ app
 			api.poweroff().catch(next)
 		})
 
+		server.post('/update', (req, res, next) => {
+			res.writeHead(202)
+			res.end()
+			update.exec().catch(next)
+		})
+
 		server.get('/update', (req, res, next) => {
 			update
 				.get()

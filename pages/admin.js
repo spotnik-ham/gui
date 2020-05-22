@@ -21,6 +21,11 @@ function poweroff() {
 		.catch(() => { })
 }
 
+function update() {
+	fetch('/update', { method: 'POST' })
+		.then(() => notie.info('Updating...'))
+		.catch(() => { })
+}
 
 class Component extends React.Component {
 	constructor() {
@@ -75,7 +80,7 @@ class Component extends React.Component {
 							Spotnik : {V.version} - GUI : {V.version_gui}
 							</button>}
 						{!allup2d &&
-							<button type="button" onClick={this.upDate} className="btn btn-danger btn-version-new">
+							<button type="button" onClick={update} className="btn btn-danger btn-version-new">
 								<div className="bloc">
 									<div>New version(s) available</div>
 									<div>gui : {V.guimaj}</div>
