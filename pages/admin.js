@@ -26,15 +26,11 @@ class Component extends React.Component {
 	constructor() {
 		super()
 		this.state = {
-			versions: {
-				version: '',
-				version_gui: '',
-				spotnikmaj: '',
-				guimaj: ''
-			}
+			versions: {}
 		}
 
 		this.getVersions = this.getVersions.bind(this)
+
 	}
 
 
