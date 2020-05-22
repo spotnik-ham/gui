@@ -38,8 +38,8 @@ class Component extends React.Component {
 	}
 
 
-	componentWillMount() {
-		var gV = this.getVersions()
+	async componentWillMount() {
+		var gV = await this.getVersions()
 		console.log("componentWillMount : ", gV)
 	}
 
