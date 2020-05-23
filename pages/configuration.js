@@ -116,7 +116,7 @@ class Component extends React.Component {
 								<input required placeholder="22" type="text" className="form-control" name="Departement" value={value('Departement')} onChange={this.handleChange} />
 							</div>
 							<div className="form-group">
-								<label htmlFor="band_type">Frequency Band <small>( V=VHF, D=10m, T=Tspdr, R=Relais ...)</small></label>
+								<label htmlFor="band_type">Type / Band <small>( V=VHF, D=10m, T=Tspdr, R=Relais ...)</small></label>
 								<select required name="band_type" className="form-control" value={value('band_type')} onChange={this.handleChange}>
 									{Object.entries(band_typ).map(([k, v]) => <option key={k} value={k}>{v}</option>)}
 								</select>
