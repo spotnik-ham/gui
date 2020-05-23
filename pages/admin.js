@@ -21,13 +21,46 @@ function poweroff() {
 		.catch(() => { })
 }
 
+function update() {
+	fetch('/update', { method: 'POST' })
+		.then(() => notie.info('Updating...'))
+		.catch(() => { })
+}
+
 class Component extends React.Component {
-	constructor(...args) {
-		super(...args)
-		this.state = {}
+	constructor() {
+		super()
+		this.state = {
+			versions: {}
+		}
+
+		this.getVersions = this.getVersions.bind(this)
+
 	}
 
+
+	async componentWillMount() {
+		var gV = await this.getVersions()
+		//console.log("componentWillMount : ", gV)
+	}
+
+	async getVersions() {
+		try {
+			var gV = await fetch('/update').then(res => res.json()).catch(err => { console.error(err) })
+			this.setState({ versions: gV })
+			return gV
+		} catch (err) {
+			console.error('erreur getVersions : ', err)
+		}
+	}
+
+
 	render() {
+		var V = this.state.versions
+		var guiup2d = (V.guimaj === V.version_gui)
+		var spotup2d = (V.spotnikmaj === V.version)
+		var allup2d = (guiup2d && spotup2d)
+
 		return (
 			<Layout>
 				<div className="list-group">
@@ -40,6 +73,30 @@ class Component extends React.Component {
 					<div className="list-group-item flex-column align-items-center">
 						<button type="button" onClick={poweroff} className="btn btn-danger">Power Off</button>
 					</div>
+					<div className="list-group-item flex-column align-items-center">
+						{allup2d &&
+							<button type="button" onClick={this.getVersions} className="btn btn-success">
+								Your Spotnik is up to date.<br />
+							Spotnik : {V.version} - GUI : {V.version_gui}
+							</button>}
+						{!allup2d &&
+							<button type="button" onClick={update} className="btn btn-danger btn-version-new">
+								<div className="bloc">
+									<div>New version(s) available</div>
+									<div>gui : {V.guimaj}</div>
+									<div>spotnik : {V.spotnikmaj}</div>
+								</div>
+								<div className="bloc">
+									<div>Your versions</div>
+									<div>gui : {V.version_gui}</div>
+									<div>spotnik : {V.version}</div>
+								</div>
+								<div className="bloc">
+									<div>Click to update</div>
+								</div>
+							</button>}
+
+					</div>
 				</div>
 				<style jsx>{`
 				.list-group-item {
@@ -49,7 +106,22 @@ class Component extends React.Component {
 					display: inline-flex;
 					margin-left : 10rem;
 				}
-			`}
+				.btn-version-new {
+					display: grid;
+					background-color: #fff6;
+					padding: 0;
+					margin: 1rem;
+					border-radius: 0.25rem;
+					border-color: #fff6;
+				}
+				.bloc {
+					display: grid;
+					background-color: #d9534f;
+					margin: 0 0 2px 0;
+					border-radius: 0.25rem;
+					padding: .25rem .5rem;
+				}
+		`}
 				</style>
 			</Layout>
 		)
