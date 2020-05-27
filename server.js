@@ -119,12 +119,7 @@ app
 		})
 
 		server.get('/test', (req, res, next) => {
-			chmod('/tmp/MAJ/MAJ.sh', 0o755)
-			const maj = spawn('/tmp/MAJ/MAJ.sh');
-			maj.stdout.on('data', (data) => {
-				res.write(data);
-			});
-
+			update.executetest(res) //.catch(next)
 
 		})
 
