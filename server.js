@@ -116,6 +116,14 @@ app
 			//console.log("server = strmout ::: ", res)
 		})
 
+		server.get('/test', (req, res, next) => {
+			update
+				.executeupdate()
+				.then(log => {
+					log.pipe(res)
+				})
+		})
+
 		server.get('/update', (req, res, next) => {
 			update
 				.get()
