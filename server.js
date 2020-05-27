@@ -113,7 +113,7 @@ app
 			//res.writeHead(202)
 			//res.end()
 			update.execute(res) //.catch(next)
-			console.log("server = strmout ::: ", res)
+			//console.log("server = strmout ::: ", res)
 		})
 
 		server.get('/update', (req, res, next) => {
