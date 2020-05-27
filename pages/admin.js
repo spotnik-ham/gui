@@ -23,6 +23,9 @@ function poweroff() {
 
 function update() {
 	fetch('/update', { method: 'POST' })
+		.then((resu) => {
+			console.log("Retour de /update .. : ", resu)
+		})
 		.then(() => notie.info('Updating...'))
 		.catch(() => { })
 }
