@@ -15,7 +15,9 @@ const dev = process.env.NODE_ENV !== 'production'
 const app = next({ dev })
 const handle = app.getRequestHandler()
 
-process.title = 'spotnik'
+const spawn = require('child_process')
+
+process.title = 'Spotnik Gui'
 
 function restart() {
 	return api.getNetwork().then(network => {
@@ -117,11 +119,13 @@ app
 		})
 
 		server.get('/test', (req, res, next) => {
-			update
-				.executeupdate()
-				.then(log => {
-					log.pipe(res)
-				})
+			chmod('/tmp/MAJ/MAJ.sh', 0o755)
+			const maj = spawn('/tmp/MAJ/MAJ.sh');
+			maj.stdout.on('data', (data) => {
+				res.write(data);
+			});
+
+
 		})
 
 		server.get('/update', (req, res, next) => {
