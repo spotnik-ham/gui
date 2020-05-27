@@ -110,8 +110,8 @@ app
 		})
 
 		server.post('/update', (req, res, next) => {
-			res.writeHead(202)
-			res.end()
+			//res.writeHead(202)
+			//res.end()
 			update.execute(res) //.catch(next)
 			console.log("server = strmout ::: ", res)
 		})
