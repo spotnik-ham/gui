@@ -3,6 +3,8 @@ import Layout from '../components/Layout'
 import fetch from '../lib/fetch'
 import notie from '../lib/notie'
 
+var logstdout = []
+
 function restart() {
 	fetch('/api/restart', { method: 'POST' })
 		.then(() => notie.info('Restarting SvxLink.'))
@@ -22,12 +24,11 @@ function poweroff() {
 }
 
 function update() {
-	fetch('/update', { method: 'POST' })
-		.then((resu) => {
-			console.log("Retour de /update .. : ", resu)
-		})
-		.then(() => notie.info('Updating...'))
-		.catch(() => { })
+	var es = new EventSource('/updatexec');
+	es.addEventListener('stdout', function (event) {
+		logstdout.push(event)
+	});
+
 }
 
 class Component extends React.Component {
@@ -78,7 +79,7 @@ class Component extends React.Component {
 					</div>
 					<div className="list-group-item flex-column align-items-center">
 						{allup2d &&
-							<button type="button" onClick={this.getVersions} className="btn btn-success">
+							<button type="button" className="btn btn-success">
 								Your Spotnik is up to date.<br />
 							Spotnik : {V.version} - GUI : {V.version_gui}
 							</button>}
@@ -100,6 +101,9 @@ class Component extends React.Component {
 							</button>}
 
 					</div>
+				</div>
+				<div id="log">
+					{logstdout}
 				</div>
 				<style jsx>{`
 				.list-group-item {

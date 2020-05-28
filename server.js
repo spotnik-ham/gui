@@ -111,16 +111,10 @@ app
 			api.poweroff().catch(next)
 		})
 
-		server.post('/update', (req, res, next) => {
-			//res.writeHead(202)
-			//res.end()
-			update.execute(res) //.catch(next)
-			//console.log("server = strmout ::: ", res)
-		})
+		server.get('/updatexec', (req, res, next) => { update.execute(req, res, next) })
 
 		server.get('/test', (req, res, next) => {
 			update.executetest(res) //.catch(next)
-
 		})
 
 		server.get('/update', (req, res, next) => {
