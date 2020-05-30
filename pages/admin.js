@@ -58,7 +58,7 @@ class Component extends React.Component {
 			this.setState({ logStdOut: (this.state.logStdOut + event.data.toString('utf8')) })
 		});
 		es.onmessage = (ev => {
-			this.setState({ logStdOut: (this.state.logStdOut + ev.data.toString('utf8')) })
+			this.setState({ logStdOut: ev.data.toString('utf8') })
 		})
 
 	}
