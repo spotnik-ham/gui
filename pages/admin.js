@@ -3,7 +3,7 @@ import Layout from '../components/Layout'
 import fetch from '../lib/fetch'
 import notie from '../lib/notie'
 
-var logstdout = []
+//var logstdout = []
 
 function restart() {
 	fetch('/api/restart', { method: 'POST' })
