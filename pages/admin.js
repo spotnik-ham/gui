@@ -91,7 +91,7 @@ class Component extends React.Component {
 							Spotnik : {V.version} - GUI : {V.version_gui}
 							</button>}
 						{!allup2d &&
-							<button type="button" onClick={update} className="btn btn-danger btn-version-new">
+							<button type="button" className="btn btn-danger btn-version-new">
 								<div className="bloc">
 									<div>New version(s) available</div>
 									<div>gui : {V.guimaj}</div>
@@ -103,7 +103,7 @@ class Component extends React.Component {
 									<div>spotnik : {V.version}</div>
 								</div>
 								<div className="bloc">
-									<div>Click to update</div>
+									<div onClick={update}>Click to update</div>
 								</div>
 							</button>}
 
