@@ -57,7 +57,9 @@ class Component extends React.Component {
 		es.addEventListener('stdout', function (event) {
 			this.setState({ logStdOut: (this.state.logStdOut + event.data) })
 		});
-		es.onmessage = ev => this.setState({ logStdOut: (this.state.logStdOut + ev.data) })
+		es.onmessage = ev => {
+			return this.setState({ logStdOut: (this.state.logStdOut + ev.data) })
+		}
 
 	}
 
