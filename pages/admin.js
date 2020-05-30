@@ -103,7 +103,7 @@ class Component extends React.Component {
 									<div>spotnik : {V.version}</div>
 								</div>
 								<div className="bloc">
-									<div onClick={update}>Click to update</div>
+									<div onClick={this.updateX}>Click to update</div>
 								</div>
 							</button>}
 
