@@ -87,7 +87,7 @@ class Component extends React.Component {
 							Spotnik : {V.version} - GUI : {V.version_gui}
 							</button>}
 						{!allup2d &&
-							<button type="button" onClick={update} className="btn btn-danger btn-version-new">
+							<button type="button" onClick={this.update} className="btn btn-danger btn-version-new">
 								<div className="bloc">
 									<div>New version(s) available</div>
 									<div>gui : {V.guimaj}</div>
@@ -106,7 +106,7 @@ class Component extends React.Component {
 					</div>
 				</div>
 				<div id="log">
-					{logstdout}
+					{this.state.logStdOut}
 				</div>
 				<style jsx>{`
 				.list-group-item {
