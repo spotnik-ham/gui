@@ -52,7 +52,7 @@ class Component extends React.Component {
 		}
 	}
 
-	update = () => {
+	updateX = () => {
 		var es = new EventSource('/updatexec');
 		es.addEventListener('stdout', function (event) {
 			this.setState({ logStdOut: (this.state.logStdOut + event.data.toString('utf8')).replace(/\r\n?/g, '<br />').replace(/\n/g, '<br />') })
