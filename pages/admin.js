@@ -58,7 +58,7 @@ class Component extends React.Component {
 			this.setState({ logStdOut: (this.state.logStdOut + event.data.toString('utf8')).replace(/\r\n?/g, '<br />').replace(/\n/g, '<br />') })
 		});
 		es.onmessage = (ev => {
-			this.setState({ logStdOut: (this.state.logStdOut + ev.data.toString('utf8')).replace(/\r\n?/g, '<br />').replace(/\n/g, '<br />') })
+			this.setState({ logStdOut: ((this.state.logStdOut + ev.data).replace(/\r\n?/g, '<br />').replace(/\n/g, '<br />')) })
 			console.log('//>', ev.data)
 			console.log('///>', ev.data.toString('utf8'))
 		})
