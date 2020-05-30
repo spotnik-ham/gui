@@ -32,6 +32,7 @@ test:
 	xo
 
 stop:
+	pkill --signal SIGINT "Spotnik Gui" || true
 	pkill --signal SIGINT spotnik || true
 
 start:
