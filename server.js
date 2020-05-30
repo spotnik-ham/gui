@@ -10,7 +10,7 @@ const update = require('./lib/update')
 const dtmf = require('./lib/dtmf')
 const { port, hostname } = require('./config')
 const sse = require('./lib/sse')
-const SSE = require('express-sse')
+//const SSE = require('express-sse')
 
 const dev = process.env.NODE_ENV !== 'production'
 const app = next({ dev })
@@ -18,7 +18,7 @@ const handle = app.getRequestHandler()
 
 const spawn = require('child_process')
 
-const sseUpdate = new SSE()
+//const sseUpdate = new SSE()
 
 process.title = 'Spotnik Gui'
 
@@ -114,11 +114,11 @@ app
 			api.poweroff().catch(next)
 		})
 
-		//		server.get('/updatexec', (req, res, next) => { update.execute(req, res, next) })
-		server.get('/updatexec', sseUpdate.init, (req, res) => {
-			update.execute(sseUpdate)
-		})
-
+		server.get('/updatexec', (req, res) => { update.execute(req, res) })
+		/*		server.get('/updatexec', sseUpdate.init, (req, res) => {
+					update.execute(sseUpdate)
+				})
+		*/
 		server.get('/test', (req, res, next) => {
 			update.executetest(res) //.catch(next)
 		})

@@ -23,19 +23,13 @@ function poweroff() {
 		.catch(() => { })
 }
 
-function update() {
-	var es = new EventSource('/updatexec');
-	es.addEventListener('stdout', function (event) {
-		logstdout.push(event)
-	});
-
-}
 
 class Component extends React.Component {
 	constructor() {
 		super()
 		this.state = {
-			versions: {}
+			versions: {},
+			logStdOut: ''
 		}
 
 		this.getVersions = this.getVersions.bind(this)
@@ -56,6 +50,15 @@ class Component extends React.Component {
 		} catch (err) {
 			console.error('erreur getVersions : ', err)
 		}
+	}
+
+	update() {
+		var es = new EventSource('/updatexec');
+		es.addEventListener('stdout', function (event) {
+			this.setState({ logStdOut: (this.state.logStdOut + event.data) })
+		});
+		es.onmessage(ev => this.setState({ logStdOut: (this.state.logStdOut + ev.data) }))
+
 	}
 
 
