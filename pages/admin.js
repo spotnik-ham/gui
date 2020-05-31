@@ -76,7 +76,7 @@ class Component extends React.Component {
 		var logSO = `${this.state.logStdOut}`
 		console.log(this.state.logStdOut)
 		console.log(logSO)
-		document.getElementById("log").innerHTML = logSO;
+
 		return (
 			<Layout>
 				<div className="list-group">
