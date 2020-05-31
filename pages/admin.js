@@ -73,7 +73,8 @@ class Component extends React.Component {
 		var guiup2d = (V.guimaj === V.version_gui)
 		var spotup2d = (V.spotnikmaj === V.version)
 		var allup2d = (guiup2d && spotup2d)
-		var logSO = this.state.logStdOut.split("\n").join("<br />")
+		var logSO = `${this.state.logStdOut}`
+		console.log(this.state.logStdOut)
 		console.log(logSO)
 		return (
 			<Layout>
@@ -113,6 +114,10 @@ class Component extends React.Component {
 					</div>
 				</div>
 				<div id="log">
+					{this.state.logStdOut}
+					<br />
+					=============================================================
+					<br />
 					{logSO}
 				</div>
 				<style jsx>{`
