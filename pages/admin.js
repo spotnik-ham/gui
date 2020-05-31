@@ -60,7 +60,7 @@ class Component extends React.Component {
 		});
 		es.onmessage = (ev => {
 			this.setState({ logStdOut: ((this.state.logStdOut + ev.data).replace(/\r\n?/g, '<br />').replace(/\n/g, '<br />')) })
-			console.log(`//> ${ev.data}`)
+			console.log(`===//> ${JSON.parse(ev.data)}`)
 			console.log('///>', ev.data.toString('utf8'))
 		})
 
