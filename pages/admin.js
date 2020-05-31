@@ -54,10 +54,10 @@ class Component extends React.Component {
 
 	updateX = () => {
 		var es = new EventSource('/updatexec');
-		var str =
-			es.addEventListener('stdout', function (event) {
-				this.setState({ logStdOut: (this.state.logStdOut + event.data.toString('utf8')).replace(/\r\n?/g, '<br />').replace(/\n/g, '<br />') })
-			});
+		var str = ""
+		es.addEventListener('stdout', function (event) {
+			this.setState({ logStdOut: (this.state.logStdOut + event.data.toString('utf8')).replace(/\r\n?/g, '<br />').replace(/\n/g, '<br />') })
+		});
 		es.onmessage = (ev => {
 			this.setState({ logStdOut: ((this.state.logStdOut + ev.data).replace(/\r\n?/g, '<br />').replace(/\n/g, '<br />')) })
 			console.log(`//> ${ev.data}`)
