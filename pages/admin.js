@@ -71,7 +71,7 @@ class Component extends React.Component {
 		var guiup2d = (V.guimaj === V.version_gui)
 		var spotup2d = (V.spotnikmaj === V.version)
 		var allup2d = (guiup2d && spotup2d)
-
+		var logSO = this.state.logStdOut.split('\n').join("<br />")
 		return (
 			<Layout>
 				<div className="list-group">
@@ -110,7 +110,7 @@ class Component extends React.Component {
 					</div>
 				</div>
 				<div id="log">
-					{this.state.logStdOut}
+					{logSO}
 				</div>
 				<style jsx>{`
 				.list-group-item {
@@ -134,6 +134,9 @@ class Component extends React.Component {
 					margin: 0 0 2px 0;
 					border-radius: 0.25rem;
 					padding: .25rem .5rem;
+				}
+				#log {
+					font-family: "Lucida Console", Courier, monospace;
 				}
 		`}
 				</style>
