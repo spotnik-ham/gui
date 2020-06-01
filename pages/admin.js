@@ -60,11 +60,13 @@ class Component extends React.Component {
 
 		es.addEventListener('stdout', function (event) {
 			var lSO = JSON.parse(event.data).split('\n')
+			if (lSO[lSO.length - 1] === "") { lSO.pop() }
 			var logSO = this.state.logStdOut.concat(lSO)
 			this.setState({ logStdOut: logSO })
 		});
 		es.onmessage = (ev => {
 			var lSO = JSON.parse(ev.data).split('\n')
+			if (lSO[lSO.length - 1] === "") { lSO.pop() }
 			var logSO = this.state.logStdOut.concat(lSO)
 			this.setState({ logStdOut: logSO })
 		})
@@ -79,7 +81,7 @@ class Component extends React.Component {
 		var spotup2d = (V.spotnikmaj === V.version)
 		var allup2d = (guiup2d && spotup2d)
 		const logSO = this.state.logStdOut
-		console.log(logSO)
+		//console.log(logSO)
 
 		return (
 			<Layout>
@@ -119,9 +121,9 @@ class Component extends React.Component {
 					</div>
 				</div>
 				<div id="logSO">
-					<ol>
+					<ul>
 						{logSO.map(l => { return <li>{l}</li> })}
-					</ol>
+					</ul>
 				</div>
 				<style jsx>{`
 				.list-group-item {
@@ -148,6 +150,8 @@ class Component extends React.Component {
 				}
 				#logSO {
 					font-family: "Lucida Console", Courier, monospace;
+					padding: 0.5rem;
+					background-color: #fff6;
 				}
 		`}
 				</style>
