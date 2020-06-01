@@ -74,9 +74,9 @@ class Component extends React.Component {
 		var guiup2d = (V.guimaj === V.version_gui)
 		var spotup2d = (V.spotnikmaj === V.version)
 		var allup2d = (guiup2d && spotup2d)
-		var logSO = this.state.logStdOut
+		const logSO = this.state.logStdOut
 		console.log(this.state.logStdOut)
-		console.log(logSO)
+		console.log(`*/*/*/*= ${logSO} =*/*/*/* `)
 
 		return (
 			<Layout>
