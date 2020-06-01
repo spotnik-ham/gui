@@ -153,6 +153,9 @@ class Component extends React.Component {
 					padding: 0.5rem;
 					background-color: #fff6;
 				}
+				#logSO ul {
+					list-style-type: none;
+				}
 		`}
 				</style>
 			</Layout>
