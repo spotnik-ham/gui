@@ -32,7 +32,7 @@ class Component extends React.Component {
 
 		this.state = {
 			versions: {},
-			logStdOut: ''
+			logStdOut: []
 		}
 
 		this.getVersions = this.getVersions.bind(this)
@@ -57,34 +57,27 @@ class Component extends React.Component {
 
 	updateX = () => {
 		var es = new EventSource('/updatexec');
-		var str = ''
+
 		es.addEventListener('stdout', function (event) {
-			this.setState({ logStdOut: (this.state.logStdOut + JSON.parse(event.data)).replace(/\r\n?/g, '<br />').replace(/\n/g, '<br />') })
+			var lSO = JSON.parse(event.data).split('\n')
+			var logSO = this.state.logStdOut.concat(lSO)
+			this.setState({ logStdOut: logSO })
 		});
 		es.onmessage = (ev => {
-			str = '' + this.state.logStdOut + JSON.parse(ev.data).replace(/\r\n?/g, '<br />').replace(/\n/g, '<br />')
-			this.setState({ logStdOut: str })
-			//this.setState({ logStdOut: ((this.state.logStdOut + JSON.parse(ev.data)).replace(/\r\n?/g, '<br />').replace(/\n/g, '<br />')) })
-			//			console.log(`===//> ${this.state.logStdOut}`)
-			//			console.log('///>', ev.data.toString('utf8'))
+			var lSO = JSON.parse(ev.data).split('\n')
+			var logSO = this.state.logStdOut.concat(lSO)
+			this.setState({ logStdOut: logSO })
 		})
 		es.addEventListener('close', function (event) { es.close() })
 
 	}
 
-	componentDidMount() {
-		document.getElementById('logSO').innerHTML = this.state.logStdOut
-	}
 
 	render() {
 		var V = this.state.versions
 		var guiup2d = (V.guimaj === V.version_gui)
 		var spotup2d = (V.spotnikmaj === V.version)
 		var allup2d = (guiup2d && spotup2d)
-		const logSO = this.state.logStdOut
-		//		console.log(this.state.logStdOut)
-		//console.log(`*/*/*/*= ${logSO} =*/*/*/* `)
-		//if (!!document.getElementById('log')) { document.getElementById('log').innerHTML = logSO }
 
 		return (
 			<Layout>
@@ -124,7 +117,9 @@ class Component extends React.Component {
 					</div>
 				</div>
 				<div id="logSO">
-					Working ....
+					<ol>
+						{this.state.logStdOut.map(l => { <li>{l}</li> })}
+					</ol>
 				</div>
 				<style jsx>{`
 				.list-group-item {
@@ -149,7 +144,7 @@ class Component extends React.Component {
 					border-radius: 0.25rem;
 					padding: .25rem .5rem;
 				}
-				#log {
+				#logSO {
 					font-family: "Lucida Console", Courier, monospace;
 				}
 		`}
