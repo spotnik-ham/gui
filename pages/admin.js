@@ -72,7 +72,7 @@ class Component extends React.Component {
 
 	}
 
-	componentDidMount = () => {
+	componentDidMount() {
 		document.getElementById('logSO').innerHTML = this.state.logStdOut
 	}
 
