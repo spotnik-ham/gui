@@ -78,7 +78,8 @@ class Component extends React.Component {
 		var guiup2d = (V.guimaj === V.version_gui)
 		var spotup2d = (V.spotnikmaj === V.version)
 		var allup2d = (guiup2d && spotup2d)
-		console.log(this.state.logStdOut)
+		const logSO = this.state.logStdOut
+		console.log(logSO)
 
 		return (
 			<Layout>
@@ -119,7 +120,7 @@ class Component extends React.Component {
 				</div>
 				<div id="logSO">
 					<ol>
-						{this.state.logStdOut.map(l => { <li>{l}</li> })}
+						{logSO.map(l => { return <li>{l}</li> })}
 					</ol>
 				</div>
 				<style jsx>{`
