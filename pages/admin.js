@@ -81,6 +81,7 @@ class Component extends React.Component {
 		const logSO = this.state.logStdOut
 		//		console.log(this.state.logStdOut)
 		//		console.log(`*/*/*/*= ${logSO} =*/*/*/* `)
+		if (!!document.getElementById('log')) { document.getElementById('log').innerHTML = logSO }
 
 		return (
 			<Layout>
@@ -119,8 +120,8 @@ class Component extends React.Component {
 
 					</div>
 				</div>
-				<div id="log" ref={this.logRef}>
-					{!!logSO && <div> Result :<br /> {logSO}</div>}
+				<div id="log">
+					Working ....
 				</div>
 				<style jsx>{`
 				.list-group-item {
