@@ -28,6 +28,8 @@ function poweroff() {
 class Component extends React.Component {
 	constructor() {
 		super()
+		this.logRef = React.createRef();
+
 		this.state = {
 			versions: {},
 			logStdOut: ''
@@ -55,12 +57,14 @@ class Component extends React.Component {
 
 	updateX = () => {
 		var es = new EventSource('/updatexec');
-		var str = ""
+		var str = ''
 		es.addEventListener('stdout', function (event) {
 			this.setState({ logStdOut: (this.state.logStdOut + JSON.parse(event.data)).replace(/\r\n?/g, '<br />').replace(/\n/g, '<br />') })
 		});
 		es.onmessage = (ev => {
-			this.setState({ logStdOut: ((this.state.logStdOut + JSON.parse(ev.data)).replace(/\r\n?/g, '<br />').replace(/\n/g, '<br />')) })
+			str = '' + this.state.logStdOut + JSON.parse(ev.data).replace(/\r\n?/g, '<br />').replace(/\n/g, '<br />')
+			this.setState({ logStdOut: str })
+			//this.setState({ logStdOut: ((this.state.logStdOut + JSON.parse(ev.data)).replace(/\r\n?/g, '<br />').replace(/\n/g, '<br />')) })
 			//			console.log(`===//> ${this.state.logStdOut}`)
 			//			console.log('///>', ev.data.toString('utf8'))
 		})
@@ -77,48 +81,48 @@ class Component extends React.Component {
 		const logSO = this.state.logStdOut
 		//		console.log(this.state.logStdOut)
 		//		console.log(`*/*/*/*= ${logSO} =*/*/*/* `)
-
-		return (
-			<Layout>
-				<div className="list-group">
-					<div className="list-group-item flex-column align-items-center">
-						<button type="button" onClick={restart} className="btn btn-danger">Restart SvxLink</button>
-					</div>
-					<div className="list-group-item flex-column align-items-center">
-						<button type="button" onClick={reboot} className="btn btn-danger">Reboot</button>
-					</div>
-					<div className="list-group-item flex-column align-items-center">
-						<button type="button" onClick={poweroff} className="btn btn-danger">Power Off</button>
-					</div>
-					<div className="list-group-item flex-column align-items-center">
-						{allup2d &&
-							<button type="button" className="btn btn-success">
-								Your Spotnik is up to date.<br />
+		this.logRef.current.
+			return(
+				<Layout>
+					<div className="list-group">
+						<div className="list-group-item flex-column align-items-center">
+							<button type="button" onClick={restart} className="btn btn-danger">Restart SvxLink</button>
+						</div>
+						<div className="list-group-item flex-column align-items-center">
+							<button type="button" onClick={reboot} className="btn btn-danger">Reboot</button>
+						</div>
+						<div className="list-group-item flex-column align-items-center">
+							<button type="button" onClick={poweroff} className="btn btn-danger">Power Off</button>
+						</div>
+						<div className="list-group-item flex-column align-items-center">
+							{allup2d &&
+								<button type="button" className="btn btn-success">
+									Your Spotnik is up to date.<br />
 							Spotnik : {V.version} - GUI : {V.version_gui}
-							</button>}
-						{!allup2d &&
-							<button type="button" className="btn btn-danger btn-version-new">
-								<div className="bloc">
-									<div>New version(s) available</div>
-									<div>gui : {V.guimaj}</div>
-									<div>spotnik : {V.spotnikmaj}</div>
-								</div>
-								<div className="bloc">
-									<div>Your versions</div>
-									<div>gui : {V.version_gui}</div>
-									<div>spotnik : {V.version}</div>
-								</div>
-								<div className="bloc">
-									<div onClick={this.updateX}>Click to update</div>
-								</div>
-							</button>}
+								</button>}
+							{!allup2d &&
+								<button type="button" className="btn btn-danger btn-version-new">
+									<div className="bloc">
+										<div>New version(s) available</div>
+										<div>gui : {V.guimaj}</div>
+										<div>spotnik : {V.spotnikmaj}</div>
+									</div>
+									<div className="bloc">
+										<div>Your versions</div>
+										<div>gui : {V.version_gui}</div>
+										<div>spotnik : {V.version}</div>
+									</div>
+									<div className="bloc">
+										<div onClick={this.updateX}>Click to update</div>
+									</div>
+								</button>}
 
+						</div>
 					</div>
-				</div>
-				<div id="log">
-					{!!logSO && <div> Result :<br /> {logSO}</div>}
-				</div>
-				<style jsx>{`
+					<div id="log" ref={this.logRef}>
+						{!!logSO && <div> Result :<br /> {logSO}</div>}
+					</div>
+					<style jsx>{`
 				.list-group-item {
 					background-color: #fff6;
 				}
@@ -145,9 +149,9 @@ class Component extends React.Component {
 					font-family: "Lucida Console", Courier, monospace;
 				}
 		`}
-				</style>
-			</Layout>
-		)
+					</style>
+				</Layout>
+			)
 	}
 }
 
