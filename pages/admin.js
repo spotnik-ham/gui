@@ -72,6 +72,9 @@ class Component extends React.Component {
 
 	}
 
+	componentDidMount = () => {
+		document.getElementById('logSO').innerHTML = this.state.logStdOut
+	}
 
 	render() {
 		var V = this.state.versions
@@ -80,8 +83,8 @@ class Component extends React.Component {
 		var allup2d = (guiup2d && spotup2d)
 		const logSO = this.state.logStdOut
 		//		console.log(this.state.logStdOut)
-		//		console.log(`*/*/*/*= ${logSO} =*/*/*/* `)
-		if (!!document.getElementById('log')) { document.getElementById('log').innerHTML = logSO }
+		//console.log(`*/*/*/*= ${logSO} =*/*/*/* `)
+		//if (!!document.getElementById('log')) { document.getElementById('log').innerHTML = logSO }
 
 		return (
 			<Layout>
@@ -120,7 +123,7 @@ class Component extends React.Component {
 
 					</div>
 				</div>
-				<div id="log">
+				<div id="logSO">
 					Working ....
 				</div>
 				<style jsx>{`
