@@ -116,7 +116,7 @@ class Component extends React.Component {
 					</div>
 				</div>
 				<div id="log">
-					{!!logSO && logSO}
+					{!!logSO && <div> Result :<br /> {logSO}</div>}
 				</div>
 				<style jsx>{`
 				.list-group-item {
