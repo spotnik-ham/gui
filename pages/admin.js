@@ -61,8 +61,8 @@ class Component extends React.Component {
 		});
 		es.onmessage = (ev => {
 			this.setState({ logStdOut: ((this.state.logStdOut + JSON.parse(ev.data)).replace(/\r\n?/g, '<br />').replace(/\n/g, '<br />')) })
-			console.log(`===//> ${this.state.logStdOut}`)
-			console.log('///>', ev.data.toString('utf8'))
+			//			console.log(`===//> ${this.state.logStdOut}`)
+			//			console.log('///>', ev.data.toString('utf8'))
 		})
 		es.addEventListener('close', function (event) { es.close() })
 
@@ -75,8 +75,8 @@ class Component extends React.Component {
 		var spotup2d = (V.spotnikmaj === V.version)
 		var allup2d = (guiup2d && spotup2d)
 		const logSO = this.state.logStdOut
-		console.log(this.state.logStdOut)
-		console.log(`*/*/*/*= ${logSO} =*/*/*/* `)
+		//		console.log(this.state.logStdOut)
+		//		console.log(`*/*/*/*= ${logSO} =*/*/*/* `)
 
 		return (
 			<Layout>
