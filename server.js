@@ -115,13 +115,7 @@ app
 		})
 
 		server.get('/updatexec', (req, res) => { update.execute(req, res) })
-		/*		server.get('/updatexec', sseUpdate.init, (req, res) => {
-					update.execute(sseUpdate)
-				})
-		*/
-		server.get('/test', (req, res, next) => {
-			update.executetest(res) //.catch(next)
-		})
+
 
 		server.get('/update', (req, res, next) => {
 			update
