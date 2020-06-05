@@ -116,6 +116,7 @@ app
 
 		server.get('/updatexec', (req, res) => { update.execute(req, res) })
 
+		server.get('/updategui', (req, res) => { update.updategui(req, res) })
 
 		server.get('/update', (req, res, next) => {
 			update
