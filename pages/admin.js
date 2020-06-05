@@ -55,7 +55,7 @@ class Component extends React.Component {
 		}
 	}
 
-	update = () => {
+	updateSpotnik = () => {
 		var es = new EventSource('/updatexec');
 
 		es.addEventListener('stdout', function (event) {
@@ -74,6 +74,15 @@ class Component extends React.Component {
 
 	}
 
+	updateGui = () => {
+
+	}
+
+
+	update = (guiOk, spotnikOk) => {
+		if (!spotnikOk) { this.updateSpotnik() }
+		if (!guiOk) { this.updateGui() }
+	}
 
 	render() {
 		var V = this.state.versions
@@ -114,7 +123,7 @@ class Component extends React.Component {
 									<div>spotnik : {V.version}</div>
 								</div>
 								<div className="bloc">
-									<div onClick={this.update}>Click to update</div>
+									<div onClick={this.update(guiup2d, spotup2d)}>Click to update</div>
 								</div>
 							</button>}
 
