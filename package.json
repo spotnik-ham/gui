@@ -4,7 +4,7 @@
   "version": "4.0.1",
   "main": "index.js",
   "dependencies": {
-    "basic-ftp": "^4.5.4",
+    "basic-ftp": "^4.6.1",
     "body-parser": "^1.19.0",
     "bootstrap": "4.3.1",
     "dedent-js": "^1.0.1",

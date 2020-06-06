@@ -15,7 +15,7 @@ const dev = process.env.NODE_ENV !== 'production'
 const app = next({ dev })
 const handle = app.getRequestHandler()
 
-process.title = 'spotnik'
+process.title = 'Spotnik Gui'
 
 function restart() {
 	return api.getNetwork().then(network => {
