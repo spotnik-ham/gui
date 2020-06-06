@@ -79,7 +79,7 @@ class Component extends React.Component {
 	}
 
 
-	update = (guiOk, spotnikOk) => {
+	updateX = (guiOk, spotnikOk) => {
 		if (!spotnikOk) { this.updateSpotnik() }
 		if (!guiOk) { this.updateGui() }
 	}
@@ -123,7 +123,7 @@ class Component extends React.Component {
 									<div>spotnik : {V.version}</div>
 								</div>
 								<div className="bloc">
-									<div onClick={this.update(guiup2d, spotup2d)}>Click to update</div>
+									<div onClick={this.updateX(guiup2d, spotup2d)}>Click to update</div>
 								</div>
 							</button>}
 
