@@ -47,7 +47,7 @@ class Component extends React.Component {
 	}
 
 	handleChange({ target }) {
-		this.setState({ [target.name]: target.value })
+		this.setState({ [target.name]: target.value.trim() })
 	}
 
 	handleSubmit(event) {
