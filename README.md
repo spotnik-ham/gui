@@ -22,7 +22,7 @@ apt update && apt install nodejs npm
 ```
 ssh spotnik
 cd /opt/spotnik
-git clone https://github.com/spotnik-ham/gui.git
+git clone --single-branch --branch Version_4 https://github.com/spotnik-ham/gui.git
 cd gui
 make
 make start
