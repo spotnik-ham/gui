@@ -32,7 +32,7 @@ test:
 	xo
 
 stop:
-	pkill --signal SIGINT spotnik || true
+	pkill --signal SIGINT -f SpotnikGUI || true
 
 start:
 	nohup npm start > /tmp/spotnik.log 2>&1 &
