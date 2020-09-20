@@ -33,14 +33,14 @@ const cmds = {
 	'0#': 'Help',
 	'*#': 'Informations',
 	'#': 'Quit current module',
-	
+
 }
 
 class Component extends React.Component {
 	constructor(...args) {
 		super(...args)
 		this.state = {
-			display: '',
+			display: ''
 		}
 		if (g.AudioContext) {
 			this.dtmfPlayer = new DtmfPlayer()
@@ -66,27 +66,30 @@ class Component extends React.Component {
 	key(key) {
 		this.vibrate()
 		this.play(key)
-		fetch(`/api/dtmf/${encodeURIComponent(key)}`, {method: 'POST'})
+		fetch(`/api/dtmf/${encodeURIComponent(key)}`, { method: 'POST' })
 			.then(() => {
 				const display = this.state.display + key
-				this.setState({display})
+				if (display.length > 12) {
+					display = display.substring(1);
+				}
+				this.setState({ display })
 			})
-			.catch(() => {})
+			.catch(() => { })
 	}
 
-	sendKey(code,i) {
-		if ( i < code.length){
+	sendKey(code, i) {
+		if (i < code.length) {
 			this.key(code[i]);
 			i = i + 1;
 			setTimeout(() => {
-				this.sendKey(code,i);
-			},250)
+				this.sendKey(code, i);
+			}, 250)
 		}
 	}
-	
+
 	sendCode(code) {
 		var i = 0;
-		this.sendKey(code,i);
+		this.sendKey(code, i);
 	}
 
 	static getInitialProps() {
@@ -121,13 +124,14 @@ class Component extends React.Component {
 						</button>
 					))}
 				</div>
-					
-					{/*	@font-face {
+
+
+				{/*	@font-face {
 						font-family: 'D14CR';
 						src: url('../static/DSEG14Modern-Regular.woff2');
 					} */}
-					
-					<style jsx>{`
+
+				<style jsx>{`
 				
 					.keypad {
 						z-index: -1;
@@ -149,19 +153,44 @@ class Component extends React.Component {
 					.display {
 						background-color: white;
 						text-align: center;
-						border: solid 1px black;
-						font-family: 'D14CR', serif;
+						border: solid 1px #b22222;
+						font-size: x-large;
+						font-weight: bold;
 					}
 					.key {
-						width: calc((100% / 4) - 2px);
+						/*width: calc((100% / 4) - 2px);*/
 						margin: 1px;
-						height: 50px;
-						background-color: #dddddd;
-						border: solid 1px lightgrey;
+						/*height: 50px;*/
+						background-color: #fff;
+						border: solid 1px firebrick;
 						outline: none;
 						cursor: pointer;
+						padding: 5px 5px;
+						width: 1.5em;
+						font-size: x-large;
+						font-weight: bold;
 					}
-				`}</style>
+					.key :active {
+						background-color: #b2222240;
+					}
+					.grid-container {
+						display: grid;
+						grid-template-columns: auto auto auto auto;
+					}
+					.grid-item {
+						padding: 10px;
+					}
+					.row1 {
+						padding-bottom: 0;
+					}				
+					.center {
+						text-align: center;
+						padding-top: 75px;
+						color: firebrick;
+					}
+				`}
+
+				</style>
 			</Layout>
 		)
 	}

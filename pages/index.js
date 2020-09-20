@@ -8,8 +8,8 @@ import { callbackify } from 'util';
 class Component extends React.Component {
 	constructor() {
 		super()
-		this.state = {tri:"1"}
-	
+		this.state = { tri: "1" }
+
 		this.handleNetworkChange = this.handleNetworkChange.bind(this)
 		this.handleTriChange = this.handleTriChange.bind(this)
 	}
@@ -60,9 +60,9 @@ class Component extends React.Component {
 	}
 
 	handleTriChange(evt) {
-		
+
 		const Tri = evt.target.value;
-		this.setState({tri: Tri});
+		this.setState({ tri: Tri });
 
 	}
 
@@ -71,25 +71,25 @@ class Component extends React.Component {
 	}
 
 	render() {
-		if (this.state.nodes){
-			var nds = this.state.nodes.filter(() => {return true});
-			if (this.state.tri === "1"){
-			  nds.sort();
-			} else if (this.state.tri === "2"){
-			  nds.sort((a,b) => {
-				var at = a.split(' ');
-				if (at.length === 1) at[1] = 'a' + at[0];
-				var bt = b.split(' ');
-				if (bt.length === 1) bt[1] = 'a' + bt[0];
-				
-				if (at[1] < bt[1]) return -1;
-				if (at[1] === bt[1]) return 0;
-				if (at[1] > bt[1]) return 1;
-			 
-			  })
+		if (this.state.nodes) {
+			var nds = this.state.nodes.filter(() => { return true });
+			if (this.state.tri === "1") {
+				nds.sort();
+			} else if (this.state.tri === "2") {
+				nds.sort((a, b) => {
+					var at = a.split(' ');
+					if (at.length === 1) at[1] = 'a' + at[0];
+					var bt = b.split(' ');
+					if (bt.length === 1) bt[1] = 'a' + bt[0];
+
+					if (at[1] < bt[1]) return -1;
+					if (at[1] === bt[1]) return 0;
+					if (at[1] > bt[1]) return 1;
+
+				})
 			}
-		  }
-	
+		}
+
 		return (
 			<Layout>
 				<div className="form-inline">
@@ -99,7 +99,7 @@ class Component extends React.Component {
 					<select
 						required
 						name="network"
-						className="form-control"
+						className="form-control brdr"
 						value={this.state.network}
 						onChange={this.handleNetworkChange}
 					>
@@ -113,10 +113,10 @@ class Component extends React.Component {
 						<option value="sat">EXP Salon Expérimental</option>
 						<option value="fdv"> FDV Salon Numérique FreeDV</option>
 						<option value="el">EL Réseau EchoLink</option>
-						<option value="reg">REG Salon Régional a créer</option>
+						<option value="reg">REG Salon Régional à créer</option>
 					</select>
 
-					<select name="tri" className="form-control tri" value={this.state.tri}
+					<select name="tri" className="form-control brdr tri" value={this.state.tri}
 						onChange={this.handleTriChange}
 					>
 						<option value="0">No sorting</option>
@@ -125,7 +125,7 @@ class Component extends React.Component {
 					</select>
 
 					{this.state.transmitter && (
-						<span className="transmitter">
+						<button className="transmitter brdr bgrd">
 							<strong>{this.state.transmitter.toUpperCase()}</strong>{' '}
 							<img
 								height="28"
@@ -135,19 +135,19 @@ class Component extends React.Component {
 										: '../static/receive.svg'
 								}
 							/>
-						</span>
+						</button>
 					)}
 				</div>
 				{
 					<ol>
-										
+
 						{nds.map(name => (
-							
-							<button 
+
+							<button
 								key={name}
-								
-								className={this.state.transmitter === name ? 'transmitting':null}
-								>
+
+								className={this.state.transmitter === name ? 'brdr transmitting' : 'brdr'}
+							>
 
 								{ this.state.transmitter === name && (
 									<img
@@ -160,13 +160,13 @@ class Component extends React.Component {
 									/>
 								)}
 								{name.toUpperCase()}
-						
-							
+
+
 							</button>
 						))}
 					</ol>
 				}
-				
+
 				<style jsx>{`
 					select {
 						max-width: 360px;
@@ -174,6 +174,13 @@ class Component extends React.Component {
 
 					.tri {
 						margin-left: 50px;
+					}
+
+					.brdr {
+						border: 1px solid #b22222;
+					}
+					.bgrd {
+						background-color: white;
 					}
 
 					button{
@@ -194,7 +201,6 @@ class Component extends React.Component {
 					
 					ol {
 						padding: 1% 0%;
-						max-width: calc(100% - 150px);
 						margin-top: 15px;
 					}
 

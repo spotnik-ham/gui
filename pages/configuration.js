@@ -6,8 +6,8 @@ import notie from '../lib/notie'
 
 
 class Component extends React.Component {
-	constructor(props) {
-		super(props)
+	constructor() {
+		super()
 		this.state = {}
 
 		this.handleChange = this.handleChange.bind(this)
@@ -46,7 +46,7 @@ class Component extends React.Component {
 	}
 
 	handleChange({ target }) {
-		this.setState({ [target.name]: target.value })
+		this.setState({ [target.name]: target.value.trim() })
 	}
 
 	handleSubmit(event) {
@@ -60,16 +60,17 @@ class Component extends React.Component {
 
 	render() {
 		const value = prop => this.state[prop]
-		const band_typ = [
-			'6M',
-			'10M',
-			'H',
-			'V',
-			'U',
-			'T',
-			'S',
-			'R'
-		]
+		const band_typ = {
+			'6M': '6M - 6M Simplex Link',
+			'10M': '10M - 10M Simplex Link',
+			'T10M': 'T10M - Transponder with 10M access',
+			'H': 'H - Personal Hotspot',
+			'V': 'V - VHF Simplex Link',
+			'U': 'U - UHF Simplex Link',
+			'T': 'T - Transponder',
+			'R': 'R - Repeater',
+			'S': 'S - Special Link'
+		}
 		this.lSA818 = 'No'
 
 		// modification du tableau des ctcss possibles à cause de SA818 qui n'en gère que 38 :
@@ -153,11 +154,11 @@ class Component extends React.Component {
 							</label>
 						</div>
 						<div className="form-group">
-							<label htmlFor="location_latitude">latitude ( in degrees minutes secondes no value > 59 and no decimals ! <i>format : <strong>dd.mm.ssN</strong></i> )</label>
+							<label htmlFor="location_latitude">latitude ( in degrees minutes secondes no value &gt; 59 and no decimals ! <i>format : <strong>dd.mm.ssN</strong></i> )</label>
 							<input placeholder="55.48.58S" type="text" className="form-control" name="location_latitude" value={value('location_latitude')} onChange={this.handleChange} />
 						</div>
 						<div className="form-group">
-							<label htmlFor="location_longitude">longitude ( in degrees minutes secondes no value > 59 and no decimals ! <i>format : <strong>dd.mm.ssW</strong></i>)</label>
+							<label htmlFor="location_longitude">longitude ( in degrees minutes secondes no value &gt; 59 and no decimals ! <i>format : <strong>dd.mm.ssW</strong></i>)</label>
 							<input placeholder="11.15.00E" type="text" className="form-control" name="location_longitude" value={value('location_longitude')} onChange={this.handleChange} />
 						</div>
 						<p>
