@@ -40,14 +40,40 @@ const Index = props => (
 				</p>
 			</div>
 			<div className="list-group-item flex-column align-items-start">
-				<h5>version</h5>
-				<p>{props.version}</p>
+				<h5>versions</h5>
+				<p><strong>&nbsp;&nbsp;&nbsp;&nbsp;spotnik : </strong>{props.version}</p>
+				<p><strong>&nbsp;&nbsp;&nbsp;&nbsp;gui : </strong>{props.version_gui}</p>
 			</div>
 			<div className="list-group-item flex-column align-items-start">
 				<h5>temperature</h5>
 				<p>{props.temperature}</p>
 			</div>
 		</div>
+		<style jsx>{`
+			.list-group-item {
+				background-color: #fff6;
+				border: 1px solid firebrick;
+			}
+			.list-group-item :first-child {
+				border-top-right-radius: 0.8rem;
+    			border-top-left-radius: 0.8rem;
+			}
+			.list-group-item :last-child {
+				border-bottom-right-radius: 0.8rem;
+				border-bottom-left-radius: 0.8rem;
+			}
+			.list-group {
+				display: inline-flex;
+				padding-left: 30px;
+
+			}
+		`}
+		</style>
+		<style global jsx>{`
+			.content {
+				padding-top: 75px;
+			}
+		`}</style>
 	</Layout>
 )
 
@@ -58,6 +84,7 @@ Index.getInitialProps = async function () {
 		ip: await get('ip'),
 		datetime: await get('datetime'),
 		version: await get('version'),
+		version_gui: await get('version_gui'),
 		network: await get('network'),
 		temperature: await get('temperature'),
 	}
