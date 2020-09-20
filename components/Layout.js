@@ -14,6 +14,13 @@ const Layout = props => (
 				padding-top: 7%;
 			}
 		`}</style>
+		<style global jsx>{`
+			html, body {
+				background-image: url("../static/spotnik.jpg");
+				min-height: 100%;
+				background-size: cover;
+			}
+		`}</style>
 	</div>
 )
 
