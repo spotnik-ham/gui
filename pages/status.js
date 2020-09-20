@@ -49,6 +49,31 @@ const Index = props => (
 				<p>{props.temperature}</p>
 			</div>
 		</div>
+		<style jsx>{`
+			.list-group-item {
+				background-color: #fff6;
+				border: 1px solid firebrick;
+			}
+			.list-group-item :first-child {
+				border-top-right-radius: 0.8rem;
+    			border-top-left-radius: 0.8rem;
+			}
+			.list-group-item :last-child {
+				border-bottom-right-radius: 0.8rem;
+				border-bottom-left-radius: 0.8rem;
+			}
+			.list-group {
+				display: inline-flex;
+				padding-left: 30px;
+
+			}
+		`}
+		</style>
+		<style global jsx>{`
+			.content {
+				padding-top: 75px;
+			}
+		`}</style>
 	</Layout>
 )
 
