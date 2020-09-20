@@ -3,9 +3,13 @@ PATH := node_modules/.bin:$(PATH)
 .PHONY: setup test clean
 
 setup:
+	rm -f package-lock.json
 	npm install
 	next build
 
+build:
+	next build
+	
 dev:
 	npm install
 	node server.js
@@ -28,7 +32,7 @@ test:
 	xo
 
 stop:
-	pkill --signal SIGINT spotnik || true
+	pkill --signal SIGINT -f SpotnikGui || true
 
 start:
 	nohup npm start > /tmp/spotnik.log 2>&1 &

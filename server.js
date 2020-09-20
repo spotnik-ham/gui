@@ -6,15 +6,16 @@ const next = require('next')
 const bodyParser = require('body-parser')
 const api = require('./lib/api')
 const config = require('./lib/config')
+const update = require('./lib/update')
 const dtmf = require('./lib/dtmf')
-const {port, hostname} = require('./config')
+const { port, hostname } = require('./config')
 const sse = require('./lib/sse')
 
-const dev = process.env.NODE_ENV !== 'production'
-const app = next({dev})
+//const dev = process.env.NODE_ENV !== 'production'
+const app = next({})
 const handle = app.getRequestHandler()
 
-process.title = 'spotnik'
+process.title = 'SpotnikGui'
 
 function restart() {
 	return api.getNetwork().then(network => {
@@ -42,7 +43,7 @@ app
 			api
 				.getNetwork()
 				.then(r => {
-					res.writeHead(202, {'Content-Type': 'text/plain; charset=utf-8'})
+					res.writeHead(202, { 'Content-Type': 'text/plain; charset=utf-8' })
 					res.end(r.toString())
 				})
 				.catch(next)
@@ -62,8 +63,8 @@ app
 		server.get('/api/svxlink', (req, res, next) => {
 			config
 				.get()
-				.then(({callsign}) => {
-					res.json(Object.assign(api.svxlink(), {node: `spotnik-${callsign}`}))
+				.then(({ callsign }) => {
+					res.json(Object.assign(api.svxlink(), { node: `spotnik-${callsign}` }))
 				})
 				.catch(next)
 		})
@@ -108,11 +109,26 @@ app
 			api.poweroff().catch(next)
 		})
 
+		server.post('/update', (req, res, next) => {
+			res.writeHead(202)
+			res.end()
+			update.execute().catch(next)
+		})
+
+		server.get('/update', (req, res, next) => {
+			update
+				.get()
+				.then(conf => {
+					res.json(conf)
+				})
+				.catch(next)
+		})
+
 		server.get('/api/:id', (req, res, next) => {
 			api
 				.get(req.params.id)
 				.then(r => {
-					res.writeHead(200, {'Content-Type': 'text/plain; charset=utf-8'})
+					res.writeHead(200, { 'Content-Type': 'text/plain; charset=utf-8' })
 					res.end(r.toString())
 				})
 				.catch(next)
@@ -123,12 +139,12 @@ app
 		})
 
 		https.createServer(
-				{
-					key: fs.readFileSync('key.pem'),
-					cert: fs.readFileSync('cert.pem'),
-				},
-				server
-			)
+			{
+				key: fs.readFileSync('key.pem'),
+				cert: fs.readFileSync('cert.pem'),
+			},
+			server
+		)
 			.listen(443, err => {
 				if (err) {
 					throw err
@@ -137,8 +153,8 @@ app
 			})
 
 		http.createServer(
-				server
-			)
+			server
+		)
 			.listen(port, err => {
 				if (err) {
 					throw err
