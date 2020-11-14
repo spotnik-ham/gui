@@ -5,6 +5,8 @@ import notie from '../lib/notie'
 import Fsm from '../lib/svxlink/fsm'
 import { callbackify } from 'util';
 
+import Perso from './index.perso.js'
+
 class Component extends React.Component {
 	constructor() {
 		super()
@@ -113,6 +115,7 @@ class Component extends React.Component {
 						<option value="exp">EXP Salon Expérimental</option>
 						<option value="el">EL Réseau EchoLink</option>
 						<option value="reg">REG Salon Régional à créer</option>
+						<Perso />
 					</select>
 
 					<select name="tri" className="form-control brdr tri" value={this.state.tri}
