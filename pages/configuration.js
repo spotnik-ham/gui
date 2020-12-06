@@ -4,11 +4,20 @@ import Layout from '../components/Layout'
 import fetch from '../lib/fetch'
 import notie from '../lib/notie'
 
+async function getVersion() {
+	let response = await (await fetch('/getversion')).text();
+	//	console.log('Fonction getVersion ====>');
+	//	console.log(response);
+	return response
+}
+
 
 class Component extends React.Component {
 	constructor(props) {
 		super(props)
-		this.state = {}
+		this.state = {
+			Vspotnik: ""
+		}
 
 		this.handleChange = this.handleChange.bind(this)
 		this.handleSubmit = this.handleSubmit.bind(this)
@@ -19,6 +28,7 @@ class Component extends React.Component {
 
 	componentWillMount() {
 		this.setState(this.props.config)
+		getVersion().then(gV => this.setState({ Vspotnik: gV }))
 	}
 
 	static getInitialProps() {
@@ -98,6 +108,13 @@ class Component extends React.Component {
 		const sql_lvl = ['0', '1', '2', '3', '4', '5', '6', '7', '8']
 		const lSA818 = ['No', 'Yes']
 
+		var str = "" + this.state.Vspotnik;
+		let V = null;
+		if (str && (str !== "")) {
+			var n = str.indexOf('.');
+			V = str.substr(0, n);
+		}
+
 
 		return (
 			<Layout>
@@ -130,55 +147,57 @@ class Component extends React.Component {
 							</div>
 						</fieldset>
 
-						<fieldset className="form-group  grid-item">
-							<legend>Digital</legend>
-							<div className="subtitle">If wanted</div>
-							<div className="form-group">
-								<label htmlFor="iddmr7">Id DMR7</label>
-								<input placeholder="90100XX" type="text" className="form-control" name="iddmr7" value={value('iddmr7')} onChange={this.handleChange} />
-							</div>
-							<div className="form-group">
-								<label htmlFor="iddmr9">Id DMR9</label>
-								<input placeholder="90100xxyy" type="text" className="form-control" name="iddmr9" value={value('iddmr9')} onChange={this.handleChange} />
-							</div>
-							<div className="form-group">
-								<label htmlFor="idnxdn">Id NXDN</label>
-								<input placeholder="9999" type="text" className="form-control" name="idnxdn" value={value('idnxdn')} onChange={this.handleChange} />
-							</div>
-							<div className="form-group">
-								<label htmlFor="master_ip_bm">Master IP BM</label>
-								<select name="master_ip_bm" className="form-control" value={value('master_ip_bm')} onChange={this.handleChange}>
-									<option value="127.0.0.1" selected>No DMR Master</option>
-									<option value="164.132.195.103">IPCS2_FR</option>
-									<option value="213.222.29.197">BM_Netherlands_2042</option>
-									<option value="217.182.129.131">BM_France_2082</option>
-									<option value="158.69.203.89">BM_Canada_3021</option>
-									<option value="213.32.19.95">HBlink_Nord</option>
-									<option value="saint-appo.fr">HBlink_Loire</option>
-									<option value="151.80.37.99">HBlink_Pyr.O</option>
-									<option value="51.178.51.244">HBlink_Limouzi</option>
-									<option value="51.178.86.131">HBlink_Yvelines</option>
-								</select>
-							</div>
-							<div className="form-group">
-								<label id="phb_label" htmlFor="port_hb" >Port HBlink</label>
-								<select id="port_hb" name="port_hb" className="form-control" value={value('port_hb')} onChange={this.handleChange}>
-									<option value="" selected>Choose HBlink port...</option>
-									<option value="55570" selected>DMO70</option>
-									<option value="55571" selected>DMO71</option>
-									<option value="55572" selected>DMO72</option>
-									<option value="55573" selected>DMO73</option>
-									<option value="55574" selected>DMO74</option>
-									<option value="55575" selected>DMO75</option>
-									<option value="55576" selected>DMO76</option>
-									<option value="55577" selected>DMO77</option>
-									<option value="55578" selected>DMO78</option>
-									<option value="55579" selected>DMO79</option>
-								</select>
-							</div>
+						{(V === '4') && (
+							<fieldset className="form-group  grid-item">
+								<legend>Digital</legend>
+								<div className="subtitle">If wanted</div>
+								<div className="form-group">
+									<label htmlFor="iddmr7">Id DMR7</label>
+									<input placeholder="90100XX" type="text" className="form-control" name="iddmr7" value={value('iddmr7')} onChange={this.handleChange} />
+								</div>
+								<div className="form-group">
+									<label htmlFor="iddmr9">Id DMR9</label>
+									<input placeholder="90100xxyy" type="text" className="form-control" name="iddmr9" value={value('iddmr9')} onChange={this.handleChange} />
+								</div>
+								<div className="form-group">
+									<label htmlFor="idnxdn">Id NXDN</label>
+									<input placeholder="9999" type="text" className="form-control" name="idnxdn" value={value('idnxdn')} onChange={this.handleChange} />
+								</div>
+								<div className="form-group">
+									<label htmlFor="master_ip_bm">Master IP BM</label>
+									<select name="master_ip_bm" className="form-control" value={value('master_ip_bm')} onChange={this.handleChange}>
+										<option value="127.0.0.1" selected>No DMR Master</option>
+										<option value="164.132.195.103">IPCS2_FR</option>
+										<option value="213.222.29.197">BM_Netherlands_2042</option>
+										<option value="217.182.129.131">BM_France_2082</option>
+										<option value="158.69.203.89">BM_Canada_3021</option>
+										<option value="213.32.19.95">HBlink_Nord</option>
+										<option value="saint-appo.fr">HBlink_Loire</option>
+										<option value="151.80.37.99">HBlink_Pyr.O</option>
+										<option value="51.178.51.244">HBlink_Limouzi</option>
+										<option value="51.178.86.131">HBlink_Yvelines</option>
+									</select>
+								</div>
+								<div className="form-group">
+									<label id="phb_label" htmlFor="port_hb" >Port HBlink</label>
+									<select id="port_hb" name="port_hb" className="form-control" value={value('port_hb')} onChange={this.handleChange}>
+										<option value="" selected>Choose HBlink port...</option>
+										<option value="55570" selected>DMO70</option>
+										<option value="55571" selected>DMO71</option>
+										<option value="55572" selected>DMO72</option>
+										<option value="55573" selected>DMO73</option>
+										<option value="55574" selected>DMO74</option>
+										<option value="55575" selected>DMO75</option>
+										<option value="55576" selected>DMO76</option>
+										<option value="55577" selected>DMO77</option>
+										<option value="55578" selected>DMO78</option>
+										<option value="55579" selected>DMO79</option>
+									</select>
+								</div>
 
 
-						</fieldset>
+							</fieldset>
+						)}
 
 						<fieldset className="form-group grid-item">
 							<legend>Squelch</legend>
@@ -216,11 +235,11 @@ class Component extends React.Component {
 								</select>
 							</div>
 							<div className="form-group">
-								<label htmlFor="location_latitude">Latitude <small>( in degrees minutes secondes no value > 59 and no decimals ! <i>format : <strong>dd.mm.ssN</strong></i> )</small></label>
+								<label htmlFor="location_latitude">Latitude <small>( in degrees minutes secondes no value &gt; 59 and no decimals ! <i>format : <strong>dd.mm.ssN</strong></i> )</small></label>
 								<input placeholder="55.48.58S" type="text" className="form-control" name="location_latitude" value={value('location_latitude')} onChange={this.handleChange} />
 							</div>
 							<div className="form-group">
-								<label htmlFor="location_longitude">Longitude <small>( in degrees minutes secondes no value > 59 and no decimals ! <i>format : <strong>dd.mm.ssW</strong></i>)</small></label>
+								<label htmlFor="location_longitude">Longitude <small>( in degrees minutes secondes no value &gt; 59 and no decimals ! <i>format : <strong>dd.mm.ssW</strong></i>)</small></label>
 								<input placeholder="11.15.00E" type="text" className="form-control" name="location_longitude" value={value('location_longitude')} onChange={this.handleChange} />
 							</div>
 							<p>

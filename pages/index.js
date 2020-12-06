@@ -5,17 +5,31 @@ import notie from '../lib/notie'
 import Fsm from '../lib/svxlink/fsm'
 import { callbackify } from 'util';
 
+import Perso from '../customize/indexCustom';
+
+
+async function getVersion() {
+	let response = await (await fetch('/getversion')).text();
+	return response
+}
+
+
+
 class Component extends React.Component {
 	constructor() {
 		super()
-		this.state = { tri: "1" }
+		this.state = { tri: "1", Vspotnik: "" }
 
 		this.handleNetworkChange = this.handleNetworkChange.bind(this)
 		this.handleTriChange = this.handleTriChange.bind(this)
+		//		this.getVersion = this.getVersion.bind(this)
+
 	}
 
 	componentWillMount() {
 		this.setState(this.props)
+		getVersion().then(gV => this.setState({ Vspotnik: gV }))
+
 	}
 
 	componentDidMount() {
@@ -70,6 +84,20 @@ class Component extends React.Component {
 		return fetch('/api/svxlink').then(res => res.json())
 	}
 
+	/*	async getVersion() {
+			try {
+				await fetch('/getversion')
+					.then(res => {
+						console.log('fetch : ', res)
+						return res.json()
+					})
+					.catch(err => { console.error(err) })
+			} catch (err) {
+				console.error('error getVersion : ', err)
+			}
+		}
+	
+	*/
 	render() {
 		if (this.state.nodes) {
 			var nds = this.state.nodes.filter(() => { return true });
@@ -85,9 +113,20 @@ class Component extends React.Component {
 					if (at[1] < bt[1]) return -1;
 					if (at[1] === bt[1]) return 0;
 					if (at[1] > bt[1]) return 1;
-
 				})
 			}
+		}
+
+		var str = "" + this.state.Vspotnik;
+		console.log('str : ', str);
+		let V = null;
+		if (str && (str !== "")) {
+			var n = str.indexOf('.');
+			V = str.substr(0, n);
+			console.log('render >>> :');
+			console.log(V);
+		} else {
+			console.log("str NOK !")
 		}
 
 		return (
@@ -103,19 +142,25 @@ class Component extends React.Component {
 						value={this.state.network}
 						onChange={this.handleNetworkChange}
 					>
-						<option value="default">Répéteur Perroquet</option>
-						<option value="rrf">RRF Réseau des Répéteurs Francophones</option>
-						<option value="fon">FON French Open Network</option>
-						<option value="tec">TEC Salon Technique</option>
-						<option value="int">INT Salon International</option>
-						<option value="bav">BAV Salon Bavardage</option>
-						<option value="loc">LOC Salon Local</option>
-						<option value="exp">EXP Salon Expérimental</option>
-						<option value="fdv">FDV Salon Digital Xwindow</option>
-						<option value="el">EL Réseau EchoLink</option>
-						<option value="reg">REG Salon Régional à créer</option>
-						<option value="num">NUM Salon Numérique</option>
+						<option value="default"> 95 - Répéteur Perroquet</option>
+						<option value="rrf"> 96 - RRF Réseau des Répéteurs Francophones</option>
+						<option value="fon"> 97 - FON French Open Network</option>
+						<option value="tec"> 98 - TEC Salon Technique</option>
+						<option value="int"> 99 - INT Salon International</option>
+						<option value="bav">100 - BAV Salon Bavardage</option>
+						<option value="loc">101 - LOC Salon Local</option>
+						<option value="exp">102 - EXP Salon Expérimental</option>
+						<option value="el">103 - EL Réseau EchoLink</option>
+						<option value="reg">104 - REG Salon Régional à créer</option>
 
+						{(V === '4') &&
+							<>
+								<option value="fdv">105 - FDV Salon Digital Xwindow</option>
+								<option value="num">106 - NUM Salon Numérique</option>
+							</>
+						}
+
+						<Perso />
 					</select>
 
 					<select name="tri" className="form-control brdr tri" value={this.state.tri}
@@ -171,7 +216,7 @@ class Component extends React.Component {
 
 				<style jsx>{`
 					select {
-						max-width: 360px;
+						max-width: 400px;
 					}
 
 					.tri {

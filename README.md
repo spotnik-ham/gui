@@ -1,4 +1,6 @@
-# gui Version 4
+# gui Version 5
+
+## Cette version est en cours de développement. Aucune garantie quant à son fonctionnement.
 
 Graphical user interface for the spotnik HAM radio/internet relay.
 
@@ -7,7 +9,7 @@ This is the development documentation, for user documentation please refer to th
 It consist of Web server providing the necessary APIs and a Web application.
 It is written in JavaScript using [Next.js](https://github.com/zeit/next.js).
 
-`npm` and `Node.js` >= 10 are required.
+`npm` and `Node.js` >= 14 are required.
 
 For debian:
 
@@ -22,7 +24,7 @@ apt update && apt install nodejs npm
 ```
 ssh spotnik
 cd /opt/spotnik
-git clone --single-branch --branch Version_4 https://github.com/spotnik-ham/gui.git
+git clone --single-branch --branch Version_5 https://github.com/spotnik-ham/gui.git
 cd gui
 make
 make start

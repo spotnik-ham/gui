@@ -47,7 +47,7 @@ class Component extends React.Component {
 		this.play(key)
 		fetch(`/api/dtmf/${encodeURIComponent(key)}`, { method: 'POST' })
 			.then(() => {
-				var display = this.state.display + key
+				const display = this.state.display + key
 				if (display.length > 12) {
 					display = display.substring(1);
 				}
@@ -110,9 +110,12 @@ class Component extends React.Component {
 						display: grid;
 						justify-content: center;
 						grid-template-columns: auto auto auto auto; /*Make the grid smaller than the container*/
-						grid-gap: 10px;
+						grid-gap: 0.2em;
 						/*background-color: #2196F3;*/
 						padding: 10px;
+						font-size: x-large;
+						font-weight: bold;
+						box-sizing: content-box;
 					}
 					.item1 {
 						grid-column-start: 1;
@@ -135,7 +138,8 @@ class Component extends React.Component {
 						background-color: white;
 						text-align: center;
 						border: solid 1px #b22222;
-						font-family: 'D14CR', serif;
+						font-size: x-large;
+						font-weight: bold;
 					}
 					.key {
 						/*width: calc((100% / 4) - 2px);*/
@@ -145,6 +149,10 @@ class Component extends React.Component {
 						border: solid 1px firebrick;
 						outline: none;
 						cursor: pointer;
+						padding: 5px 5px;
+						width: 1.5em;
+						font-size: x-large;
+						font-weight: bold;
 					}
 					.key :active {
 						background-color: #b2222240;
