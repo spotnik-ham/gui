@@ -3,6 +3,9 @@ import Layout from '../components/Layout'
 import DtmfPlayer from '../lib/play-dtmf'
 import fetch from '../lib/fetch'
 
+import dtmfPerso from '../customize/dtmfCustom'
+import { DTMF_Y_Custom, DCustom, DTMFDashboardsCustom } from '../customize/dtmf_num_Custom'
+
 // FIXME polyfill
 const g = global || window
 
@@ -14,7 +17,7 @@ const keys = [
 	'*', '0', '#', 'D',
 ]
 
-const cmds = {
+const cmds_0 = {
 	'Announce IP address over radio': '93',
 	'Switch to NO network with Parrot': '95',
 	'Switch to RRF network': '96',
@@ -25,9 +28,16 @@ const cmds = {
 	'Switch to LOC room': '101',
 	'Switch to EXP room': '102',
 	'Switch to EL network': '103',
-	'Switch to REG room': '104',
+	'Switch to REG room': '104'
+}
+
+const cmds_digit = {
 	'Switch to FDV room': '105',
-	'Switch to NUM room': '106',
+	'Switch to NUM room': '106'
+}
+
+
+const cmds_1 = {
 	'Announce aeronautic weather': '*51',
 	'Help': '0',
 	'Informations': '*',
@@ -82,15 +92,28 @@ const cmds_3 = {
 	'D-Star 933C': '933',
 }
 
+async function getVersion() {
+	let response = await (await fetch('/getversion')).text();
+	//	console.log('Fonction getVersion ====>');
+	//	console.log(response);
+	return response
+}
+
+
 class Component extends React.Component {
 	constructor(...args) {
 		super(...args)
 		this.state = {
-			display: ''
+			display: '',
+			Vspotnik: ""
 		}
 		if (g.AudioContext) {
 			this.dtmfPlayer = new DtmfPlayer()
 		}
+	}
+
+	componentWillMount() {
+		getVersion().then(gV => this.setState({ Vspotnik: gV }))
 	}
 
 	vibrate() {
@@ -142,13 +165,22 @@ class Component extends React.Component {
 		return fetch(`/api/configuration`)
 			.then(res => res.json())
 			.then(config => {
-				config.callsign = config.callsign || '5P07N1K'
+				config.callsign = config.callsign || 'No_CALL'
 				return config
 			})
 	}
 
 	render() {
 		const display = this.state.display || this.props.callsign
+		const cmds = cmds_0 + dtmfPerso + cmds_1
+
+		var str = "" + this.state.Vspotnik;
+		let V = null;
+		if (str && (str !== "")) {
+			var n = str.indexOf('.');
+			V = str.substr(0, n);
+		}
+
 		return (
 			<Layout>
 
@@ -159,73 +191,56 @@ class Component extends React.Component {
 					<div className="grid-item row1"><strong>List of Digital Dashboards: </strong></div>
 					<div className="grid-item">
 						<ul>
-							{Object.entries(cmds).map(([v, k]) => (
+							{Object.entries(cmds_0).map(([v, k]) => (
+								<li key={k} onClick={() => this.sendCode(k === '#' ? '#' : k + '#')} className="commande">
+									<strong>{k} : </strong> {v}
+								</li>
+							))}
+							{(V === "4") && Object.entries(cmds_digit).map(([v, k]) => (
+								<li key={k} onClick={() => this.sendCode(k === '#' ? '#' : k + '#')} className="commande">
+									<strong>{k} : </strong> {v}
+								</li>
+							))}
+							{Object.entries(dtmfPerso).map(([v, k]) => (
+								<li key={k} onClick={() => this.sendCode(k === '#' ? '#' : k + '#')} className="commande">
+									<strong>{k} : </strong> {v}
+								</li>
+							))}
+							{Object.entries(cmds_1).map(([v, k]) => (
 								<li key={k} onClick={() => this.sendCode(k === '#' ? '#' : k + '#')} className="commande">
 									<strong>{k} : </strong> {v}
 								</li>
 							))}
 						</ul>
 					</div>
-					<div className="grid-item">
-						<ul>
-							{Object.entries(cmds_2).map(([v, k]) => (
-								<li key={k} onClick={() => this.sendCode(k + '#')} className="commande">
-									<strong>{k} : </strong> {v}
-								</li>
-							))}
-						</ul>
-					</div>
-					<div className="grid-item">
-						<ul>
-							{Object.entries(cmds_3).map(([v, k]) => (
-								<li key={k} onClick={() => this.sendCode(k + '#')} className="commande">
-									<strong>{k} : </strong> {v}
-								</li>
-							))}
-						</ul>
-					</div>
-					<div className="grid-item">
-						<ul>
-							<li><a href="http://rrf.f5nlg.ovh/" target="_blank">99 International Site du RRF</a></li>
-							<li><a href="http://ysf-france.fr" target="_blank">3000 YSF France</a></li>
-							<li><a href="http://ysf-idf.f1tzo.com:81" target="_blank">3001 YSF Ile de France</a></li>
-							<li><a href="https://xlx208.f5kav.fr/index.php" target="_blank">3002 YSF XLX208</a></li>
-							<li><a href="http://151.80.143.185/zit/YSFReflector-Dashboard/" target="_blank">3003 YSF Room ZIT</a></li>
-							<li><a href="http://ysf-centre-france.f1tzo.com:81/" target="_blank">3004 YSF Centre France</a></li>
-							<li><a href="http://ysf-alpes.f4gve.net/" target="_blank">3005 YSF Alpes</a></li>
-							<li><a href="http://www.ysfwallonie.net/ " target="_blank">3006 YSF Wallonie</a></li>
-							<li><a href="https://srv.hambox.fr/hdf-dashboard/" target="_blank">3007 YSF Haut de France</a></li>
-							<li><a href="http://vps.hambox.fr/ysf-linux-fr/" target="_blank">3008 YSF Linux</a></li>
-							<li><a href="http://vps731279.ovh.net/" target="_blank">3009 YSF Test</a></li>
-							<li><a href="http://ns3294400.ovh.net/YSFDashboard/" target="_blank">3010 YSF Fra Wide</a></li>
-							<li><a href="http://38.110.97.161/" target="_blank">3030 YSF Canada Fr </a></li>
-							<li><a href="https://cqcanada.420hamradio.network/" target="_blank">3031 YSF Cq Canada</a></li>
-							<li><a href="http://dmrq.ca/" target="_blank">3032 YSF Dmrq Canada</a></li>
-							<li><a href="http://www.f5ore.dyndns.org/" target="_blank">3044 YSF Nantes </a></li>
-							<li><a href="http://reflector.hb9vd.ch/ysf/" target="_blank">3066 YSF HB9VD </a></li>
-							<li><a href="http://151.80.143.185/WXF/YSFReflector-Dashboard/index.php/" target="_blank">3090 YSF FRa Wirex </a></li>
-							<li><a href="http://ysf-fon-gateway.f1tzo.com:81/" target="_blank">3097 YSF FON </a></li>
-							<li><a href="http://ysf-international-rrf.f1tzo.com:81/" target="_blank">3099 YSF International-RRF</a></li>
+					{!!V && (V === "4") &&
+						<>
+							<div className="grid-item">
+								<ul>
+									{Object.entries(DTMF_Y_Custom).map(([v, k]) => (
+										<li key={k} onClick={() => this.sendCode(k + '#')} className="commande">
+											<strong>{k} : </strong> {v}
+										</li>
+									))}
+								</ul>
+							</div>
+							<div className="grid-item">
+								<ul>
+									{Object.entries(DCustom).map(([v, k]) => (
+										<li key={k} onClick={() => this.sendCode(k + '#')} className="commande">
+											<strong>{k} : </strong> {v}
+										</li>
+									))}
+								</ul>
+							</div>
+							<div className="grid-item">
+								<ul>
+									<DTMFDashboardsCustom />
 
-							<p></p>
-
-							<li><a href="http://ysf-france.fr/p25/ " target="_blank">10208 P25 France</a></li>
-
-							<p></p>
-
-							<li><a href="http://ysf-france.fr/nxdn/" target="_blank">65208 NXDN France</a></li>
-
-							<p></p>
-
-							<li><a href="http://164.132.195.103/ipsc/index.html#" target="_blank">DMR IPSC2 France</a></li>
-							<li><a href="https://brandmeister.network/?page=lh" target="_blank">DMR BM</a></li>
-
-							<p></p>
-
-							<li><a href="http://dcs033.xreflector.net/index.php" target="_blank">933 D-Star DCS033 </a></li>
-
-						</ul>
-					</div>
+								</ul>
+							</div>
+						</>
+					}
 				</div>
 
 				{/*	@font-face {

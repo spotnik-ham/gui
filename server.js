@@ -15,7 +15,7 @@ const dev = process.env.NODE_ENV !== 'production'
 const app = next({ dev })
 const handle = app.getRequestHandler()
 
-process.title = 'SpotnikGUI'
+process.title = 'SpotnikGui'
 
 function restart() {
 	return api.getNetwork().then(network => {
@@ -120,6 +120,15 @@ app
 				.get()
 				.then(conf => {
 					res.json(conf)
+				})
+				.catch(next)
+		})
+
+		server.get('/getversion', (req, res, next) => {
+			update
+				.getVersion()
+				.then(V => {
+					res.end(V)
 				})
 				.catch(next)
 		})

@@ -1,7 +1,9 @@
 import Link from 'next/link'
 import React from 'react'
 
+
 const Navigation = () => {
+
 	return (
 		<nav className="navbar fixed-top navbar-toggleable-md navbar-light bg-faded">
 			<button
@@ -17,7 +19,8 @@ const Navigation = () => {
 			</button>
 			<Link href="/">
 				<a className="navbar-brand">
-					<img src="../static/spotnik.svg" height="30" /> spotnik
+					<img src="../static/spotnik.svg" height="30" />
+					 spotnik
 				</a>
 			</Link>
 			<div className="collapse navbar-collapse" id="navbarSupportedContent">
