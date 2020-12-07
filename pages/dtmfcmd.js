@@ -188,7 +188,10 @@ class Component extends React.Component {
 					<div className="grid-item row1"><strong>Click on a row to send the command:</strong></div>
 					<div className="grid-item row1"></div>
 					<div className="grid-item row1"></div>
-					<div className="grid-item row1"><strong>List of Digital Dashboards: </strong></div>
+					<div className="grid-item row1">
+						{!!V && (V === "4") && (<strong>List of Digital Dashboards: </strong>)}
+					</div>
+
 					<div className="grid-item">
 						<ul>
 							{Object.entries(cmds_0).map(([v, k]) => (
