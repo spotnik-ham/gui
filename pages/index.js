@@ -131,7 +131,7 @@ class Component extends React.Component {
 
 		return (
 			<Layout>
-				<div className="form-inline">
+				<div className="form-inline selector">
 					<label className="sr-only" htmlFor="network">
 						Network
 					</label>
@@ -143,7 +143,7 @@ class Component extends React.Component {
 						onChange={this.handleNetworkChange}
 					>
 						<option value="default"> 95 - Répéteur Perroquet</option>
-						<option value="rrf"> 96 - RRF Réseau des Répéteurs Francophones</option>
+						<option value="rrf"> 96 - Appel RRF</option>
 						<option value="fon"> 97 - FON French Open Network</option>
 						<option value="tec"> 98 - TEC Salon Technique</option>
 						<option value="int"> 99 - INT Salon International</option>
@@ -160,7 +160,7 @@ class Component extends React.Component {
 							</>
 						}
 
-						<Perso />
+						{Object.entries(Perso).map(([v, k]) => (<option value={k}>{v}</option>))}
 					</select>
 
 					<select name="tri" className="form-control brdr tri" value={this.state.tri}
@@ -215,6 +215,10 @@ class Component extends React.Component {
 				}
 
 				<style jsx>{`
+					.selector {
+						margin: 3px 5px;
+					}
+					
 					select {
 						max-width: 400px;
 					}
@@ -229,10 +233,7 @@ class Component extends React.Component {
 						background-color: white;
 					}
 					button{
-						
 						display: inline-block;
-						width: 150px;
-						
 						padding: 5px;
 						border: solid grey 1px;
 						border-radius: 5px;
@@ -241,13 +242,16 @@ class Component extends React.Component {
 						background-color: white;
 						color: black;
 						font-size: 0.95em;
-					
+						width: 150px;
 					}
 					
 					ol {
 						padding: 1% 0%;
-						max-width: calc(100% - 150px);
 						margin-top: 15px;
+						display: inline-grid;
+						grid-template-columns: repeat(auto-fit, minmax( 150px,1fr));
+						text-align: center;
+						width: 100%;
 					}
 
 					ol img {

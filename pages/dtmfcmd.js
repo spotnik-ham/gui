@@ -2,6 +2,7 @@ import React from 'react'
 import Layout from '../components/Layout'
 import DtmfPlayer from '../lib/play-dtmf'
 import fetch from '../lib/fetch'
+import notie from '../lib/notie'
 
 import dtmfPerso from '../customize/dtmfCustom'
 import { DTMF_Y_Custom, DCustom, DTMFDashboardsCustom } from '../customize/dtmf_num_Custom'
@@ -20,8 +21,8 @@ const keys = [
 const cmds_0 = {
 	'Announce IP address over radio': '93',
 	'Switch to NO network with Parrot': '95',
-	'Switch to RRF network': '96',
-	'Switch to FON network': '97',
+	'Switch to RRF Calling room': '96',
+	'Switch to FON room': '97',
 	'Switch to TEC room': '98',
 	'Switch to INT room': '99',
 	'Switch to BAV room': '100',
@@ -46,56 +47,9 @@ const cmds_1 = {
 	'Enable / Disable RRF Raptor': '200',
 }
 
-const cmds_2 = {
-	'YSF FRANCE': '3000',
-	'YSF IDF': '3001',
-	'YSF XLX 208': '3002',
-	'YSF Room-ZIT': '3003',
-	'YSF Centre France': '3004',
-	'YSF Alpes': '3005',
-	'YSF Wallonie': '3006',
-	'YSF Haut de France': '3007',
-	'YSF Linux': '3008',
-	'YSF Test': '3009',
-	'YSF FRA Wide': '3010',
-	'YSF Emcom FR': '3012',
-	'YSF NordOuest': '3029',
-	'YSF Canada Fr': '3030',
-	'YSF Cq Canada': '3031',
-	'YSF DMRQ Ca': '3032',
-	'YSF Nantes': '3044',
-	'YSF HB9VD': '3066',
-	'YSF Wirex': '3090',
-	'YSF FON': '3097',
-	'YSF INTERNATIONAL-RRF': '3099',
-	'P25 France': '10208',
-	'P25 Canada Fr': '40721',
-	'NXDN France': '65208',
-}
-
-const cmds_3 = {
-	'DMR France': '208',
-	'DMR Urgence': '2080',
-	'DMR IDF': '2081',
-	'DMR Nord Ouest': '2082',
-	'DMR Nord Est': '2083',
-	'DMR Sud Est': '2084',
-	'DMR Sud Ouest': '2085',
-	'DMR DOM-TOM': '2089',
-	'DMR 208 00': '20800',
-	'DMR 208 25': '20825',
-	'DMR 208 44': '20844',
-	'DMR 208 54': '20854',
-	'DMR 208 60': '20860',
-	'DMR 208 67': '20867',
-	'DMR 208 79': '20879',
-	'D-Star 933C': '933',
-}
 
 async function getVersion() {
 	let response = await (await fetch('/getversion')).text();
-	//	console.log('Fonction getVersion ====>');
-	//	console.log(response);
 	return response
 }
 
@@ -159,6 +113,7 @@ class Component extends React.Component {
 	sendCode(code) {
 		var i = 0;
 		this.sendKey(code, i);
+		notie.info(`Sending code ${code}`)
 	}
 
 	static getInitialProps() {

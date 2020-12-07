@@ -12,9 +12,19 @@ function get(id) {
 	return fetch(`/api/${encodeURIComponent(id)}`).then(res => res.text())
 }
 
+
+
 const Index = props => (
 	<Layout>
 		<div className="list-group">
+			<div className="list-group-item flex-column align-items-start">
+				<h5>time</h5>
+				{/* <p>{props.datetime}</p> */}
+				<p>{
+					new Date(props.datetime).toLocaleDateString() + ' - ' +
+					new Date(props.datetime).toLocaleTimeString()}
+				</p>
+			</div>
 			<div className="list-group-item flex-column align-items-start">
 				<h5>uptime</h5>
 				<p>{props.uptime}</p>
@@ -29,15 +39,7 @@ const Index = props => (
 			</div> */}
 			<div className="list-group-item flex-column align-items-start">
 				<h5>ip</h5>
-				<p>{props.ip}</p>
-			</div>
-			<div className="list-group-item flex-column align-items-start">
-				<h5>time</h5>
-				{/* <p>{props.datetime}</p> */}
-				<p>{
-					new Date(props.datetime).toLocaleTimeString() + ' - ' +
-					new Date(props.datetime).toLocaleDateString()}
-				</p>
+				{props.ip.split(',').map((ip) => (<p>{ip}</p>))}
 			</div>
 			<div className="list-group-item flex-column align-items-start">
 				<h5>versions</h5>
@@ -64,6 +66,7 @@ const Index = props => (
 			}
 			.list-group {
 				display: inline-flex;
+				padding-left: 15px;
 			}
 		`}
 		</style>
