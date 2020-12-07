@@ -143,7 +143,7 @@ class Component extends React.Component {
 						onChange={this.handleNetworkChange}
 					>
 						<option value="default"> 95 - Répéteur Perroquet</option>
-						<option value="rrf"> 96 - Appel RRF</option>
+						<option value="rrf"> 96 - Appel Réseau des Répéteurs Francophones</option>
 						<option value="fon"> 97 - FON French Open Network</option>
 						<option value="tec"> 98 - TEC Salon Technique</option>
 						<option value="int"> 99 - INT Salon International</option>
@@ -233,7 +233,6 @@ class Component extends React.Component {
 						background-color: white;
 					}
 					button{
-						display: inline-block;
 						padding: 5px;
 						border: solid grey 1px;
 						border-radius: 5px;
@@ -242,14 +241,15 @@ class Component extends React.Component {
 						background-color: white;
 						color: black;
 						font-size: 0.95em;
-						width: 150px;
+						width: 160px;
+						height: fit-content;
 					}
 					
 					ol {
 						padding: 1% 0%;
 						margin-top: 15px;
-						display: inline-grid;
-						grid-template-columns: repeat(auto-fit, minmax( 150px,1fr));
+						display: grid;
+						grid-template-columns: repeat(auto-fit, 170px);
 						text-align: center;
 						width: 100%;
 					}
@@ -266,6 +266,7 @@ class Component extends React.Component {
 					.transmitter {
 						position: absolute;
 						right: 50px;
+						width: 160px;
 					}
 				`}</style>
 			</Layout>
