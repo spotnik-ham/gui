@@ -2,7 +2,7 @@
   "name": "spotnik_gui",
   "private": true,
   "version": "5.0.0",
-  "main": "index.js",
+  "main": "server.js",
   "dependencies": {
     "basic-ftp": "^4.6.3",
     "body-parser": "^1.19.0",
