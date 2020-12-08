@@ -6,7 +6,7 @@ import React from 'react'
 	
 			Le format est le suivant : 
 			
-			'Texte du bouton de sélection': 'extension'
+			'Texte du bouton de sélection': 'extension',
 			
 			Le texte est affiché sur le GUI et l'extension est celle des fichiers restart.
 			

@@ -60,6 +60,9 @@ export const DCustom = {
 };
 
 // Liste des Dashboards numériques
+
+// *** Attention, là aussi faites attention à respecter le format ***
+
 export const DTMFDashboardsCustom = () => (
     <>
         <li><a href="http://rrf.f5nlg.ovh/" target="_blank">99 International Site du RRF</a></li>
