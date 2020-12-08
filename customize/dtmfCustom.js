@@ -1,5 +1,3 @@
-import React from 'react'
-import IndexCustom from './indexCustom'
 
 
 /*Insérer ci-dessous, tous les salons que vous souhaitez ajouter 

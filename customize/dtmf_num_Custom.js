@@ -59,7 +59,7 @@ export const DCustom = {
     'D-Star 933C': '933',
 };
 
-// Dashboards numériques
+// Liste des Dashboards numériques
 export const DTMFDashboardsCustom = () => (
     <>
         <li><a href="http://rrf.f5nlg.ovh/" target="_blank">99 International Site du RRF</a></li>
