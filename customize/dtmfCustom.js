@@ -16,10 +16,6 @@
 */
 
 const DTMFCustom = {
-    'Salon RCBM': '110',
-    'Salon reg53': '111',
-    'Salon régional Bretagne - Pays de loire': '122',
-    'Salon Administrateurs': '130'
 }
 
 
