@@ -21,11 +21,6 @@ function poweroff() {
 		.catch(() => { })
 }
 
-function update() {
-	fetch('/update', { method: 'POST' })
-		.then(() => notie.info('Updating...'))
-		.catch(() => { })
-}
 
 class Component extends React.Component {
 	constructor() {
@@ -34,17 +29,17 @@ class Component extends React.Component {
 			versions: {}
 		}
 
-		this.getVersions = this.getVersions.bind(this)
+		//this.getVersions = this.getVersions.bind(this)
 
 	}
 
 
 	async componentWillMount() {
-		var gV = await this.getVersions()
+		//var gV = await this.getVersions()
 		//console.log("componentWillMount : ", gV)
 	}
 
-	async getVersions() {
+/*	async getVersions() {
 		try {
 			var gV = await fetch('/update').then(res => res.json()).catch(err => { console.error(err) })
 			this.setState({ versions: gV })
@@ -53,14 +48,14 @@ class Component extends React.Component {
 			console.error('erreur getVersions : ', err)
 		}
 	}
-
+*/
 
 	render() {
-		var V = this.state.versions
+/*		var V = this.state.versions
 		var guiup2d = (V.guimaj === V.version_gui)
 		var spotup2d = (V.spotnikmaj === V.version)
 		var allup2d = (guiup2d && spotup2d)
-
+*/
 		return (
 			<Layout>
 				<div className="list-group">
@@ -73,7 +68,7 @@ class Component extends React.Component {
 					<div className="list-group-item flex-column align-items-center">
 						<button type="button" onClick={poweroff} className="btn btn-danger">Power Off</button>
 					</div>
-					<div className="list-group-item flex-column align-items-center">
+{/*					<div className="list-group-item flex-column align-items-center">
 						{allup2d &&
 							<button type="button" onClick={this.getVersions} className="btn btn-success">
 								Your Spotnik is up to date.<br />
@@ -97,6 +92,7 @@ class Component extends React.Component {
 							</button>}
 
 					</div>
+*/}
 				</div>
 				<style jsx>{`
 				.list-group-item {

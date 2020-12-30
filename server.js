@@ -6,7 +6,7 @@ const next = require('next')
 const bodyParser = require('body-parser')
 const api = require('./lib/api')
 const config = require('./lib/config')
-const update = require('./lib/update')
+
 const dtmf = require('./lib/dtmf')
 const { port, hostname } = require('./config')
 const sse = require('./lib/sse')
@@ -109,20 +109,6 @@ app
 			api.poweroff().catch(next)
 		})
 
-		server.post('/update', (req, res, next) => {
-			res.writeHead(202)
-			res.end()
-			update.execute().catch(next)
-		})
-
-		server.get('/update', (req, res, next) => {
-			update
-				.get()
-				.then(conf => {
-					res.json(conf)
-				})
-				.catch(next)
-		})
 
 		server.get('/api/:id', (req, res, next) => {
 			api
