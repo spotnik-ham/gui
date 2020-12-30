@@ -1,7 +1,7 @@
 {
   "name": "spotnik_gui",
   "private": true,
-  "version": "4.0.2",
+  "version": "4.0.3",
   "main": "index.js",
   "dependencies": {
     "basic-ftp": "^4.6.1",
