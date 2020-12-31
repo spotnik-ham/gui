@@ -1,7 +1,7 @@
 {
   "name": "spotnik_gui",
   "private": true,
-  "version": "4.0.4",
+  "version": "4.1.0",
   "main": "index.js",
   "dependencies": {
     "basic-ftp": "^4.6.1",
@@ -32,7 +32,7 @@
     "eslint-config-xo-react": "^0.20.0",
     "eslint-plugin-react": "^7.14.3",
     "eslint-plugin-react-hooks": "^1.7.0",
-    "xo": "^0.24.0"
+    "xo": "^0.36.1"
   },
   "xo": {
     "extends": "xo-react",
