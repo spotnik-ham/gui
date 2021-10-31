@@ -11,7 +11,7 @@ const Layout = props => (
 			.content {
 				padding-left: 10px;
 				padding-right: 10px;
-				padding-top: 7%;
+				padding-top: 5rem;
 			}
 		`}</style>
 		<style global jsx>{`
